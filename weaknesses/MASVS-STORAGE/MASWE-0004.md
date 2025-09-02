@@ -33,3 +33,9 @@ iOS and Android automatically back up app data to cloud services, and users can 
 - **Automatic System Backups**: By default, iOS and Android back up app data to the cloud once the user consents during the initial setup.
 - **Local Backups**: Users can back up their devices to local systems (e.g., laptops). If local backups are stored unencrypted or not securely handled, attackers could tamper with this data.
 - **Device-To-Device Transfer**: Transferring data between devices (e.g., via iCloud or Google's device-to-device migration tools) enables an attacker to perform similar attacks.
+
+## Mitigations
+
+- Exclude sensitive files from backups using platform-specific attributes, such as `android:allowBackup` or `BackupAgent` with `excludeFromBackup` for Android. On iOS, API such as `NSURLIsExcludedFromBackupKey` [doesn't guarantee](https://developer.apple.com/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup/#3928527) exclusion from the backup. Therefore, you should encrypt your data instead.
+- Store sensitive data in locations excluded from backups by default, like the Keychain or `Library/Caches` on iOS.
+- Encrypt sensitive data before storage to ensure confidentiality, even if it gets backed up.
