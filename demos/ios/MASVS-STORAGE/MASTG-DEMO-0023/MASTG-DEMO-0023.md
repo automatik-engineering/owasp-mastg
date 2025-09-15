@@ -10,21 +10,21 @@ test: MASTG-TEST-0024
 
 The code snippet below shows sample code that logs a sensitive token.
 
-{{ ../MASTG-DEMO-0024/MastgTest.kt }}
+{{ ../MASTG-DEMO-0024/MastgTest.swift }}
 
 ### Steps
 
-1. Install the app
-2. Run `run.sh`
-3. Exercise the app to trigger the logging
-4. Close the app
-5. Press Ctrl+C to stop capturing the logs
+1. Install the app on a device (@MASTG-TECH-0056)
+2. Make sure you have @MASTG-TOOL-0126 installed on your machine
+3. Run `run.sh` to start the log capturing
+4. Click the **Start** button
+5. Stop the script by pressing `Ctrl+C` to end the log capturing
 
 {{ run.sh }}
 
 ### Observation
 
-The `output.txt` contains all device logs including the logged strings from the app. You might need to filter out relevant logs.
+The output contains all device logs, including the logged strings from the app.
 
 {{ output.txt }}
 

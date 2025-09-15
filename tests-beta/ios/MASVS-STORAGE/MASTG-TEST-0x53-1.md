@@ -1,12 +1,13 @@
 ---
 platform: ios
-title: Insertion of Sensitive Data into Logs
+title: Sensitive Data Exposure Through Insecure Logging
 id: MASTG-TEST-0x53-1
 type: [dynamic]
 weakness: MASWE-0001
 prerequisites:
 - identify-sensitive-data
 best-practices: [MASTG-BEST-0016]
+profiles: [L1, L2]
 ---
 
 ## Overview
@@ -21,11 +22,11 @@ In this test, we will monitor and capture the device logs and then analyze them 
 
 ## Steps
 
-1. Install the app
-2. Start recording the logs with @MASTG-TECH-0060
-3. Run the app
-4. Navigate to the screen of the mobile app you want to analyse the log output from
-5. Close the app
+1. Install the app on a device (@MASTG-TECH-0056).
+2. Monitor the logs with @MASTG-TECH-0060.
+3. Open the app.
+4. Navigate to the mobile app from which you wish to analyse the log output.
+5. Close the app.
 
 ## Observation
 

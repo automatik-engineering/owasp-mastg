@@ -21,6 +21,8 @@ struct MastgTest {
     logger.info("logger.info: Leaking \(token, privacy: .public)")
     logger.warning("logger.warning: Leaking \(token, privacy: .public)")
     logger.error("logger.error: Leaking \(token, privacy: .public)")
+    logger.error("logger.error: Leaking \(token, privacy: .private)")
+    logger.error("logger.error: Leaking \(token)")
 
     fputs("fputs: Leaking \(token) from fputs\n", stderr)
     _ = swiftVfprintf(

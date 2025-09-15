@@ -18,11 +18,13 @@ The code snippet below shows sample code that logs a sensitive token using diffe
 2. Run `run.sh` to find all occurrences of `NSLog`.
 3. Repeat the same steps as in `run.sh` using another such as e.g. `print`.
 
+{{ loggingApi.r2 }}
+
 {{ run.sh }}
 
 ### Observation
 
-The `output.asm` contains location of `NSLog` usage in the binary.
+The output contains the location of `NSLog` usage in the binary.
 
 {{ output.asm }}
 
@@ -30,8 +32,5 @@ Reading `output.asm` doesn't clearly show what arguments are passed to `NSLog`, 
 
 ### Evaluation
 
-The test fails because there is a call to `NSLog` which takes the secret token as an argument.
+The test fails because it calls `NSLog` with the secret token as an argument.
 
-### Mitigation
-
-Instead of using APIs such as `NSLog` or `print`, use a macro statement that you can easily disable in the release builds.

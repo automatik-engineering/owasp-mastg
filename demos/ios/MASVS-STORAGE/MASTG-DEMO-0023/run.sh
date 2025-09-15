@@ -1,1 +1,1 @@
-idevicesyslog > output.txt
+idevicesyslog | grep -i MASTestApp > output.txt

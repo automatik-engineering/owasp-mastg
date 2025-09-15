@@ -1,28 +1,39 @@
 ---
-title: Remove sensitive logs from production builds
+title: Disable Verbose and Debug Logging in Production Builds
 alias: remove-logging-in-production
 id: MASTG-BEST-0016
 platform: ios
 ---
 
-Ensure that all invocations of logging APIs that expose detailed information about the application or user data are removed. Even if a logging API is only active in developer or debug modes, an attacker could:
+You should avoid using insecure logging mechanisms like `print` or [`NSLog`](https://developer.apple.com/documentation/foundation/nslog). These APIs can expose sensitive runtime data to system logs, which an attacker with device access may retrieve. Instead, you should adopt [Apple’s Unified Logging system](https://developer.apple.com/documentation/os/logging) (`Logger` in Swift, `os_log` in Objective-C), available from iOS 10.0 and later.
 
-- Tamper with the device or the app to force it to display all logs, regardless of the build variant
-- Gain deeper insight into the application through static analysis by examining verbose log messages
+If you rely on `print` or `NSLog`:
 
-To ensure maximum security, the safest approach is to completely remove these logging calls.
+- Your logs may end up in system diagnostics and remain accessible to attackers.
+- Debuggers or jailbroken devices can capture verbose log messages.
+- There is a risk exposing tokens, passwords, or PII.
 
-Below is sample code that demonstrates how to eliminate logging APIs from your application.
+## Unified Logging Features
 
-## 1. Swift
+Switching to Unified Logging gives you structured, privacy-aware logging that is safer for production environments. Here are the main features you can use when adopting [`Logger`](https://developer.apple.com/documentation/os/logger) and  (Swift) or [`os_log`](https://developer.apple.com/documentation/os/os_log) (Objective-C):
 
-```swift
-#if DEBUG
-print("Hello world")
-#endif
-```
+### Privacy Modifiers
 
-Then you need to set `DEBUG` flag in `Swift Compiler - Custom Flags" > Other Swift Flags` for the development builds.
+When logging information, it’s crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple’s unified logging system provides [privacy modifier](https://developer.apple.com/documentation/os/oslogprivacy) that lets you control how data appears in logs.
+
+- **`.private`**: Redacts the value in persistent logs but still shows it in memory while debugging (e.g., PII, secrets, tokens, and sensitive data).
+- **`.public`**: Explicitly marks the value as safe to display in all logs. Use this only for **non-sensitive debug information**.
+- **`.sensitive`**: Behaves identically to `.private`, but remains redacted even if private data logging is globally enabled.
+- **`.private(mask:)`**: allows you to preserve data correlation. For example, applying a hash mask enables identifying repeated values across logs without exposing the raw data.
+
+### Log Levels
+
+Unified logging supports multiple [log levels](https://developer.apple.com/documentation/os/oslogtype) to help you categorize and prioritize messages based on their importance and severity. By assigning the appropriate log level, you can control which messages appear in production, aid in debugging, and quickly identify critical issues that require attention.
+
+- **`debug`**: Used for detailed debugging information.
+- **`info`**: Used for general operational messages.
+- **`error`**: Used when something goes wrong, but the app can continue.
+- **`fault`**: Used for serious issues that require immediate attention (e.g., crashes, corruption).
 
 ## 2. Objective-C
 
