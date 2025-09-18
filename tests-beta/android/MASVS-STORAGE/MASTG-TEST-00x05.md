@@ -16,7 +16,7 @@ This test case checks if the application leaks sensitive data via notifications 
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0110 on the app source, or run the app and use a dynamic analysis tool like @MASTG-TECH-0033 with @MASTG-TOOL-0001 and start tracing all calls to functions related to the notifications creation, e.g. `setContentTitle` or `setContentText` from [`Notification.Builder`](https://developer.android.com/reference/android/app/Notification.Builder) or[`NotificationCompat.Builder`](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Builder).
+1. Run a static analysis tool such as @MASTG-TOOL-0110 on the app source, or run the app and use a dynamic analysis with @MASTG-TECH-0033 and a tool like @MASTG-TOOL-0001 and start tracing all calls to functions related to the notifications creation, e.g. `setContentTitle` or `setContentText` from [`Notification.Builder`](https://developer.android.com/reference/android/app/Notification.Builder) or[`NotificationCompat.Builder`](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Builder).
 
 ## Observation
 
