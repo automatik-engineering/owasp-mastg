@@ -1,0 +1,9 @@
+rules:
+  - id: mastg-android-sensitive-data-in-notifications-manifest
+    languages:
+      - xml
+    severity: WARNING
+    metadata:
+      summary: This rule inpects AndroidManifest.xml for notification post permission. Notification may contain sensitive data.
+    message: "[MASVS-STORAGE-2] Ensure that notifications do not contain sensitive information"
+    pattern: android:name="android.permission.POST_NOTIFICATIONS"
