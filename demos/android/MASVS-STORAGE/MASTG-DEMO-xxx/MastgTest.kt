@@ -1,18 +1,12 @@
 package org.owasp.mastestapp
 
-import android.Manifest.permission.POST_NOTIFICATIONS
 //noinspection SuspiciousImport
 import android.R
-import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.os.Build
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
 
 class MastgTest(private val context: Context) {
 
@@ -30,8 +24,6 @@ class MastgTest(private val context: Context) {
     val sensitiveTitle = "Hi John Doe"
     val sensitiveText = "Hi John Doe <- This is a sensitive string containing PII"
     fun mastgTest(): String {
-
-        requestNotificationsPermissions()
 
         notificationManager.notify(1, createNotification())
         notificationManager.notify(2, createNotificationOnChannel())
@@ -66,21 +58,4 @@ class MastgTest(private val context: Context) {
             .setSmallIcon(R.drawable.ic_menu_info_details)
             .build()
 
-    private fun requestNotificationsPermissions() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            return
-        }
-
-        if (checkSelfPermission(context, POST_NOTIFICATIONS) == PERMISSION_GRANTED) {
-            return
-        }
-
-        (context as? Activity)?.also { activity ->
-            ActivityCompat.requestPermissions(
-                activity,
-                arrayOf(POST_NOTIFICATIONS),
-                1
-            )
-        }
-    }
 }

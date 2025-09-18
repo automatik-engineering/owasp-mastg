@@ -1,7 +1,7 @@
 rules:
   - id: mastg-android-sensitive-data-in-notifications
     languages:
-      - kotlin
+      - java
     severity: WARNING
     metadata:
       summary: This rule looks for notifications that may contain sensitive data.
