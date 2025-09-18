@@ -1,0 +1,27 @@
+---
+platform: android
+title: Sensitive Data Leaked via Notifications
+id: MASTG-TEST-00x05 // TODO replace with real ID
+apis: [NotificationManager]
+type: [static, dynamic]
+weakness: MASWE-0054
+prerequisites:
+- identify-sensitive-data
+profiles: [L1, L2]
+---
+
+## Overview
+
+This test case checks if the application leaks sensitive data via notifications to third parties.
+
+## Steps
+
+1. Run a static analysis tool such as @MASTG-TOOL-0110 on the app source, or run the app and use a dynamic analysis tool like @MASTG-TECH-0033 with @MASTG-TOOL-0001 and start tracing all calls to functions related to the notifications creation, e.g. `setContentTitle` or `setContentText` from [`Notification.Builder`](https://developer.android.com/reference/android/app/Notification.Builder) or[`NotificationCompat.Builder`](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Builder).
+
+## Observation
+
+The output should contain a list of trace points where notifications are created.
+
+## Evaluation
+
+The test case fails if sensitive data is found to be contained in any notification created by the app.
