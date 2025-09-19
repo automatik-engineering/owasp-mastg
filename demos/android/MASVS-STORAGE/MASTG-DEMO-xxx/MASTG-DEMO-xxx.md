@@ -10,6 +10,7 @@ tools: [MASTG-TOOL-0110]
 ### Sample
 
 The following samples contain:
+
 - the Kotlin code that creates a notification with sensitive data.
 - the AndroidManifest.xml with a `POST_NOTIFICATIONS` permission to post notifications (for above Android API 33).
 
