@@ -1,7 +1,7 @@
 ---
 title: Disable Verbose and Debug Logging in Production Builds
 alias: remove-logging-in-production
-id: MASTG-BEST-0016
+id: MASTG-BEST-0022
 platform: ios
 ---
 

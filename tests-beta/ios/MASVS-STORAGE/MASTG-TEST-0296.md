@@ -6,7 +6,7 @@ type: [dynamic]
 weakness: MASWE-0001
 prerequisites:
 - identify-sensitive-data
-best-practices: [MASTG-BEST-0016]
+best-practices: [MASTG-BEST-0022]
 profiles: [L1, L2]
 ---
 
