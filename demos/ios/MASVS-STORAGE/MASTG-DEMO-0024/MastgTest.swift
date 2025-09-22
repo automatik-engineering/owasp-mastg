@@ -17,12 +17,33 @@ struct MastgTest {
     NSLog("NSLog: Leaking \(token) from NSLog")
     os_log("os_log: Leaking %{public}@ from os_log",
            log: .default, type: .info, token)
-    logger.debug("logger.debug: Leaking \(token, privacy: .public)")
-    logger.info("logger.info: Leaking \(token, privacy: .public)")
-    logger.warning("logger.warning: Leaking \(token, privacy: .public)")
-    logger.error("logger.error: Leaking \(token, privacy: .public)")
-    logger.error("logger.error: Leaking \(token, privacy: .private)")
+    
+    logger.debug("logger.debug: Leaking \(token)")
+    logger.debug("logger.debug (privacy: .public): Leaking \(token, privacy: .public)")
+    logger.debug("logger.debug (privacy: .private): Leaking \(token, privacy: .private)")
+    logger.debug("logger.debug (privacy: .sensitive): Leaking \(token, privacy: .sensitive)")
+    
+    
+    logger.info("logger.info: Leaking \(token)")
+    logger.info("logger.info (privacy: .public): Leaking \(token, privacy: .public)")
+    logger.info("logger.info (privacy: .private): Leaking \(token, privacy: .private)")
+    logger.info("logger.info (privacy: .sensitive): Leaking \(token, privacy: .sensitive)")
+    
+    logger.warning("logger.warning: Leaking \(token)")
+    logger.warning("logger.warning (privacy: .public): Leaking \(token, privacy: .public)")
+    logger.warning("logger.warning (privacy: .private): Leaking \(token, privacy: .private)")
+    logger.warning("logger.warning (privacy: .sensitive): Leaking \(token, privacy: .sensitive)")
+    
     logger.error("logger.error: Leaking \(token)")
+    logger.error("logger.error (privacy: .public): Leaking \(token, privacy: .public)")
+    logger.error("logger.error (privacy: .private): Leaking \(token, privacy: .private)")
+    logger.error("logger.error (privacy: .sensitive): Leaking \(token, privacy: .sensitive)")
+    
+    logger.fault("logger.fault: Leaking \(token)")
+    logger.fault("logger.fault (privacy: .public): Leaking \(token, privacy: .public)")
+    logger.fault("logger.fault (privacy: .private): Leaking \(token, privacy: .private)")
+    logger.fault("logger.fault (privacy: .sensitive): Leaking \(token, privacy: .sensitive)")
+    
 
     fputs("fputs: Leaking \(token) from fputs\n", stderr)
     _ = swiftVfprintf(

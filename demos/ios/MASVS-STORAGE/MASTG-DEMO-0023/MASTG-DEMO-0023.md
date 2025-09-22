@@ -3,7 +3,7 @@ platform: ios
 title: Monitor secrets in logs
 code: [swift]
 id: MASTG-DEMO-0023
-test: MASTG-TEST-0024
+test: MASTG-TEST-0x53-1
 ---
 
 ### Sample
@@ -33,7 +33,9 @@ The output contains all device logs, including the logged strings from the app.
 The test fails because we can see `TOKEN=123` inside the logs at:
 
 ```text
-MASTestApp(Foundation)[94322] <Notice>: NSLog: Leaking TOKEN=123 from NSLog
-MASTestApp[94322] <Error>: logger.warning: Leaking TOKEN=123
-MASTestApp[94322] <Error>: logger.error: Leaking TOKEN=123
+Sep 22 11:20:31 MASTestApp(Foundation)[32240] <Notice>: NSLog: Leaking TOKEN=123 from NSLog
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning: Leaking <private>
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .public): Leaking TOKEN=123
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.error (privacy: .public): Leaking TOKEN=123
+Sep 22 11:20:31 MASTestApp[32240] <Fault>: logger.fault (privacy: .public): Leaking TOKEN=123
 ```
