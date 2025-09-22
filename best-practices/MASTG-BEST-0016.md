@@ -21,10 +21,10 @@ Switching to Unified Logging gives you structured, privacy-aware logging that is
 
 When logging information, it's crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple's unified logging system provides [privacy modifier](https://developer.apple.com/documentation/os/oslogprivacy) that lets you control how data appears in logs.
 
-- **`.private`**: Redacts the value in persistent logs but still shows it in memory while debugging (e.g., PII, secrets, tokens, and sensitive data).
 - **`.public`**: Explicitly marks the value as safe to display in all logs. Use this only for **non-sensitive debug information**.
-- **`.sensitive`**: Behaves identically to `.private`, but remains redacted even if private data logging is globally enabled.
+- **`.private`**: Redacts the value in persistent logs but still shows it in memory while debugging (e.g., PII, secrets, tokens, and sensitive data).
 - **`.private(mask:)`**: allows you to preserve data correlation. For example, applying a hash mask enables identifying repeated values across logs without exposing the raw data.
+- **`.sensitive`**: Behaves identically to `.private`, but remains redacted even if private data logging is globally enabled.
 
 ### Log Levels
 
@@ -35,7 +35,19 @@ Unified logging supports multiple [log levels](https://developer.apple.com/docum
 - **`error`**: Used when something goes wrong, but the app can continue.
 - **`fault`**: Used for serious issues that require immediate attention (e.g., crashes, corruption).
 
-## 2. Objective-C
+## Removing logging code with macros
+
+To ensure maximum security, the safest approach is to completely remove these logging calls from the app. Below is sample code that demonstrates how to eliminate logging APIs from your application during compilation.
+
+### 1. Swift
+
+```swift
+#if DEBUG
+print("Hello world")
+#endif
+```
+
+### 2. Objective-C
 
 ```objectivec
 #ifdef DEBUG 
