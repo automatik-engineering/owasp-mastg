@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: Sensitive Data Exposure Through Insecure Logging
-id: MASTG-TEST-0x53-1
+id: MASTG-TEST-0296
 type: [dynamic]
 weakness: MASWE-0001
 prerequisites:
@@ -12,7 +12,7 @@ profiles: [L1, L2]
 
 ## Overview
 
-This test is the dynamic counterpart to @MASTG-TEST-0x53-2.
+This test is the dynamic counterpart to @MASTG-TEST-0297.
 
 In this test, we will monitor and capture the device logs and then analyze them for sensitive data.
 

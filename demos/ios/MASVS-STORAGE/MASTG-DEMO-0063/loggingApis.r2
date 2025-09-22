@@ -8,11 +8,11 @@ afl~NSLog
 !printf "\n"
 
 !printf "xrefs to NSLog:\n"
-axt @ 0x10000c6a4
+axt @ 0x10000d780
 
 !printf "\n"
 !printf "Invocation of NSLog:\n"
 
-pd-- 5 @ 0x100004304
+pd-- 5 @ 0x1000088ec
 
-pdf @ 0x1000042f4 > function.asm
+pdf @ 0x1000088ec > function.asm

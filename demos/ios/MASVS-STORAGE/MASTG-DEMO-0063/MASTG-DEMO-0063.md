@@ -2,7 +2,7 @@
 platform: ios
 title: Uses of logging APIs with r2
 code: [swift]
-id: MASTG-DEMO-0x53
+id: MASTG-DEMO-0063
 test: MASTG-TEST-0024
 ---
 

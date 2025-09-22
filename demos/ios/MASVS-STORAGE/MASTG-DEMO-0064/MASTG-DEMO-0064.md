@@ -2,8 +2,8 @@
 platform: ios
 title: Monitor secrets in logs
 code: [swift]
-id: MASTG-DEMO-0023
-test: MASTG-TEST-0x53-1
+id: MASTG-DEMO-0064
+test: MASTG-TEST-0296
 ---
 
 ### Sample
