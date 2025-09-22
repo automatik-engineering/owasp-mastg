@@ -8,7 +8,7 @@ test: MASTG-TEST-0024
 
 ### Sample
 
-The code snippet below shows sample code that logs a sensitive token using different [logging APIs](../../../../Document/0x06d-Testing-Data-Storage/#logs).
+The code snippet below shows sample code that insecurely logs a sensitive token
 
 {{ MastgTest.swift }}
 
