@@ -28,6 +28,13 @@ The output contains all device logs, including the logged strings from the app.
 
 {{ output.txt }}
 
+Observe that some of the logs were redacted with `<private>`. For example:
+
+```text
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .private): Leaking <private>
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .sensitive): Leaking <private>
+```
+
 ### Evaluation
 
 The test fails because we can see `TOKEN=123` inside the logs at:
