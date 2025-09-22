@@ -5,7 +5,7 @@ id: MASTG-BEST-0016
 platform: ios
 ---
 
-You should avoid using insecure logging mechanisms like `print` or [`NSLog`](https://developer.apple.com/documentation/foundation/nslog). These APIs can expose sensitive runtime data to system logs, which an attacker with device access may retrieve. Instead, you should adopt [Apple’s Unified Logging system](https://developer.apple.com/documentation/os/logging) (`Logger` in Swift, `os_log` in Objective-C), available from iOS 10.0 and later.
+You should avoid using insecure logging mechanisms like `print` or [`NSLog`](https://developer.apple.com/documentation/foundation/nslog). These APIs can expose sensitive runtime data to system logs, which an attacker with device access may retrieve. Instead, you should adopt [Apple's Unified Logging system](https://developer.apple.com/documentation/os/logging) (`Logger` in Swift, `os_log` in Objective-C), available from iOS 10.0 and later.
 
 If you rely on `print` or `NSLog`:
 
@@ -15,11 +15,11 @@ If you rely on `print` or `NSLog`:
 
 ## Unified Logging Features
 
-Switching to Unified Logging gives you structured, privacy-aware logging that is safer for production environments. Here are the main features you can use when adopting [`Logger`](https://developer.apple.com/documentation/os/logger) and  (Swift) or [`os_log`](https://developer.apple.com/documentation/os/os_log) (Objective-C):
+Switching to Unified Logging gives you structured, privacy-aware logging that is safer for production environments. Here are the main features you can use when adopting [`Logger`](https://developer.apple.com/documentation/os/logger) and (Swift) or [`os_log`](https://developer.apple.com/documentation/os/os_log) (Objective-C):
 
 ### Privacy Modifiers
 
-When logging information, it’s crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple’s unified logging system provides [privacy modifier](https://developer.apple.com/documentation/os/oslogprivacy) that lets you control how data appears in logs.
+When logging information, it's crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple's unified logging system provides [privacy modifier](https://developer.apple.com/documentation/os/oslogprivacy) that lets you control how data appears in logs.
 
 - **`.private`**: Redacts the value in persistent logs but still shows it in memory while debugging (e.g., PII, secrets, tokens, and sensitive data).
 - **`.public`**: Explicitly marks the value as safe to display in all logs. Use this only for **non-sensitive debug information**.

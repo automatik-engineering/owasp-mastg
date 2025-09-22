@@ -33,4 +33,3 @@ Reading `output.asm` doesn't clearly show what arguments are passed to `NSLog`, 
 ### Evaluation
 
 The test fails because it calls `NSLog` with the secret token as an argument.
-
