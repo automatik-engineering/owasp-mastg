@@ -5,7 +5,8 @@
 └────────────────┘
                                 
     AndroidManifest_reversed.xml
-    ❯❱ [1mrules.mastg-android-sensitive-data-in-notifications-manifest[0m
-          [MASVS-STORAGE-2] Ensure that notifications do not contain sensitive information
-                                                                                          
+    ❯❱ rules.mastg-android-sensitive-data-in-notifications-manifest
+          [MASVS-PLATFORM-3] Ensure that notifications do not contain sensitive information
+                                                                                           
            14┆ <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
