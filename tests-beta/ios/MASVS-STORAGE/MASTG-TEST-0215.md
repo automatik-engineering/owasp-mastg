@@ -15,6 +15,9 @@ This test verifies whether your app uses `isExcludedFromBackup` API to instructs
 
 In this test, we identify all locations where you use the `isExcludedFromBackup` API to expose files that might end up in the backup, even though you don't want them to.
 
+**Note**: Files stored in an app's `/tmp` and `/Library/Caches` directories are **excluded** from iCloud backups.
+These directories are intended for temporary or cache data, and the system may automatically delete their contents at any time to free up space. Therefore, you don't need to mark these files with `isExcludedFromBackup`. For more details, see the [Apple documentation](https://developer.apple.com/documentation/foundation/optimizing-your-app-s-data-for-icloud-backup#Exclude-Purgeable-Data).
+
 ## Steps
 
 1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary, or use a dynamic analysis tool like @MASTG-TOOL-0039, and look for uses of `isExcludedFromBackup` API.
