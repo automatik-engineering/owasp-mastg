@@ -12,7 +12,7 @@ tools: [MASTG-TOOL-0110]
 The following sample code contains:
 
 - the Kotlin code that creates a notification with the `NotificationManager` class and exposes sensitive data.
-- the AndroidManifest.xml with a `POST_NOTIFICATIONS` permission to post notifications (for above Android API 33).
+- the AndroidManifest.xml that declares the runtime permission `POST_NOTIFICATIONS` permission that allows the app to post notifications (Android API 33 and higher).
 
 {{ MastgTest.kt # AndroidManifest.xml }}
 
