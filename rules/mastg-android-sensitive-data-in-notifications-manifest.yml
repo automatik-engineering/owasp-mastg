@@ -5,5 +5,5 @@ rules:
     severity: WARNING
     metadata:
       summary: This rule inpects AndroidManifest.xml for notification post permission. Notification may contain sensitive data.
-    message: "[MASVS-STORAGE-2] Ensure that notifications do not contain sensitive information"
+    message: "[MASVS-PLATFORM-3] Ensure that notifications do not contain sensitive information"
     pattern: android:name="android.permission.POST_NOTIFICATIONS"
