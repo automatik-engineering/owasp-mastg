@@ -21,7 +21,10 @@ This test case checks if the application leaks sensitive data via notifications 
 
 ## Observation
 
-The output should contain a list of trace points where notifications are created.
+The output should contain:
+
+ - the `POST_NOTIFICATIONS` permission, if declared in the manifest file, and
+ - a list of locations where notification APIs are used.
 
 ## Evaluation
 
