@@ -16,7 +16,8 @@ This test case checks if the application leaks sensitive data via notifications 
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0110 on the app source to identify if the `POST_NOTIFICATIONS` permission is declared in the manifest file (for above Android API 33). That would be an indication that the app creates notifications.
+1. Reverse engineer the app (@MASTG-TECH-0017).
+2. Run a static analysis tool such as @MASTG-TOOL-0110 on the reverse-engineered app to identify if the `POST_NOTIFICATIONS` permission is declared in the manifest file (for above Android API 33). This would indicate that the app creates notifications.
 2. Run a static analysis tool such as @MASTG-TOOL-0110 on the app source, or run the app and use a dynamic analysis with @MASTG-TECH-0033 and a tool like @MASTG-TOOL-0001 and start tracing all calls to functions related to the notifications creation, e.g. `setContentTitle` or `setContentText` from [`Notification.Builder`](https://developer.android.com/reference/android/app/Notification.Builder) or[`NotificationCompat.Builder`](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Builder).
 
 ## Observation
