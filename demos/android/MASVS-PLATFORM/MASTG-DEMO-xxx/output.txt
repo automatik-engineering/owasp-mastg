@@ -3,8 +3,8 @@
 ┌─────────────────┐
 │ 4 Code Findings │
 └─────────────────┘
-                                          
-  [36m[22m[24m  MastgTest_reversed.java[0m
+                           
+    MastgTest_reversed.java
     ❯❱ rules.mastg-android-sensitive-data-in-notifications
           [MASVS-PLATFORM-3] Ensure that notifications do not contain sensitive information
                                                                                            
