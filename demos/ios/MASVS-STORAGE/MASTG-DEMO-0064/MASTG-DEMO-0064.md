@@ -8,7 +8,7 @@ test: MASTG-TEST-0296
 
 ### Sample
 
-The code snippet below shows sample code that logs a sensitive token.
+The code snippet below shows sample code that logs a sensitive token:
 
 {{ ../MASTG-DEMO-0024/MastgTest.swift }}
 
@@ -30,14 +30,9 @@ The output contains all device logs, including the logged strings from the app.
 
 Observe that some of the logs were redacted with `<private>`. For example:
 
-```text
-Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .private): Leaking <private>
-Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .sensitive): Leaking <private>
-```
-
 ### Evaluation
 
-The test fails because we can see `TOKEN=123` inside the logs at:
+The test fails because we can see `TOKEN=123` in the logs:
 
 ```text
 Sep 22 11:20:31 MASTestApp(Foundation)[32240] <Notice>: NSLog: Leaking TOKEN=123 from NSLog
@@ -45,4 +40,11 @@ Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning: Leaking <private>
 Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .public): Leaking TOKEN=123
 Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.error (privacy: .public): Leaking TOKEN=123
 Sep 22 11:20:31 MASTestApp[32240] <Fault>: logger.fault (privacy: .public): Leaking TOKEN=123
+```
+
+Note how some of the logs were redacted with `<private>`. For example:
+
+```text
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .private): Leaking <private>
+Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .sensitive): Leaking <private>
 ```

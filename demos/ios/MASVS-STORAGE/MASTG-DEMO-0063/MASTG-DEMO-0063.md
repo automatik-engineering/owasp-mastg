@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Uses of logging APIs with r2
+title: Uses of Logging APIs with r2
 code: [swift]
 id: MASTG-DEMO-0063
 test: MASTG-TEST-0024
@@ -8,7 +8,7 @@ test: MASTG-TEST-0024
 
 ### Sample
 
-The code snippet below shows sample code that insecurely logs a sensitive token
+The code snippet below shows sample code that insecurely logs a sensitive token:
 
 {{ MastgTest.swift }}
 
