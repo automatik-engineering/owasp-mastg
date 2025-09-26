@@ -1,0 +1,26 @@
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                           
+    MastgTest_reversed.java
+    ❯❱ rules.mastg-android-sensitive-data-to-embedded-firebase-analytics
+          [MASVS-PLATFORM-2] Sensitive data is being sent to Firebase Analytics
+                                                                               
+           26┆ eventBundle.putString("user_email", "user@example.com");
+            ⋮┆----------------------------------------
+           27┆ eventBundle.putString("full_name", "John Doe");
+            ⋮┆----------------------------------------
+           28┆ analytics.logEvent("event_name", eventBundle);
+            ⋮┆----------------------------------------
+           29┆ analytics.setUserProperty("name", "John Doe");
+            ⋮┆----------------------------------------
+           30┆ analytics.setUserProperty("email", "user@example.com");
+            ⋮┆----------------------------------------
+           31┆ analytics.setUserId("user12345");
+            ⋮┆----------------------------------------
+           33┆ defaultBundle.putString("default_key", "d3a447630194bd4b");
+            ⋮┆----------------------------------------
+           34┆ analytics.setDefaultEventParameters(defaultBundle);
+
