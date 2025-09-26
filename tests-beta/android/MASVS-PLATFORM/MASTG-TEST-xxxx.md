@@ -22,8 +22,8 @@ This test case focuses on identifying potentially sensitive data inadvertently l
 2. Shortlist the embedded/3rd-party libraries' APIs which have network functionality and that should not handle sensitive information. Look for permissions like `INTERNET` or `ACCESS_NETWORK_STATE`.
    - For black-box testing, you can research those libraries online or their codebase to see if they have network functionality.
    - For gray/white-box testing, you can manually review the app's merged manifest file in Android Studio or by manually generating with a command like `./gradlew app:processDebugManifest` and then inspecting the file in `app/build/intermediates/merged_manifests/debug/AndroidManifest.xml`. If possible, you can review the app's codebase.
-3. Identify common APIs of those libraries that are used to send data to their servers. 
-   - Use @MASTG-TECH-0110, potentially with @MASTG-TOOL-0108, to identify sensitive data pass to the APIs. 
+3. Identify common APIs of those libraries that are used to send data to their servers.
+   - Use @MASTG-TECH-0110, potentially with @MASTG-TOOL-0108, to identify sensitive data pass to the APIs.
    - Alternatively use you can perform dynamic analysis by intercepting traffic using @MASTG-TECH-0120 and @MASTG-TECH-0121. Once you route the traffic through the interception proxy, you can try to sniff the traffic that passes between the app and app's known servers. All app requests that aren't sent directly to the app's server on which the main function is hosted should be evaluated.
 
 ## Observation
