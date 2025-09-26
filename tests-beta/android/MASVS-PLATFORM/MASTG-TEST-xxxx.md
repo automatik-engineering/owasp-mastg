@@ -33,7 +33,3 @@ The output should contain a list of locations where sensitive information is pas
 ## Evaluation
 
 The test case fails if sensitive data is found to be passed to embedded/3rd-party libraries that have network functionality or if network requests to third-party servers contain sensitive information.
-
-
-
-
