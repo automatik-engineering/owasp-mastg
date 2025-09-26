@@ -31,5 +31,3 @@ The rule detected 8 instances where sensitive data might be sent to Firebase Ana
 ## Evaluation
 
 After reviewing the decompiled code at the location specified in the output (file and line number), we can conclude that the test fails because the file written by this instance contains sensitive information, specifically a first and a last name, an email, a user ID, and a secret.
-
-{{ evaluation.txt }}
