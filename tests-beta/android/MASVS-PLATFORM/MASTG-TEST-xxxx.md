@@ -16,7 +16,7 @@ This test case focuses on identifying potentially sensitive data inadvertently l
 
 ## Steps
 
-1. Generate an SBOM. 
+1. Generate an SBOM.
    - For black-box testing, you can use tools like @MASTG-TOOL-0130 or @MASTG-TOOL-0134 with @MASG-TECH-0130 or @MASTG-TECH-0131 to identify all embedded/3rd-party libraries used by the app. 
    - For grey/white-box testing, you can manually review the app's build files (like `build.gradle`) to identify dependencies.
 2. Shortlist the embedded/3rd-party libraries’ APIs which have network functionality and that should not handle sensitive information. Look for permissions like `INTERNET` or `ACCESS_NETWORK_STATE`.
