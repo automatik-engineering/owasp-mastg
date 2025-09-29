@@ -6,7 +6,6 @@ type: [static, dynamic]
 weakness: MASWE-xxxA // TODO see https://github.com/OWASP/maswe/pull/11
 prerequisites:
   - identify-sensitive-data
-  - identify-embedded-libraries-with-network-access // TODO makes sense? get feedback
 profiles: [L1, L2]
 ---
 
