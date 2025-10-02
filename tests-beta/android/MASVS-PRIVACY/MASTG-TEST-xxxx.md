@@ -1,17 +1,17 @@
 ---
 platform: android
-title: Sensitive Data Leaked via Embedded Libraries
+title: App Exposing Sensitive Data to Embedded Libraries
 id: MASTG-TEST-xxxx // TODO
 type: [static, dynamic]
 weakness: MASWE-xxxA // TODO see https://github.com/OWASP/maswe/pull/11
 prerequisites:
   - identify-sensitive-data
-profiles: [L1, L2]
+profiles: [P]
 ---
 
 ## Overview
 
-This test case focuses on identifying potentially sensitive data that may have been inadvertently leaked through embedded third-party libraries used by the application. For example, an app might use a third-party analytics SDK to track user behavior. Still, if the SDK is not correctly configured, it could inadvertently send sensitive information (like PIIs - Personal Identifiable Information, or secrets) to that third-party service.
+This test case verifies the identification of potentially sensitive data that may have been inadvertently leaked through embedded third-party libraries used by the application. For example, an app might use a third-party analytics SDK to track user behavior. Still, if the SDK is not used correctly, it could inadvertently send sensitive information (like PIIs - Personal Identifiable Information, or secrets) to that third-party service.
 
 ## Steps
 
