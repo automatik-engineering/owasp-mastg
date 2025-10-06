@@ -10,7 +10,7 @@ test: MASTG-TEST-xxxx
 
 This sample demonstrates an Android application that inadvertently leaks sensitive user information to Firebase Analytics. The app collects various types of sensitive data, such as user IDs, email addresses, and names, and sends this information to Firebase Analytics.
 
-{{ MastgTest.kt }}
+{{ MastgTest.kt # build.gradle.kts.libs }}
 
 ## Steps
 
