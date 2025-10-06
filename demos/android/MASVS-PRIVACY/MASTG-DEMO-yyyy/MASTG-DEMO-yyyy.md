@@ -10,8 +10,6 @@ test: MASTG-TEST-xxxx
 
 This sample demonstrates an Android application that inadvertently leaks sensitive user information to Firebase Analytics. The app collects various types of sensitive data, such as user IDs, email addresses, and names, and sends this information to Firebase Analytics.
 
-> Note: To compile the test correctly, you need to include the Firebase Analytics library in the `build.gradle` file. i.e.`implementation("com.google.firebase:firebase-analytics:23.0.0")`.
-
 {{ MastgTest.kt }}
 
 ## Steps
