@@ -1,6 +1,6 @@
 ---
 platform: android
-title: App leaking sensitive information to Firebase Analytics
+title: App Exposing Sensitive Information to Firebase Analytics
 id: MASTG-DEMO-yyyy
 code: [kotlin]
 test: MASTG-TEST-xxxx
