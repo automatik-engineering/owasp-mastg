@@ -31,11 +31,13 @@ SecureTextField(
 )
 ```
 
+> Note: That even if the SecureTextField is used with `textObfuscationMode` set to `RevealLastTyped` or `Hidden`, it can later be changed to `Visible` programmatically.
+
 ## Steps
 
 1. Reverse engineer the app (@MASTG-TECH-0017).
 2. Run a static analysis tool such as @MASTG-TOOL-0110 on the reverse-engineered app's source code to identify the usage of the text field APIs.
-3. Manually evaluate the fields for access or verification codes usage.
+3. Manually evaluate and shortlist the fields for access or verification codes usage.
 
 ## Observation
 
@@ -43,4 +45,4 @@ The output should contain a list of locations where text input fields for access
 
 ## Evaluation
 
-The test case fails if access or verification are found in the text input fields unmasked.
+The test case fails if access or verification codes are found in the text input fields unmasked.
