@@ -14,7 +14,7 @@ The following sample code contains the Kotlin code that creates four pairs of us
 
 ### Steps
 
-Let's run our @MASTG-TOOL-0110 rule against the reversed Java code.
+Let's run our @MASTG-TOOL-0110 rule against the Kotlin code.
 
 {{ ../../../../rules/mastg-android-input-field-privacy.yaml }}
 
