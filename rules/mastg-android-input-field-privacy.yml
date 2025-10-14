@@ -1,0 +1,9 @@
+rules:
+  - id: mastg-android-input-field-privacy
+    severity: WARNING
+    languages:
+      - kotlin
+    message: "[MASVS-Privacy] Detected TextFields or SecureTextField with TextObfuscationMode.Visible."
+    pattern-either:
+      - pattern: TextField(...)
+      - pattern: SecureTextField( ..., textObfuscationMode = TextObfuscationMode.Visible, ... )

@@ -1,6 +1,6 @@
 ---
 platform: android
-title: App Exposing Access and Verification Codes via Text Input Fields
+title: App Exposing Access and Verification Codes in Text Input Fields
 id: MASTG-TEST-02te
 type: [static, manual] // TODO evaluate
 weakness: MASWE-0053
