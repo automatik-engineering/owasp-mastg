@@ -88,8 +88,8 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
 
 <table>
   <tr>
-    <th>MAS L1</th>
-    <th>MAS L1+R</th>
+    <th>MAS L1+P</th>
+    <th>MAS L1+P+R</th>
   </tr>
   <tr>
     <td>
@@ -112,8 +112,8 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
     </td>
   </tr>
   <tr>
-    <th>MAS L2</th>
-    <th>MAS L2+R</th>
+    <th>MAS L2+P</th>
+    <th>MAS L2+P+R</th>
   </tr>
   <tr>
     <td>
