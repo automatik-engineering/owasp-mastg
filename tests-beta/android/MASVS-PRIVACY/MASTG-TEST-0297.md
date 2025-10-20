@@ -1,7 +1,7 @@
 ---
 platform: android
 title: App Exposing Sensitive Data to Embedded Libraries
-id: MASTG-TEST-xxxx // TODO
+id: MASTG-TEST-0297
 type: [static, dynamic]
 weakness: MASWE-xxxA // TODO see https://github.com/OWASP/maswe/pull/11
 prerequisites:
