@@ -1,7 +1,7 @@
 ---
 platform: android
 title: App Exposing Sensitive Data via Notifications
-id: MASTG-TEST-00x05 // TODO replace with real ID
+id: MASTG-TEST-0292
 apis: [NotificationManager]
 type: [static, dynamic]
 weakness: MASWE-0054
@@ -15,8 +15,6 @@ profiles: [P]
 This test verifies that the app handles notifications correctly, ensuring that sensitive information—such as personally identifiable information (PII), one-time passwords (OTPs), or other sensitive data like health or financial details—is not exposed. On Android, developers typically request the runtime permission `POST_NOTIFICATIONS` that allows the app to send notifications. The creation of notifications can be handled through [`NotificationCompat.Builder`](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Builder) or `setContentTitle` or `setContentText` from [`Notification.Builder`](https://developer.android.com/reference/android/app/Notification.Builder).
 
 The usage of notifications shouldn't expose sensitive information that might otherwise be accidentally disclosed via e.g. shoulder surfing or sharing the device with another person.
-
-// TODO conclude if L2 profile applies here and how other apps could breach confidentiality and read notifications
 
 ## Steps
 
