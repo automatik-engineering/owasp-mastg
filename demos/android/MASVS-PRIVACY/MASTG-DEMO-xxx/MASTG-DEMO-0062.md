@@ -1,9 +1,9 @@
 ---
 platform: android
 title: App Leaking Sensitive Data via Notifications
-id: MASTG-DEMO-xxx // TODO replace with real ID
+id: MASTG-DEMO-0062
 code: [kotlin]
-test: MASTG-TEST-00x05 // TODO replace with real ID
+test: MASTG-TEST-0292
 tools: [MASTG-TOOL-0110]
 ---
 
