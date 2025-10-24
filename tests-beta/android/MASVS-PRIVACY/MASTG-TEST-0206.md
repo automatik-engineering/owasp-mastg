@@ -15,7 +15,7 @@ profiles: [P]
 
 Attackers may capture network traffic from Android devices using an intercepting proxy, such as @MASTG-TOOL-0079, @MASTG-TOOL-0077, or @MASTG-TOOL-0097, to analyze the data being transmitted by the app. This works even if the app uses HTTPS, as the attacker can install a custom root certificate on the Android device to decrypt the traffic. Inspecting traffic that is not encrypted with HTTPS is even easier and can be done without installing a custom root certificate for example by using @MASTG-TOOL-0081.
 
-The goal of this test is to verify that sensitive data, specifically PII, is not being sent over the network, even if the traffic is encrypted. This test is especially important for apps that handle sensitive data, such as financial or health data, and should be performed in conjunction with a review of the app's privacy policy and the Data Safety section declarations in Google Play (if the app is published there).
+The goal of this test is to verify that sensitive data, specifically PII, is not being sent over the network, even if the traffic is encrypted. This test is especially important for apps that handle sensitive data, such as financial or health data, and should be performed in conjunction with a review of the app's privacy policy and the app's marketplace privacy declarations (e.g., Data Safety section in Google Play).
 
 ## Steps
 
