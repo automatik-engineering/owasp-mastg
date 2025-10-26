@@ -1,4 +1,4 @@
-# Introducing MAS Testing Profiles
+# MAS Testing Profiles
 
 In the realm of mobile app security, adopting a structured and systematic approach is essential to ensure the robustness and resilience of mobile apps against ever-evolving threats. To address this need, the [OWASP Mobile App Security (MAS)](https://mas.owasp.org/) project provides a set of testing profiles that serve as comprehensive frameworks for verifying and enhancing the security of mobile apps.
 
@@ -108,7 +108,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
         <li>No sensitive functionality</li>
       </ul>
       <p><strong>Example business assets:</strong> IP, ad revenue</p>
-      <p><strong>Example apps:</strong> Ad-supported Weather app (Weather & Radar - Storm radar)</p>
+      <p><strong>Example apps:</strong> Ad-supported Weather app</p>
     </td>
   </tr>
   <tr>
@@ -124,7 +124,7 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
       </ul>
       <p><strong>Example sensitive data:</strong> location, payment, health, access tokens, API keys, crypto key encrypting user data</p>
       <p><strong>Example sensitive functionality:</strong> medical record upload, in-app purchases</p>
-      <p><strong>Example apps:</strong> Messenger (WhatsApp), Health (MyDoctor), Sport (FitBit)</p>
+      <p><strong>Example apps:</strong> Messenger, Health, Sport</p>
     </td>
     <td>
       <ul>
@@ -134,14 +134,16 @@ Note that these measures cannot assure a 100% effectiveness, as the reverse engi
       </ul>
       <p><strong>Example business assets:</strong> IP</p>
       <p><strong>Example sensitive functionality:</strong> money transfers, in-app purchases</p>
-      <p><strong>Example apps:</strong> Banking (ING Banking to go), Insurance (Allstate), Game (Pokémon Go), Entertainment (Netflix)</p>
+      <p><strong>Example apps:</strong> Banking, Insurance, Game, Entertainment</p>
     </td>
   </tr>
 </table>
 
-<img src="Images/Chapters/0x03/example_apps_profiles.png" style="width: 40%; border-radius: 5px"/>
-
 **Disclaimer:** The examples highlight the most representative profile for the apps and are provided for illustrative purposes only and aim to represent the different MAS profiles and suggested profile combinations. They serve to highlight the high-level differences between each profile.
+
+<center>
+<img src="Images/Chapters/0x03/example_apps_profiles.png" style="width: 40%; border-radius: 5px"/>
+</center>
 
 ## Selecting and Tailoring MAS Testing Profiles
 
@@ -161,7 +163,7 @@ Crafting robust policies and procedures for protecting PII confidentiality is es
 
 ## References
 
-- [OWASP MAS \- Using the MASVS](https://mas.owasp.org/MASVS/Intro/03-Using_the_MASVS/)
+- [OWASP MAS \- Using the MASVS](https://mas.owasp.org/MASVS/03-Using_the_MASVS/)
 - [Threat Modeling | OWASP Foundation](https://owasp.org/www-community/Threat_Modeling)
 - [NIST.SP.800-163r1 \- Vetting the Security of Mobile Applications](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-163r1.pdf)
 - [OWASP Secure Product Design Cheat Sheet \- The principle of Defense-in-Depth](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Product_Design_Cheat_Sheet.html#2-the-principle-of-defense-in-depth)
