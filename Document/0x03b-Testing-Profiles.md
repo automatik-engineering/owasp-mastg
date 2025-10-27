@@ -13,13 +13,13 @@ The MAS Testing Profiles can be used in various ways:
 
 ## The MAS Testing Profiles
 
-To maximize the effectiveness of the OWASP MASVS, applications should undergo a threat model and identify all the relevant threats. Based on these threats, different security controls should be chosen and applied to the application. However, sometimes it's not possible to create a custom profile tailored to an application's specific threat landscape. Recognizing this challenge, we've created default P, L1, L2, and R profiles.
+To maximize the effectiveness of the OWASP MASVS, applications should undergo a threat model and identify all the relevant threats. Based on these threats, different security controls should be chosen and applied to the application. However, sometimes it's not possible to create a custom profile tailored to an application's specific threat landscape. Recognizing this challenge, we've created default L1, L2, R and P profiles.
 
-While the P default profile prioritizes user privacy, the L1, L2, and R default profiles are designed with a wide range of potential threats in mind, providing a basic level of security controls suitable for most applications. By using these, developers can ensure that their applications are protected against common vulnerabilities and attack methods, even if they haven't performed a comprehensive threat assessment.
+These default profiles have been crafted with a broad range of potential threats in mind, offering a baseline level of security and privacy controls suitable for most applications. By using these, developers can ensure that their applications are protected against common vulnerabilities and attack methods, even if they haven't performed a comprehensive threat assessment.
 
 Nevertheless, it's important to remember that while these default profiles provide a solid foundation, they might not account for unique or advanced threats that certain applications could face. Therefore, for those looking to achieve the highest level of security, a custom profile built upon a detailed threat model remains the gold standard.
 
-Still, for developers who are just starting or are under time pressure, our default profiles offer an efficient and effective means to enhance application security without starting from scratch.
+Still, for developers who are just starting or are under time pressure, our default profiles offer an efficient and effective means to enhance application security and privacy without starting from scratch.
 
 ### MAS-P - Baseline Privacy profile
 
