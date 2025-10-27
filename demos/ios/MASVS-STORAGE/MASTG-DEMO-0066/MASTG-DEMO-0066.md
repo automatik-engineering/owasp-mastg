@@ -2,7 +2,7 @@
 platform: ios
 title: Sensitive Data Logging with idevicesyslog
 code: [swift]
-id: MASTG-DEMO-0064
+id: MASTG-DEMO-0066
 test: MASTG-TEST-0296
 ---
 
@@ -10,7 +10,7 @@ test: MASTG-TEST-0296
 
 The code snippet below shows sample code that logs a sensitive token:
 
-{{ ../MASTG-DEMO-0063/MastgTest.swift }}
+{{ ../MASTG-DEMO-0065/MastgTest.swift }}
 
 ### Steps
 
