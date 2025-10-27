@@ -18,7 +18,7 @@ The code snippet below shows sample code that insecurely logs a sensitive token:
 2. Run `run.sh` to find all occurrences of `NSLog`.
 3. Update `loggingApis.r2` to also detect other logging APIs, such as `print`.
 
-{{ loggingApi.r2 }}
+{{ loggingApis.r2 }}
 
 {{ run.sh }}
 
