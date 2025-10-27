@@ -21,18 +21,6 @@ Nevertheless, it's important to remember that while these default profiles provi
 
 Still, for developers who are just starting or are under time pressure, our default profiles offer an efficient and effective means to enhance application security and privacy without starting from scratch.
 
-### MAS-P - Baseline Privacy profile
-
-MAS-P provides a baseline for **user privacy protection**.
-
-This profile outlines essential practices that mobile apps should follow to protect the disclosure of users' personally identifiable information (PII) or other sensitive information, such as health, medical, or financial data, and ensure compliance with prevailing data protection regulations.
-
-It is intended to work cohesively, and in some cases even overlap, with other OWASP MAS profiles, such as MAS-L1 and MAS-L2, ensuring a holistic approach to both privacy and security.
-
-MAS-P is recommended for
-
-- all mobile apps that deal with user-sensitive data.
-
 ### MAS-L1 - Essential Security
 
 MAS-L1 provides a baseline for the most fundamental security requirements and best practices that every mobile app should meet to protect against **common threats**.
@@ -83,6 +71,18 @@ MAS-R is recommended for
 Note that the absence of any MAS-R measures does not inherently introduce vulnerabilities. Rather, these measures offer additional, threat-specific protection to applications. However, this is provided that these apps also meet the rest of the OWASP MASVS security controls appropriate to their specific threat models. Crucially, **MAS-R is meant to augment and not replace MAS-L1 and MAS-L2.** It should not be used standalone but as an extra layer of defense, supplementing the base security controls in a defense-in-depth strategy.
 
 Note that these measures cannot assure a 100% effectiveness, as the reverse engineer will always have full access to the device and will therefore end up succeeding given enough time and resources.
+
+### MAS-P - Baseline Privacy profile
+
+MAS-P provides a baseline for **user privacy protection**.
+
+This profile outlines essential practices that mobile apps should follow to protect the disclosure of users' personally identifiable information (PII) or other sensitive information, such as health, medical, or financial data, and ensure compliance with prevailing data protection regulations.
+
+It is intended to work cohesively, and in some cases even overlap, with other OWASP MAS profiles, such as MAS-L1 and MAS-L2, ensuring a holistic approach to both privacy and security.
+
+MAS-P is recommended for
+
+- all mobile apps that deal with user-sensitive data.
 
 ### Examples
 
