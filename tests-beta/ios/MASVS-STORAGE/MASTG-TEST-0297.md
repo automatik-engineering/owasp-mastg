@@ -27,4 +27,3 @@ The output should include the location of all logging functions. Check the decom
 ## Evaluation
 
 The test case fails if you can find the use of logging APIs logging any sensitive data.
-
