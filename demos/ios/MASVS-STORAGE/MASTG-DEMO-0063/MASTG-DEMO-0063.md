@@ -16,7 +16,7 @@ The code snippet below shows sample code that insecurely logs a sensitive token:
 
 1. Unzip the app package and locate the main binary file (@MASTG-TECH-0058), which in this case is `./Payload/MASTestApp.app/MASTestApp`.
 2. Run `run.sh` to find all occurrences of `NSLog`.
-3. Repeat the same steps as in `run.sh` using another such as e.g. `print`.
+3. Update `loggingApis.r2` to also detect other logging APIs, such as `print`.
 
 {{ loggingApi.r2 }}
 

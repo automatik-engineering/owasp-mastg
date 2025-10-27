@@ -1,18 +1,18 @@
 Uses of NSLog:
-0x10000c6a4    1 12           sym.imp.Foundation.NSLog_Swift.String__Swift.CVarArg..._______
+0x10000d780    1     12 sym.imp.Foundation.NSLogCVarArg...dtF
 
 xrefs to NSLog:
-(nofunc) 0x100000120 [UNKNOWN] invalid
-sym.__s10MASTestApp9MastgTestV05mastgD010completionyySSc_tFZ 0x100004304 [CALL] bl sym.imp.Foundation.NSLog_Swift.String__Swift.CVarArg..._______
+sym.func.1000086f4 0x1000088ec [CALL:--x] bl sym.imp.Foundation.NSLogCVarArg...dtF
 
 Invocation of NSLog:
-│           0x1000042f0      bl sym Swift._allocateUninitializedArray<A>(Builtin.Word) -> (Swift.Array<A>, Builtin.RawPointer) ; sym.imp.Swift._allocateUninitializedArray_A__Builtin.Word______Swift.Array_A___Builtin.RawPointer_
-│           0x1000042f4      ldr x1, [var_c0h]                         ; 0x4 ; 4
-│           0x1000042f8      mov x2, x0
-│           0x1000042fc      ldr x0, [var_b0h]                         ; 0x4 ; 4
-│           0x100004300      str x2, [var_b8h]
-│           0x100004304      bl sym.imp.Foundation.NSLog_Swift.String__Swift.CVarArg..._______
-│           0x100004308      ldr x0, [var_b8h]                         ; 0x4 ; 4
-│           0x10000430c      bl sym.imp.swift_bridgeObjectRelease
-│           0x100004310      ldr x0, [var_c0h]                         ; 0x4 ; 4
-│           0x100004314      bl sym.imp.swift_bridgeObjectRelease
+│           0x1000088d8      orr x1, x8, 0x8000000000000000
+│           0x1000088dc      adrp x2, reloc.Foundation.Data._bridgeToObjectiveC.NSData...F ; 0x100014000
+│           0x1000088e0      ldr x2, [x2, 0x4f8]                       ; [0x1000144f8:4]=158
+│                                                                      ; reloc._swiftEmptyArrayStorage
+│           0x1000088e4      mov x0, 0x23                              ; '#'
+│           0x1000088e8      movk x0, 0xd000, lsl 48
+│           0x1000088ec      bl sym Foundation.NSLogCVarArg...dtF      ; sym.imp.Foundation.NSLogCVarArg...dtF
+│           0x1000088f0      mov x0, 0
+│           0x1000088f4      bl sym.func.100009d30
+│           0x1000088f8      mov x20, x0
+│           0x1000088fc      bl sym OS_os_log.allocator...0E7defaultABvgZ ; sym.imp.OS_os_log.allocator...0E7defaultABvgZ
