@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Sensitive Data Not Excluded From Backup
+title: Sensitive Data Not Marked For Backup Exclusion
 id: MASTG-TEST-0215
 type: [static]
 weakness: MASWE-0004
