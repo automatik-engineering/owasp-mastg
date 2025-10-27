@@ -3,7 +3,7 @@ platform: ios
 title: Uses of Logging APIs with r2
 code: [swift]
 id: MASTG-DEMO-0063
-test: MASTG-TEST-0024
+test: MASTG-TEST-0297
 ---
 
 ### Sample
@@ -26,10 +26,10 @@ The code snippet below shows sample code that insecurely logs a sensitive token:
 
 The output contains the location of `NSLog` usage in the binary.
 
-{{ output.asm }}
+{{ output.asm # function.asm }}
 
 Reading `output.asm` doesn't clearly show what arguments are passed to `NSLog`, so you can also make use of `function.asm` for a better overview.
 
 ### Evaluation
 
-The test fails because it calls `NSLog` with the secret token as an argument.
+The test fails because the app calls `NSLog` with a secret token as an argument.

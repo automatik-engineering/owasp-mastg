@@ -11,19 +11,19 @@ If you rely on `print` or `NSLog`:
 
 - Your logs may end up in system diagnostics and remain accessible to attackers.
 - Debuggers or jailbroken devices can capture verbose log messages.
-- There is a risk exposing tokens, passwords, or PII.
+- There is a risk of exposing tokens, passwords, or PII.
 
-## Unified Logging Features
+## Use Unified Logging Features
 
-Switching to Unified Logging gives you structured, privacy-aware logging that is safer for production environments. Here are the main features you can use when adopting [`Logger`](https://developer.apple.com/documentation/os/logger) and (Swift) or [`os_log`](https://developer.apple.com/documentation/os/os_log) (Objective-C):
+Switching to Unified Logging gives you structured, privacy-aware logging that is safer for production environments. Here are the main features you can use when adopting [`Logger`](https://developer.apple.com/documentation/os/logger) (Swift) or [`os_log`](https://developer.apple.com/documentation/os/os_log) (Objective-C):
 
 ### Privacy Modifiers
 
-When logging information, it's crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple's unified logging system provides [privacy modifier](https://developer.apple.com/documentation/os/oslogprivacy) that lets you control how data appears in logs.
+When logging information, it's crucial to protect sensitive data such as personal identifiers, authentication tokens, or secrets. Apple's unified logging system provides [privacy modifiers](https://developer.apple.com/documentation/os/oslogprivacy) that let you control how data appears in logs.
 
 - **`.public`**: Explicitly marks the value as safe to display in all logs. Use this only for **non-sensitive debug information**.
 - **`.private`**: Redacts the value in persistent logs but still shows it in memory while debugging (e.g., PII, secrets, tokens, and sensitive data).
-- **`.private(mask:)`**: allows you to preserve data correlation. For example, applying a hash mask enables identifying repeated values across logs without exposing the raw data.
+- **`.private(mask:)`**: Allows you to preserve data correlation. For example, applying a hash mask enables identifying repeated values across logs without exposing the raw data.
 - **`.sensitive`**: Behaves identically to `.private`, but remains redacted even if private data logging is globally enabled.
 
 ### Log Levels
@@ -35,7 +35,7 @@ Unified logging supports multiple [log levels](https://developer.apple.com/docum
 - **`error`**: Used when something goes wrong, but the app can continue.
 - **`fault`**: Used for serious issues that require immediate attention (e.g., crashes, corruption).
 
-## Removing logging code with macros
+## Use Macros to Disable Logging in Production
 
 To ensure maximum security, the safest approach is to completely remove these logging calls from the app. Below is sample code that demonstrates how to eliminate logging APIs from your application during compilation.
 

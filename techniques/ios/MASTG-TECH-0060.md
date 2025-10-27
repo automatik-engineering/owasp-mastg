@@ -22,7 +22,7 @@ To save the console output to a text file, go to the top right side of the Conso
 
 ## Using @MASTG-TOOL-0126
 
-1. Connect your device to your host computer
+1. Connect your device to your host computer.
 2. Run `idevicesyslog | grep YOUR_APP_NAME` in your terminal. The resulting output will include numerous device-specific logs related to that specific app.
 
 <img src="Images/Chapters/0x06b/idevicesyslog-screen.png" width="100%" />

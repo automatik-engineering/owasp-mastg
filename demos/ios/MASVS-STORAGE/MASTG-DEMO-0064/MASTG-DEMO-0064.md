@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Monitor secrets in logs
+title: Sensitive Data Logging with idevicesyslog
 code: [swift]
 id: MASTG-DEMO-0064
 test: MASTG-TEST-0296
@@ -14,11 +14,11 @@ The code snippet below shows sample code that logs a sensitive token:
 
 ### Steps
 
-1. Install the app on a device (@MASTG-TECH-0056)
-2. Make sure you have @MASTG-TOOL-0126 installed on your machine
-3. Run `run.sh` to start the log capturing
-4. Click the **Start** button
-5. Stop the script by pressing `Ctrl+C` to end the log capturing
+1. Install the app on a device (@MASTG-TECH-0056).
+2. Make sure you have @MASTG-TOOL-0126 installed on your machine.
+3. Run `run.sh` to start the log capturing.
+4. Click the **Start** button.
+5. Stop the script by pressing `Ctrl+C` to end the log capturing.
 
 {{ run.sh }}
 
@@ -27,8 +27,6 @@ The code snippet below shows sample code that logs a sensitive token:
 The output contains all device logs, including the logged strings from the app.
 
 {{ output.txt }}
-
-Observe that some of the logs were redacted with `<private>`. For example:
 
 ### Evaluation
 
@@ -42,7 +40,7 @@ Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.error (privacy: .public): Leak
 Sep 22 11:20:31 MASTestApp[32240] <Fault>: logger.fault (privacy: .public): Leaking TOKEN=123
 ```
 
-Note how some of the logs were redacted with `<private>`. For example:
+Note how some of the logs pass the test since they were **properly** redacted with `<private>`. For example:
 
 ```text
 Sep 22 11:20:31 MASTestApp[32240] <Error>: logger.warning (privacy: .private): Leaking <private>
