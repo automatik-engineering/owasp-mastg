@@ -3,6 +3,8 @@ rules:
     severity: WARNING
     languages:
       - kotlin
+    metadata:
+      summary: This rule looks for TextFields or SecureTextField with TextObfuscationMode.Visible.
     message: "[MASVS-Privacy] Detected TextFields or SecureTextField with TextObfuscationMode.Visible."
     pattern-either:
       - pattern: TextField(...)
