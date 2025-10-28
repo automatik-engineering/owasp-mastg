@@ -11,7 +11,6 @@ profiles: [P]
 
 This test verifies that the app handles user input correctly, ensuring that access codes (passwords or pins) and verification codes (OTPs) are not exposed in plain text within text input fields.
 
-The usage of notifications shouldn't expose sensitive information that might otherwise be accidentally disclosed via e.g. shoulder surfing or sharing the device with another person.
 
 Proper masking (dots instead of input characters) of these codes is essential to protect user privacy. This can be achieved by using appropriate input types that obscure the characters entered by the user.
 
