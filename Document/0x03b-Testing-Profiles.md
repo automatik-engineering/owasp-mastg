@@ -13,15 +13,20 @@ The MAS Testing Profiles can be used in various ways:
 
 ## The MAS Testing Profiles
 
-To maximize the effectiveness of the OWASP MASVS, applications should undergo a threat model and identify all the relevant threats. Based on these threats, different security controls should be chosen and applied to the application. However, sometimes it's not possible to create a custom profile tailored to an application's specific threat landscape. Recognizing this challenge, we've created default L1, L2, R and P profiles.
+To maximize the effectiveness of the OWASP MASVS, applications should undergo a threat model to identify relevant threats and select appropriate security controls. When creating a custom profile isn't feasible, default **L1, L2, R, and P profiles** are available.
 
-These default profiles have been crafted with a broad range of potential threats in mind, offering a baseline level of security and privacy controls suitable for most applications. By using these, developers can ensure that their applications are protected against common vulnerabilities and attack methods, even if they haven't performed a comprehensive threat assessment.
+These profiles provide baseline security and privacy controls that cover a broad range of common threats, helping developers protect their applications even without a comprehensive threat assessment.
 
-Nevertheless, it's important to remember that while these default profiles provide a solid foundation, they might not account for unique or advanced threats that certain applications could face. Therefore, for those looking to achieve the highest level of security, a custom profile built upon a detailed threat model remains the gold standard.
+The profiles are divided into **two groups**, reflecting the distinct but complementary goals of **security** and **privacy**:
 
-Still, for developers who are just starting or are under time pressure, our default profiles offer an efficient and effective means to enhance application security and privacy without starting from scratch.
+- **Security profiles (L1, L2, R)**: address technical threats and adversarial behavior.
+- **Privacy profile (P)**: focuses on protecting users' personal data and ensuring responsible data handling.
 
-### MAS-L1 - Essential Security
+While these defaults offer a solid foundation and can be effective for teams with limited time or resources, they may not cover unique or advanced threats. For the highest level of assurance, a custom profile based on a detailed threat model remains the recommended approach.
+
+### Security
+
+#### MAS-L1 - Essential Security
 
 MAS-L1 provides a baseline for the most fundamental security requirements and best practices that every mobile app should meet to protect against **common threats**.
 
@@ -38,7 +43,7 @@ MAS-L1 is recommended for
 - all mobile apps as a baseline
 - apps that only deal with (user) **low-risk sensitive data** and do **not contain sensitive functionality**.
 
-### MAS-L2 - Advanced Security
+#### MAS-L2 - Advanced Security
 
 MAS-L2 extends MAS-L1, introducing additional security measures and best practices for mobile apps to address **advanced threats** requiring more rigorous threat modeling and testing strategies.
 
@@ -53,7 +58,7 @@ MAS-L2 is recommended for
 
 - apps that handle **high-risk sensitive data** and **contain sensitive functionality**
 
-### MAS-R - Resilient Security
+#### MAS-R - Resilient Security
 
 MAS-R tries to prevent an attacker from extracting intellectual property, bypassing security controls (e.g., license checks, DRM, authentication) or negatively impacting the ecosystem (e.g. cheating at a game, unlocking paid features for free, …). It incorporates a range of security measures aimed at enhancing resilience against **reverse engineering and tampering (client-side) threats**, such as repackaging or extraction of sensitive data, IP theft (e.g., proprietary algorithms), piracy.
 
@@ -72,7 +77,9 @@ Note that the absence of any MAS-R measures does not inherently introduce vulner
 
 Note that these measures cannot assure a 100% effectiveness, as the reverse engineer will always have full access to the device and will therefore end up succeeding given enough time and resources.
 
-### MAS-P - Baseline Privacy profile
+### Privacy
+
+#### MAS-P - Baseline Privacy profile
 
 MAS-P provides a baseline for **user privacy protection**.
 
