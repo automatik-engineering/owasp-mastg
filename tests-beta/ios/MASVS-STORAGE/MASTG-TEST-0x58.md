@@ -4,6 +4,8 @@ title: Runtime Use of the Keychain API to Exclude Data from Backups and Prevent 
 id: MASTG-TEST-0x58
 type: [dynamic]
 weakness: MASWE-0004
+best-practices: [MASTG-BEST-0023]
+profiles: [L1, L2, P]
 ---
 
 ## Overview

@@ -4,6 +4,8 @@ title: Runtime Tracking of Files Eligible for Backup
 id: MASTG-TEST-0298
 type: [dynamic]
 weakness: MASWE-0004
+best-practices: [MASTG-BEST-0023]
+profiles: [L1, L2, P]
 ---
 
 ## Overview
