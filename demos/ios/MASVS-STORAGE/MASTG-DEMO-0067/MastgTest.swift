@@ -19,12 +19,7 @@ struct MastgTest {
     
     for type in types{
       guard let docDir = fm.urls(for: type, in: .userDomainMask).first else { continue }
-      do{
-        try secret.write(to: docDir.appendingPathExtension(filename), atomically: true, encoding: .utf8)
-        print("Success \(docDir.appending(components: filename).path())")
-      } catch {
-        print("Failed to store file: \(error.localizedDescription)")
-      }
+        try? secret.write(to: docDir.appendingPathComponent(filename), atomically: false, encoding: .utf8)
     }
     completion("Successfully stored files to the storage")
   }
