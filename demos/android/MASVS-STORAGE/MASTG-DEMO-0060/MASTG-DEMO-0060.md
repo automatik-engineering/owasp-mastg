@@ -15,7 +15,7 @@ The code snippet below shows sample code which **securely** stores sensitive dat
 
     The **Jetpack security crypto library**, including the `EncryptedFile` and  `EncryptedSharedPreferences` classes, has been [deprecated](https://developer.android.com/privacy-and-security/cryptography#jetpack_security_crypto_library). However, since an official replacement has not yet been released, we recommend using these classes until one is available.
 
-{{ MastgTest.kt }}
+{{ MastgTest.kt # build.gradle.kts.libs }}
 
 ### Steps
 
