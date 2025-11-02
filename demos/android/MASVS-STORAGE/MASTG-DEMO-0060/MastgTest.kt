@@ -6,6 +6,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 class MastgTest(private val context: Context) {
+    // WARNING: In a real application, these keys should NOT be hardcoded. They should be stored securely, for instance, in the Android Keystore.
     private val awsKey = "AKIAABCDEFGHIJKLMNOP"
     private val githubToken = "ghp_1234567890abcdefghijklmnopqrstuvABCD"
     private val preSharedKeys = hashSetOf(

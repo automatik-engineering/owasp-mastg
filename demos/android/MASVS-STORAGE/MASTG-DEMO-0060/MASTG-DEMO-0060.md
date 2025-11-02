@@ -9,7 +9,7 @@ kind: pass
 
 ### Sample
 
-The code snippet below shows sample code which **securely** stores sensitive data using `EncryptedSharedPreferences`. It stores sensitive data using `String` and `StringSet`.
+The code snippet below shows sample code which stores sensitive data using `String` and `StringSet` from `EncryptedSharedPreferences`. 
 
 !!! Warning
 
