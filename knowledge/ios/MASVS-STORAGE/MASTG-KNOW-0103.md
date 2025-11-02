@@ -39,7 +39,7 @@ As we've seen so far, using Swift or Objective-C data types requires a deep unde
 
 Unfortunately, few libraries and frameworks are designed to allow sensitive data to be overwritten. Not even Apple considers this issue in the official iOS SDK API. For example, most of the APIs for data transformation (passers, serializes, etc.) operate on non-primitive data types. Similarly, regardless of whether you flag some `UITextField` as _Secure Text Entry_ or not, it always returns data in the form of a `String` or `NSString`.
 
-> **Why does the OWASP MASTG doesn't have tests for this anymore?**
+> **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
 > The tests for sensitive data in process memory were removed from the OWASP MASTG because they provide limited practical value in assessing real-world risks and are difficult to execute reliably. Memory inspection typically requires privileged access, such as root or jailbreak, which falls outside the threat model for most production environments. Such access already compromises the device's overall security, making memory-level findings less meaningful in isolation.
 >
