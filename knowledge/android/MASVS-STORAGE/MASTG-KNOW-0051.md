@@ -31,7 +31,7 @@ The RSA key pair is based on the `BigInteger` type and therefore resides in memo
 
 User-provided data (credentials, social security numbers, credit card information, etc.) is another type of data that may be exposed in memory. Regardless of whether you flag it as a password field, `EditText` delivers content to the app via the `Editable` interface. If your app doesn't provide `Editable.Factory`, user-provided data will probably be exposed in memory for longer than necessary. The default `Editable` implementation, the `SpannableStringBuilder`, causes the same issues as Java's `StringBuilder` and `StringBuffer` cause (discussed above).
 
-> **Why does the OWASP MASTG doesn't have tests for this anymore?**
+> **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
 > The tests for sensitive data in process memory were removed from the OWASP MASTG because they provide limited practical value in assessing real-world risks and are difficult to execute reliably. Memory inspection typically requires privileged access, such as root or jailbreak, which falls outside the threat model for most production environments. Such access already compromises the device's overall security, making memory-level findings less meaningful in isolation.
 >

@@ -10,7 +10,7 @@ However, these protections do not extend to all components. Memory corruption bu
 
 Memory leaks are another common concern. These often occur when references to the `Context` object or `Activity` instances are inadvertently retained by non-`Activity` or helper classes, preventing proper garbage collection and leading to resource exhaustion or performance degradation.
 
-> **Why does the OWASP MASTG doesn't have tests for this anymore?**
+> **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
 > The tests for memory corruption vulnerabilities were removed from the OWASP MASTG because these issues are best addressed during development rather than through black box penetration testing. Memory corruption flaws such as buffer overflows, out-of-bounds access, integer overflows, use-after-free, and format string vulnerabilities should typically be identified **by developers during the development process** through static or dynamic code analysis, compiler protections, and secure coding practices.
 >

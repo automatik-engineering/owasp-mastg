@@ -16,7 +16,7 @@ Learn more:
 - <https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html>
 - <https://medium.com/zendesk-engineering/ios-identifying-memory-leaks-using-the-xcode-memory-graph-debugger-e84f097b9d15>
 
-> **Why does the OWASP MASTG doesn't have tests for this anymore?**
+> **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
 > The tests for memory corruption vulnerabilities were removed from the OWASP MASTG because these issues are best addressed during development rather than through black box penetration testing. Memory corruption flaws such as buffer overflows, out-of-bounds access, integer overflows, use-after-free, and format string vulnerabilities should typically be identified **by developers during the development process** through static or dynamic code analysis, compiler protections, and secure coding practices.
 >
