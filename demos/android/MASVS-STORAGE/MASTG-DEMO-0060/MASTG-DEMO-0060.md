@@ -35,7 +35,7 @@ The output shows all instances of strings written using `EncryptedSharedPreferen
 
 ### Evaluation
 
-This test **passes** because sensitive data is stored using `EncryptedSharedPreferences`, which encrypts both keys and values at rest. Even if an attacker gains access to the app's sandbox, the data remains protected and unreadable without the app's encryption keys.
+This test **passes** because sensitive data is stored using `EncryptedSharedPreferences`, which encrypts both keys and values at rest. Even if an attacker gains access to the app's sandbox, the data remains encrypted.
 
 For example, to confirm this, run the following command:
 
