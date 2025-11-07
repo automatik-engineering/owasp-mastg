@@ -1,5 +1,5 @@
 ---
-platform: android
+platform: ios
 title: Runtime Tracking of Files Eligible for Backup with Frida
 id: MASTG-DEMO-0067
 code: [swift]
@@ -24,8 +24,14 @@ The code snippet below shows sample code that writes files to storage at differe
 
 {{ output.txt }}
 
-The output reveals files opened by the app.
+The output contains all calls to `open` including the paths of the files being accessed and backtraces. In this case the app is writing a file named `secret.json` to multiple locations.
 
 ### Evaluation
 
-The test fails because the `secret.json` file exists in multiple directories that are eligible for backup.
+The test fails because the `secret.json` file exists in multiple directories that are eligible for backup:
+
+```txt
+open(.../Documents/secret.json)
+open(.../Library/secret.json)
+open(.../Library/Application Support/secret.json)
+```
