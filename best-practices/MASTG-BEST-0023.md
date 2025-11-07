@@ -1,8 +1,9 @@
 ---
-title: Exclude sensitive information from backups
+title: Exclude Sensitive Information from Backups
 alias: exclude-sensitive-information-from-backups
 id: MASTG-BEST-0023
 platform: ios
+knowledge: [MASTG-KNOW-0102]
 ---
 
 iOS does not provide a guaranteed mechanism to exclude files from backups. Setting [`NSURLIsExcludedFromBackupKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/isexcludedfrombackupkey) instructs the system not to include a file in backups, but it does not ensure exclusion. To reduce data exposure, apply the following techniques:
