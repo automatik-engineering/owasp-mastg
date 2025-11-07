@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Runtime Tracking of Files Eligible for Backup
+title: Runtime Monitoring of Files Eligible for Backup
 id: MASTG-TEST-0298
 type: [dynamic]
 weakness: MASWE-0004
@@ -14,12 +14,8 @@ This test logs every file written to the app's data container at `/var/mobile/Co
 
 ## Steps
 
-1. Install the app on a device (see @MASTG-TECH-0056).
-2. Ensure you have @MASTG-TOOL-0039 installed.
-3. Begin tracking every file the app opens.
-4. Open the app.
-5. Navigate the app to the areas you wish to analyze.
-6. Close the app.
+1. Use runtime method hooking (see @MASTG-TECH-0095) and look for uses of file system APIs such as `open`, `fopen`, `NSFileManager`, or `FileHandle` that create or write files.
+2. Exercise the app to trigger file creation and writing.
 
 ## Observation
 
