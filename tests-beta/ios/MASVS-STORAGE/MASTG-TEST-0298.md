@@ -10,7 +10,7 @@ profiles: [L1, L2, P]
 
 ## Overview
 
-This test logs every file written to app's data container at `/var/mobile/Containers/Data/Application/$APP_ID` and identifies which files are eligible for backup.
+This test logs every file written to the app's data container at `/var/mobile/Containers/Data/Application/$APP_ID` to identify which files are eligible for backup. Files stored in the `tmp` or `Library/Caches` subdirectories are not logged, as they are never backed up.
 
 ## Steps
 
