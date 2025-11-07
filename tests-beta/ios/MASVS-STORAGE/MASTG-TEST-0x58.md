@@ -12,13 +12,12 @@ profiles: [L1, L2, P]
 
 This test verifies whether your app correctly use the Keychain API to exclude sensitive data from backups, so it won't be transferred to another devices.
 
-An app can restrict the data access to the current device with [kSecAttrAccessibleWhenUnlockedThisDeviceOnly](https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly) or [kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly](https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly) flag. However, if you back up and restore on the same device, this data will also be restored. Therefore, it only prevents the data from being transferred to another device.
+An app can restrict the data access to the current device with [`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`](https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly) or [`kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly`](https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly) flag. However, if you back up and restore on the same device, this data will also be restored. Therefore, it only prevents the data from being transferred to another device.
 
 ## Steps
 
 1. Use runtime method hooking (see @MASTG-TECH-0095) and look for uses of [`SecAccessControlCreateWithFlags`](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)) and specific flags.
-
-2. Exercise the app to trigger the creation of entries in the keychain.
+2. Exercise the app to trigger the creation of entries in the Keychain.
 
 ## Observation
 
