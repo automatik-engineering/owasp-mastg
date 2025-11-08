@@ -25,25 +25,7 @@ Application: /private/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-
 Data: /private/var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693
 ```
 
-Using objection's command `env` will also show you all the directory information of the app. Connecting to the application with objection is described in @MASTG-TOOL-0074. In this case we're connecting to @MASTG-APP-0028:
 
-```bash
-OWASP.iGoat-Swift on (iPhone: 11.1.2) [usb] # env
-
-Name               Path
------------------  -------------------------------------------------------------------------------------------
-BundlePath         /var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/iGoat-Swift.app
-CachesDirectory    /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Library/Caches
-DocumentDirectory  /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Documents
-LibraryDirectory   /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Library
-```
-
-As you can see, apps have two main locations:
-
-- The Bundle directory (`/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/`).
-- The Data directory (`/var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/`).
-
-These folders contain information that must be examined closely during application security assessments (for example when analyzing the stored data for sensitive data).
 
 Bundle directory:
 
@@ -84,7 +66,29 @@ Data directory:
     - Content in this directory is not backed up.
     - The OS may delete this directory's files automatically when the app is not running and storage space is running low.
 
-Let's take a closer look at iGoat-Swift's Application Bundle (.app) directory inside the Bundle directory (`/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/iGoat-Swift.app`):
+## Using @MASTG-TOOL-0074
+
+Using objection's command `env` will also show you all the directory information of the app. Connecting to the application with objection is described in @MASTG-TOOL-0074. In this case we're connecting to @MASTG-APP-0028:
+
+```bash
+OWASP.iGoat-Swift on (iPhone: 11.1.2) [usb] # env
+
+Name               Path
+-----------------  -------------------------------------------------------------------------------------------
+BundlePath         /var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/iGoat-Swift.app
+CachesDirectory    /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Library/Caches
+DocumentDirectory  /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Documents
+LibraryDirectory   /var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/Library
+```
+
+As you can see, apps have two main locations:
+
+- The Bundle directory (`/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/`).
+- The Data directory (`/var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/`).
+
+These folders contain information that must be examined closely during application security assessments (for example when analyzing the stored data for sensitive data).
+
+Let's take a look at iGoat-Swift's Application Bundle (.app) directory inside the Bundle directory (`/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/iGoat-Swift.app`):
 
 ```bash
 OWASP.iGoat-Swift on (iPhone: 11.1.2) [usb] # ls
@@ -124,16 +128,18 @@ Regular           420  None                ...  Info.plist
 Regular           493  None                ...  iGoat-Swift
 ```
 
-You can also visualize the Bundle directory from @MASTG-TOOL-0061 by clicking on **Finder** -> **Bundle**:
+## Using @MASTG-TOOL-0061
+
+You can use Grapefruit to access the app directories. 
+
+Go to **Finder** -> **Bundle** to see the application bundle:
 
 <img src="Images/Chapters/0x06b/grapefruit_bundle_dir.png" width="100%" />
 
-Including the `Info.plist` file:
+You can inspect any file, for example the `Info.plist` file:
 
 <img src="Images/Chapters/0x06b/grapefruit_plist_view.png" width="100%" />
 
-As well as the Data directory in **Finder** -> **Home**:
+Go to **Finder** -> **Home** to see the application data directory:
 
 <img src="Images/Chapters/0x06b/grapefruit_data_dir.png" width="100%" />
-
-Refer to the [Testing Data Storage](../../Document/0x06d-Testing-Data-Storage.md "Data Storage on iOS") chapter for more information and best practices on securely storing sensitive data.
