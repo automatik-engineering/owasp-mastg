@@ -10,6 +10,8 @@ test: MASTG-TEST-0298
 
 The code snippet below shows sample code that writes files to storage at different locations.
 
+{{ MastgTest.swift }}
+
 ### Steps
 
 1. Install the app on a device (@MASTG-TECH-0056)
