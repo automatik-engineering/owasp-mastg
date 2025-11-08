@@ -4,7 +4,7 @@ title: References to APIs for Storing Unencrypted Data in Shared Storage
 id: MASTG-TEST-0x52-5
 type: [static]
 profiles: [L1, L2]
-best-practices: [MASTG-BEST-0014]
+best-practices: [MASTG-BEST-00xx]
 weakness: MASWE-0007
 ---
 

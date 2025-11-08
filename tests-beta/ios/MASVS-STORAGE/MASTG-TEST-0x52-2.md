@@ -4,7 +4,7 @@ title: References to APIs for Storing Unencrypted Data in Private Storage
 id: MASTG-TEST-0x52-2
 type: [static]
 profiles: [L2]
-best-practices: [MASTG-BEST-0014]
+best-practices: [MASTG-BEST-00xx]
 weakness: MASWE-0006
 ---
 

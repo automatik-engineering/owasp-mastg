@@ -4,7 +4,7 @@ title: Runtime Keychain Storage with Secure Access Policies
 id: MASTG-TEST-0x52-3
 apis: [kSecAccessControlUserPresence, kSecAccessControlDevicePasscode, SecAccessControlCreateWithFlags]
 type: [dynamic]
-best-practices: [MASTG-BEST-0014]
+best-practices: [MASTG-BEST-00xx]
 weakness: MASWE-0008
 ---
 
