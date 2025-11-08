@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Runtime Data Storage in the App Sandbox
+title: Runtime Storage of Unencrypted Data in the App Sandbox
 id: MASTG-TEST-0x52-1
 type: [dynamic]
 profiles: [L2]
