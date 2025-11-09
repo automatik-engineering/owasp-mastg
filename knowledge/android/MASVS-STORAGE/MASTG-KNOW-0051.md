@@ -4,7 +4,7 @@ platform: android
 title: Process Memory
 ---
 
-Like any regular modern-day computer, all Android applications use memory to perform normal computational operations. Therefore, it is no surprise that sensitive operations are sometimes performed within process memory. For this reason, it is important to dispose of sensitive data from process memory as quickly as possible once it has been processed.
+Many applications handle sensitive information, provided either by the user, the operating system or the backend. This data is often available in-memory while the user is using the application, as it is needed for the application to function. When the application no longer actively needs the sensitive data, it should dispose of it immediately.
 
 The investigation of an application's memory can be done from memory dumps, and from analyzing the memory in real time via a debugger or a binary instrumentation framework (see @MASTG-TECH-0044 and @MASTG-TECH-0031).
 
@@ -23,7 +23,7 @@ Support for true in-place destruction is rare, and even when implemented, it can
 - Overwriting the byte array returned by `secretKey.getEncoded()` [does not clear the internal key](https://bugs.openjdk.org/browse/JDK-6263419), because `getEncoded()` returns a copy. Zeroing that copy has no effect on the bytes held by the key object.
 - `SecretKeySpec` does not provide a functional `destroy()` implementation, and this [gap has been tracked in the JDK](https://bugs.openjdk.org/browse/JDK-8160206). Calling `destroy()` on a `SecretKey` backed by `SecretKeySpec` therefore does not guarantee that the key material is wiped.
 - RSA keys handled outside the Android Keystore are backed by immutable `BigInteger` objects, which cannot be cleared once created, leaving their data in memory until garbage collected.
-- User-provided data (such as credentials, social security numbers, or credit card information) entered through `EditText` is delivered via the `Editable` interface. If your app does not supply a custom `Editable.Factory`, the data will likely remain in memory longer than necessary. The default `Editable` implementation, `SpannableStringBuilder`, has the same retention issues as Java’s `StringBuilder` and `StringBuffer`, leaving sensitive content in memory until garbage collected.
+- User-provided data (such as credentials, social security numbers, or credit card information) entered through `EditText` is delivered via the `Editable` interface. If your app does not supply a custom `Editable.Factory`, the data will likely remain in memory longer than necessary. The default `Editable` implementation, `SpannableStringBuilder`, has the same retention issues as Java's `StringBuilder` and `StringBuffer`, leaving sensitive content in memory until garbage collected.
 
 > **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
