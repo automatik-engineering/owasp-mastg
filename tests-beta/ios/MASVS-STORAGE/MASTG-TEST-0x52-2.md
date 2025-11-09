@@ -28,6 +28,7 @@ It uses runtime method hooking to monitor File System and Keychain API usage in 
 ## Observation
 
 The output should contain:
+
 - A list of observed Keychain API invocations with: function, call stack (symbolicated if possible) and optionally additional query dictionary attributes (sanitized), accessibility class and access control flags.
 - A list of observed file write / create operations with: function, call stack (symbolicated if possible), target path, file type/extension, approximate size, hash (e.g., SHA-256), and whether captured contents appear to include sensitive data (credentials, tokens, keys, PII, session identifiers).
 

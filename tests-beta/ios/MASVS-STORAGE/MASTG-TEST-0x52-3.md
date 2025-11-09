@@ -25,8 +25,8 @@ The goal is to identify new or modified files and determine whether they contain
 5. Diff the two snapshots to identify new, deleted, and modified files. For modified files, determine whether content changes involve potential sensitive values.
 6. Enumerate Keychain items added or modified during the session using @MASTG-TECH-0061. Optionally record attributes (accessible class, access control flags, etc).
 7. Inspect new or changed files:
-	- Attempt safe decoding of content that appears encoded (Base64, hex, URL-encoded, plist, JSON, property list, compressed archives like ZIP, SQLite, Core Data stores).
-	- For binary formats (e.g., SQLite DB), query schema for tables/fields that may contain tokens, credentials, identifiers.
+    - Attempt safe decoding of content that appears encoded (Base64, hex, URL-encoded, plist, JSON, property list, compressed archives like ZIP, SQLite, Core Data stores).
+    - For binary formats (e.g., SQLite DB), query schema for tables/fields that may contain tokens, credentials, identifiers.
 
 ## Observation
 
