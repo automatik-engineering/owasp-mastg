@@ -6,7 +6,7 @@ title: Process Memory
 
 Like any regular modern-day computer, all Android applications use memory to perform normal computational operations. Therefore, it is no surprise that sensitive operations are sometimes performed within process memory. For this reason, it is important to dispose of sensitive data from process memory as quickly as possible once it has been processed.
 
-The investigation of an application's memory can be done from memory dumps, and from analyzing the memory in real time via a debugger.
+The investigation of an application's memory can be done from memory dumps, and from analyzing the memory in real time via a debugger or a binary instrumentation framework (see @MASTG-TECH-0044 and @MASTG-TECH-0031).
 
 For an overview of possible sources of data exposure, check the documentation and identify application components before you examine the source code. For example, sensitive data from a backend may be in the HTTP client, the XML parser, etc. You want all these copies to be removed from memory as soon as possible.
 
