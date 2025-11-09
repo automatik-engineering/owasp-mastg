@@ -15,8 +15,6 @@ This test checks whether the app obtains a path to Private Storage (the app sand
 - APIs commonly used to persist data in the app sandbox, including the Documents, Library, Caches, and Application Support directories, as well as `UserDefaults`. See @MASTG-KNOW-0091 for details.
 - Keychain APIs used to store sensitive data securely within the Keychain or by using a key from the Keychain to encrypt data before writing to Private Storage. See @MASTG-KNOW-0057 for details.
 
-
-
 ## Steps
 
 1. Run a static analysis tool such as @MASTG-TOOL-0073 and look for uses of file system APIs that create or write files.

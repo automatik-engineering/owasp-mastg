@@ -11,7 +11,7 @@ iOS apps can write data to the file system through the Foundation and lower-leve
 - [Caches](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/cachesdirectory)
 - [Application Support](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationsupportdirectory) directories.
 
-A file can be created and written to using [`createFile(atPath:contents:attributes:)`](https://developer.apple.com/documentation/foundation/filemanager/createfile(atpath:contents:attributes:)). File protection attributes, such as [`FileProtectionType.complete`](https://developer.apple.com/documentation/foundation/fileprotectiontype/complete), ensure that data remains encrypted while the device is locked, as described in Apple’s [Encrypting Your App’s Files](https://developer.apple.com/documentation/uikit/protecting_the_user_s_privacy/encrypting_your_app_s_files).
+A file can be created and written to using [`createFile(atPath:contents:attributes:)`](https://developer.apple.com/documentation/foundation/filemanager/createfile(atpath:contents:attributes:)). File protection attributes, such as [`FileProtectionType.complete`](https://developer.apple.com/documentation/foundation/fileprotectiontype/complete), ensure that data remains encrypted while the device is locked, as described in Apple's [Encrypting Your App's Files](https://developer.apple.com/documentation/uikit/protecting_the_user_s_privacy/encrypting_your_app_s_files).
 
 Example:
 

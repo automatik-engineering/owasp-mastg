@@ -5,7 +5,7 @@ platform: ios
 
 ## Using @MASTG-TOOL-0138 (Jailbroken Devices Only)
 
-Before being able to access the app directories, you need to know where they are located on the filesystem. 
+Before being able to access the app directories, you need to know where they are located on the filesystem.
 
 Connect to the terminal on the device (@MASTG-TECH-0052) and run `ipainstaller -i`:
 
@@ -74,7 +74,7 @@ If you want to inspect plist files, you can use the `ios plist cat` command
 
 ## Using @MASTG-TOOL-0061 (Jailbroken and Non-Jailbroken Devices)
 
-You can use Grapefruit to access the app directories. 
+You can use Grapefruit to access the app directories.
 
 Go to **Finder** -> **Bundle** to see the application bundle:
 

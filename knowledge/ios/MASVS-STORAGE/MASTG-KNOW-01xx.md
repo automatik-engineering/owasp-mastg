@@ -34,7 +34,6 @@ As you can see, apps have two main locations:
 - The Bundle directory (`/var/containers/Bundle/Application/3ADAF47D-A734-49FA-B274-FBCA66589E67/`).
 - The Data directory (`/var/mobile/Containers/Data/Application/8C8E7EB0-BC9B-435B-8EF8-8F5560EB0693/`).
 
-
 These folders contain information that must be examined closely during application security assessments (for example when analyzing the stored data for sensitive data).
 
 ### Bundle directory
