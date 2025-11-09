@@ -1,25 +1,41 @@
 ---
 platform: ios
-title: Runtime Keychain Storage with Secure Access Policies
-id: MASTG-TEST-0x52-3
-apis: [kSecAccessControlUserPresence, kSecAccessControlDevicePasscode, SecAccessControlCreateWithFlags]
-type: [dynamic]
+title: References to APIs for Storing Unencrypted Data in Shared Storage
+id: MASTG-TEST-0x52-4
+type: [static]
+profiles: [L1, L2]
 best-practices: [MASTG-BEST-00xx]
-weakness: MASWE-0008
+weakness: MASWE-0007
 ---
 
 ## Overview
 
-This test is a dynamic counterpart to @MASTG-TEST-0x52-3.
+This test checks whether the app references Shared Storage locations (e.g., the app's Documents directory exposed via iTunes/File Sharing or Files app integration) and identifies code locations that could write unencrypted sensitive data there.
 
 ## Steps
 
-1. Use runtime method hooking (see @MASTG-TECH-0095) and look for uses of [`SecAccessControlCreateWithFlags`](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)) and specific flags.
+1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary.
 
-## Observations
+2. Search for APIs that indicate use of Shared Storage, for example:
 
-The output should contain a list of locations where the `SecAccessControlCreateWithFlags` function is called including all used flags.
+      - [`documentDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentdirectory) (commonly exposed via iTunes File Sharing / Files app)
+      - `FileManager.default.urls(for:in:)` with `documentDirectory`
+      - Direct path manipulation under `.../Documents` for write operations (`Data.write(to:)`, `String.write(to:)`, `NSFileHandle`, `NSOutputStream`)
+
+3. Check the app's `Info.plist` (@MASTG-TECH-0058) for the `UIFileSharingEnabled` and `LSSupportsOpeningDocumentsInPlace` flags.
+
+## Observation
+
+The output should contain:
+
+- A list of code locations that write (or could write) to Shared Storage.
+- The state of `UIFileSharingEnabled` and `LSSupportsOpeningDocumentsInPlace`.
 
 ## Evaluation
 
-The test case fails if the items in the Keychain don't satisfy your app's security requirements. For example, your app might store sensitive data that you want to keep accessible only on this device. Then, such an item in the Keychain should use `kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly`.
+The test fails if:
+
+- The app writes unencrypted sensitive data to `documentDirectory` (or equivalent Shared Storage path), and
+- `Info.plist` enables user access to the Documents directory (`UIFileSharingEnabled` and/or `LSSupportsOpeningDocumentsInPlace`).
+
+Note: `documentDirectory` by itself is not inherently insecure; the risk arises when sensitive data is stored there and exposed via file sharing or Files app access. In contrast, data stored in other locations within the app sandbox (e.g., `Library/Application Support`) with encryption, or in the Keychain cannot be accessed even if file sharing is enabled.

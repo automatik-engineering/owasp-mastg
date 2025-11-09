@@ -1,36 +1,42 @@
 ---
 platform: ios
-title: References to APIs for Keychain Storage with Secure Access Policies
+title: Differential Analysis of Files and Keychain Entries Created at Runtime
 id: MASTG-TEST-0x52-3
-type: [static]
+type: [dynamic, filesystem]
+prerequisites:
+- identify-sensitive-data
 profiles: [L2]
+weakness: MASWE-0006
 best-practices: [MASTG-BEST-00xx]
-weakness: MASWE-0008
 ---
 
 ## Overview
 
-This test checks whether the app uses a secure [Access Policy](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags) to store data in the Keychain. Apple offers several policies that can, for example, require the user to:
+This test is designed to complement @MASTG-TEST-0x52-2. Instead of monitoring APIs during execution, it performs a differential analysis of the app's Private Storage by comparing snapshots taken before and after exercising the app. It also enumerates Keychain items created or modified during the session.
 
-- authenticate with biometrics to access data ([kSecAccessControlBiometryAny](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometryany))
-- set up a password on the device to store data ([kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly](https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly))
-- access this data only on the current device ([kSecAttrAccessibleWhenUnlockedThisDeviceOnly](https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly))
-- and [more](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#Accessibility-Values)
+The goal is to identify new or modified files and determine whether they contain sensitive data in plaintext or trivially encoded form, and to identify new Keychain entries that may contain sensitive data or keys used for file encryption.
 
 ## Steps
 
-1. Run a static analysis (e.g. @MASTG-TOOL-0073) on the app binary, or use @MASTG-TOOL-0038 to dynamically verify the properties of the keychain items during the app runtime.
+1. Ensure the device / simulator is in a clean state (no prior test artifacts). Terminate the app if running.
+2. Take an initial snapshot of the app's Private Storage (sandbox) directory tree (@MASTG-TECH-0052). Record: paths, sizes, modification times, hashes (e.g., SHA-256).
+3. Launch and exercise the app to trigger typical workflows (authentication, profile loading, messaging, caching, offline usage, cryptographic operations).
+4. Take a second snapshot of the Private Storage directory tree.
+5. Diff the two snapshots to identify new, deleted, and modified files. For modified files, determine whether content changes involve potential sensitive values.
+6. Enumerate Keychain items added or modified during the session using @MASTG-TECH-0061. Optionally record attributes (accessible class, access control flags, etc).
+7. Inspect new or changed files:
+	- Attempt safe decoding of content that appears encoded (Base64, hex, URL-encoded, plist, JSON, property list, compressed archives like ZIP, SQLite, Core Data stores).
+	- For binary formats (e.g., SQLite DB), query schema for tables/fields that may contain tokens, credentials, identifiers.
 
-2. (Static analysis only) Search for APIs that indicates a use of Keychain. This API includes:
-    - SecItemAdd
-    - SecAccessControlCreateWithFlags
+## Observation
 
-3. Verify whether the APIs above make use of security policies mentioned in the Overview or [Apple's documentation](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#Accessibility-Values)
+The output should contain:
 
-## Observations
-
-The output should allow you to identify security policies assigned to items in the keychain.
+- List of new or modified files with: path, size, hash, inferred type, encoding/encryption status (plaintext / encoded / encrypted / unknown).
+- List of new or modified Keychain entries.
 
 ## Evaluation
 
-The test case fails if the items in the Keychain don't satisfy your app's security requirements. For example, your app might store sensitive data that you want to keep accessible only on this device. Then, such an item in the Keychain should use `kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly`.
+The test case fails if sensitive data appears in plaintext or trivially encoded in new or modified files.
+
+Attempt to identify and decode data that has been encoded using methods such as base64 encoding, hexadecimal representation, URL encoding, escape sequences, wide characters and common data obfuscation methods such as xoring. Also consider identifying and decompressing compressed files such as tar or zip. These methods obscure but do not protect sensitive data.
