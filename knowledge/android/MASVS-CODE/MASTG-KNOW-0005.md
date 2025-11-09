@@ -12,7 +12,7 @@ Memory leaks are another common concern. These often occur when references to th
 
 > **Why doesn't the OWASP MASTG have tests for this anymore?**
 >
-> The tests for memory corruption vulnerabilities were removed from the OWASP MASTG because these issues are best addressed during development rather than through black box penetration testing. Memory corruption flaws such as buffer overflows, out-of-bounds access, integer overflows, use-after-free, and format string vulnerabilities should typically be identified **by developers during the development process** through static or dynamic code analysis, compiler protections, and secure coding practices.
+> The tests for memory corruption vulnerabilities were removed from the OWASP MASTG because these issues are best addressed during development rather than through black box penetration testing. Memory corruption flaws such as buffer overflows, out-of-bounds access, integer overflows, use-after-free, and format string vulnerabilities should typically be identified **by developers during the development process** through static or dynamic code analysis, compiler protections, and secure coding practices. See the [best practices defined by Android](https://developer.android.com/privacy-and-security/risks/use-of-native-code).
 >
 > Detecting these flaws in compiled mobile applications is highly complex and unreliable without access to source code or debug symbols. Moreover, modern mobile platforms implement robust memory safety features, including address space layout randomization (ASLR), stack canaries, and runtime protections that significantly reduce the exploitability of such bugs.
 >
