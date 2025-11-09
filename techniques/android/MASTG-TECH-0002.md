@@ -34,7 +34,7 @@ First, connect to the app with Objection as explained in @MASTG-TOOL-0038. Then,
 
 ```bash
 $ frida-ps -Ua | grep -i owasp
-21228  Attack me if u can  sg.vp.owasp_mobile.omtg_android  
+21228  Attack me if u can  sg.vp.owasp_mobile.omtg_android
 
 $ objection -n "Attack me if u can" start
 
@@ -72,7 +72,7 @@ Writing bytes to destination...
 Successfully downloaded ... to sg.vp.owasp_mobile.omtg_android_preferences.xml
 ```
 
-As per objection v1.12.0, objection does support downloading folders by using the strict syntax `filesystem download <remote folder> <local destination> --folder`. However this only applies to folders and does not allow specifying multiple individual files directly. 
+As per objection v1.12.0, objection does support downloading folders by using the strict syntax `filesystem download <remote folder> <local destination> --folder`. However this only applies to folders and does not allow specifying multiple individual files directly.
 
 ```bash
 ...[usb] # filesystem download databases dbs --folder

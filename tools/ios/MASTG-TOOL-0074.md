@@ -31,7 +31,7 @@ The ability to **perform advanced dynamic analysis on non-jailbroken devices** i
 
 ## Using Objection on iOS
 
-Starting up Objection depends on whether you've patched the IPA or whether you are using a jailbroken device running Frida-server. 
+Starting up Objection depends on whether you've patched the IPA or whether you are using a jailbroken device running Frida-server.
 For running a patched IPA, the name Gadget should be specified using `-n Gadget`. Whereas when using frida-server, you need to specify which application you want to attach to or spawn.
 
 ```bash
