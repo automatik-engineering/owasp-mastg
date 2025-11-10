@@ -36,15 +36,16 @@ $ frida-ps -Ua | grep -i telegram
 30268  Telegram                               org.telegram.messenger
 
 # Connecting to the Telegram app through Frida-server
-$ objection --name "Telegram" start
-# Alternatively
-$ objection --name 30268 start
+$ objection -n "Telegram" start
+# Alternatively use the process ID (PID)
+$ objection -n 30268 start
 
-# Objection can also spawn the app through Frida-server using the application identifier
-$ objection --spawn --name "org.telegram.messenger"
+# Objection can also spawn the app through Frida-server using the application identifier / package name
+$ objection -s -n "org.telegram.messenger"
 ... [usb] resume
-# Alternatively
-$ objection --spawn --no-pause --name "org.telegram.messenger"
+
+# Alternatively with "no pause"
+$ objection -s -p -n "org.telegram.messenger"
 ```
 
 Once you are in the Objection REPL, you can execute any of the available commands. Below is an overview of some of the most useful ones:
