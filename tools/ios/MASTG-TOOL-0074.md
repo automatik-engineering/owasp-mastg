@@ -4,8 +4,6 @@ platform: ios
 source: https://github.com/sensepost/objection
 ---
 
-??? info "Info about objection"
-
 !!! warn "Objection's pip/PyPI package is outdated and not Frida 17+ compliant"
     You can keep using Objection with Frida 17+ by installing it from the source repo's `master` branch. See [Development Environment Installation](https://github.com/sensepost/objection/wiki/Development-Environment-Installation).
     
