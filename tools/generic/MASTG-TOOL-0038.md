@@ -19,18 +19,6 @@ Objection can be installed through pip as described on [Objection's Wiki](https:
 
 ```bash
 pip3 install objection
-Objection can be installed through pip as described on [Objection's Wiki](https://github.com/sensepost/objection/wiki/Installation "Objection Wiki - Installation").
-
-```bash
-pip3 install objection
-Objection can be installed through pip as described on [Objection's Wiki](https://github.com/sensepost/objection/wiki/Installation "Objection Wiki - Installation").
-
-```bash
-pip3 install objection
-Objection can be installed through pip as described on [Objection's Wiki](https://github.com/sensepost/objection/wiki/Installation "Objection Wiki - Installation").
-
-```bash
-pip3 install objection
 ```
 
 !!! warn "Objection's pip/PyPI package is outdated and not Frida 17+ compliant"
