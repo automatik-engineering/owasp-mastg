@@ -27,11 +27,11 @@ The ability to **perform advanced dynamic analysis on non-rooted devices** is on
 
 ## Using Objection on Android
 
-Starting up Objection depends on whether you've patched the APK or whether you are using a rooted device running Frida-server. For running a patched APK, either the foreground process `-F` or Gadget should be specified `-n Gadget`. Whereas when using frida-server, you need to specify which application you want to attach to or spawn.
+Starting up Objection depends on whether you've patched the APK or whether you are using a rooted device running Frida-server. For running a patched APK, either the foreground process `-f` or Gadget should be specified `-n Gadget`. Whereas when using frida-server, you need to specify which application you want to attach to or spawn.
 
 ```bash
 # Connecting to a patched APK
-objection -F explore
+objection -f explore
 
 # Using Frida-server
 # Find the correct name using frida-ps
