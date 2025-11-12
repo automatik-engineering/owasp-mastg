@@ -24,7 +24,7 @@ The goal is to identify new or modified files and determine whether they contain
 4. Exercise app features that could handle sensitive data (authentication flows, session establishment, offline caching, profile viewing/editing, cryptographic operations, secure messaging, payment, or token refresh logic).
 5. Take a second snapshot of the private storage directory tree.
 6. Diff the two private storage snapshots to identify new, deleted, and modified files. For modified files, determine whether content changes involve potential sensitive values.
-7. Take a second snapshot of the Keychain items 
+7. Take a second snapshot of the Keychain items
 8. Diff the two Keychain snapshots to identify new, deleted, and modified items during the session using @MASTG-TECH-0061.
 
 ## Observation
