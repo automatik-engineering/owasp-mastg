@@ -28,4 +28,4 @@ The output should contain:
 
 ## Evaluation
 
-The test case fails if **files containing sensitive data** have the data protection class set to `NSFileProtectionNone` or `NSFileProtectionCompleteUntilFirstUserAuthentication`, which do not provide adequate protection for sensitive data when the device is locked.
+The test case fails if **files containing sensitive data** have the data protection class set to `NSFileProtectionNone`.
