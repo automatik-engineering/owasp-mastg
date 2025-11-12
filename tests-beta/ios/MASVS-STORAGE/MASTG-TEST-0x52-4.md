@@ -1,41 +1,41 @@
 ---
 platform: ios
-title: References to APIs for Storing Unencrypted Data in Shared Storage
+title: Sensitive Data Unencrypted in Private Storage Files
 id: MASTG-TEST-0x52-4
-type: [static]
-profiles: [L1, L2]
+type: [dynamic, filesystem]
+prerequisites:
+- identify-sensitive-data
+profiles: [L2]
+weakness: MASWE-0006
 best-practices: [MASTG-BEST-00xx]
-weakness: MASWE-0007
 ---
 
 ## Overview
 
-This test checks whether the app references Shared Storage locations (e.g., the app's Documents directory exposed via iTunes/File Sharing or Files app integration) and identifies code locations that could write unencrypted sensitive data there.
+This test is designed to complement @MASTG-TEST-0x52-2. Instead of monitoring APIs during execution, it performs a differential analysis of the app's private storage by comparing snapshots taken before and after exercising the app. It also enumerates Keychain items created or modified during the session.
+
+The goal is to identify new or modified files and determine whether they contain sensitive data in plaintext or trivially encoded form, and to identify new Keychain entries that may contain sensitive data or keys used for file encryption.
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary.
-
-2. Search for APIs that indicate use of Shared Storage, for example:
-
-      - [`documentDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentdirectory) (commonly exposed via iTunes File Sharing / Files app)
-      - `FileManager.default.urls(for:in:)` with `documentDirectory`
-      - Direct path manipulation under `.../Documents` for write operations (`Data.write(to:)`, `String.write(to:)`, `NSFileHandle`, `NSOutputStream`)
-
-3. Check the app's `Info.plist` (@MASTG-TECH-0058) for the `UIFileSharingEnabled` and `LSSupportsOpeningDocumentsInPlace` flags.
+1. Ensure the device / simulator is in a clean state (no prior test artifacts). Terminate the app if running.
+2. Take an initial snapshot of the app's private storage (sandbox) directory tree (@MASTG-TECH-0052).
+3. Take an initial snapshot of the Keychain items @MASTG-TECH-0061. Optionally record attributes (accessible class, access control flags, etc).
+4. Exercise app features that could handle sensitive data (authentication flows, session establishment, offline caching, profile viewing/editing, cryptographic operations, secure messaging, payment, or token refresh logic).
+5. Take a second snapshot of the private storage directory tree.
+6. Diff the two private storage snapshots to identify new, deleted, and modified files. For modified files, determine whether content changes involve potential sensitive values.
+7. Take a second snapshot of the Keychain items 
+8. Diff the two Keychain snapshots to identify new, deleted, and modified items during the session using @MASTG-TECH-0061.
 
 ## Observation
 
 The output should contain:
 
-- A list of code locations that write (or could write) to Shared Storage.
-- The state of `UIFileSharingEnabled` and `LSSupportsOpeningDocumentsInPlace`.
+- List of new or modified files with: path, size, hash, inferred type, encoding/encryption status (plaintext / encoded / encrypted / unknown).
+- List of new or modified Keychain entries.
 
 ## Evaluation
 
-The test fails if:
+The test case fails if sensitive data appears in plaintext or trivially encoded in new or modified files.
 
-- The app writes unencrypted sensitive data to `documentDirectory` (or equivalent Shared Storage path), and
-- `Info.plist` enables user access to the Documents directory (`UIFileSharingEnabled` and/or `LSSupportsOpeningDocumentsInPlace`).
-
-Note: `documentDirectory` by itself is not inherently insecure; the risk arises when sensitive data is stored there and exposed via file sharing or Files app access. In contrast, data stored in other locations within the app sandbox (e.g., `Library/Application Support`) with encryption, or in the Keychain cannot be accessed even if file sharing is enabled.
+Inspect the list of files and Keychain entries for sensitive data. Attempt to identify and decode data that has been encoded using methods such as Base64 encoding, hexadecimal representation, URL-encoding, escape sequences, binary plist files, compressed archives like ZIP, wide characters and common data obfuscation methods such as xoring. Also consider identifying and decompressing compressed files such as tar or zip. These methods obscure but do not protect sensitive data.

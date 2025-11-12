@@ -1,10 +1,8 @@
 ---
 platform: ios
-title: Differential Analysis of Files and Keychain Entries Created at Runtime
+title: Runtime Use of APIs for Storing Unencrypted Data in Private Storage
 id: MASTG-TEST-0x52-3
-type: [dynamic, filesystem]
-prerequisites:
-- identify-sensitive-data
+type: [dynamic]
 profiles: [L2]
 weakness: MASWE-0006
 best-practices: [MASTG-BEST-00xx]
@@ -12,31 +10,32 @@ best-practices: [MASTG-BEST-00xx]
 
 ## Overview
 
-This test is designed to complement @MASTG-TEST-0x52-2. Instead of monitoring APIs during execution, it performs a differential analysis of the app's Private Storage by comparing snapshots taken before and after exercising the app. It also enumerates Keychain items created or modified during the session.
+This test is the dynamic counterpart to @MASTG-TEST-0x52-1 and is designed to be used together with @MASTG-TEST-0x52-3.
 
-The goal is to identify new or modified files and determine whether they contain sensitive data in plaintext or trivially encoded form, and to identify new Keychain entries that may contain sensitive data or keys used for file encryption.
+It uses runtime method hooking to monitor File System and Keychain API usage in order to:
+
+1. Identify where sensitive data is written to private storage (the app sandbox).
+2. Capture Keychain operations.
+3. Identify whether sensitive data is encrypted (stored directly in the Keychain or encrypted prior to file persistence).
+
+Note that some of the target APIs route I/O through system daemons or otherwise avoid direct `open` and `write` syscalls, so you'll have to hook the relevant Objective C or Swift APIs rather than tracing syscalls only.
 
 ## Steps
 
-1. Ensure the device / simulator is in a clean state (no prior test artifacts). Terminate the app if running.
-2. Take an initial snapshot of the app's Private Storage (sandbox) directory tree (@MASTG-TECH-0052). Record: paths, sizes, modification times, hashes (e.g., SHA-256).
-3. Launch and exercise the app to trigger typical workflows (authentication, profile loading, messaging, caching, offline usage, cryptographic operations).
-4. Take a second snapshot of the Private Storage directory tree.
-5. Diff the two snapshots to identify new, deleted, and modified files. For modified files, determine whether content changes involve potential sensitive values.
-6. Enumerate Keychain items added or modified during the session using @MASTG-TECH-0061. Optionally record attributes (accessible class, access control flags, etc).
-7. Inspect new or changed files:
-    - Attempt safe decoding of content that appears encoded (Base64, hex, URL-encoded, plist, JSON, property list, compressed archives like ZIP, SQLite, Core Data stores).
-    - For binary formats (e.g., SQLite DB), query schema for tables/fields that may contain tokens, credentials, identifiers.
+1. Use runtime method hooking (see @MASTG-TECH-0095) and look for uses of file system APIs that create or write files.
+2. Use runtime method hooking (see @MASTG-TECH-0095) and look for uses of Keychain APIs.
+3. Exercise app features that could handle sensitive data (authentication flows, session establishment, offline caching, profile viewing/editing, cryptographic operations, secure messaging, payment, or token refresh logic).
 
 ## Observation
 
 The output should contain:
 
-- List of new or modified files with: path, size, hash, inferred type, encoding/encryption status (plaintext / encoded / encrypted / unknown).
-- List of new or modified Keychain entries.
+- A list of calls to the relevant Keychain APIs
+- A list of calls to the relevant File System APIs
 
 ## Evaluation
 
-The test case fails if sensitive data appears in plaintext or trivially encoded in new or modified files.
+The test case fails if the sensitive data is not encrypted before being written to private storage or the Keychain API isn't used to store the sensitive data.
 
-Attempt to identify and decode data that has been encoded using methods such as base64 encoding, hexadecimal representation, URL encoding, escape sequences, wide characters and common data obfuscation methods such as xoring. Also consider identifying and decompressing compressed files such as tar or zip. These methods obscure but do not protect sensitive data.
+
+Determining whether data is encrypted when written to private storage may be challenging. However, by monitoring the APIs used for writing data and analyzing the data written, you can infer whether encryption is being applied based on the methods and libraries used. You'll have to correlate the data written to private storage with the APIs used to write it, as identified through runtime method hooking. You'll also have to correlate the File System APIs with the Keychain APIs to verify that they are used together to store sensitive data securely. Sensitive data can be stored securely in the Keychain or be encrypted using a key from the Keychain before being written to private storage.

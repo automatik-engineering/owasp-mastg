@@ -1,32 +1,31 @@
 ---
 platform: ios
-title: References to APIs for Storing Unencrypted Data in Private Storage
+title: Data Protection Classes for Files in Private Storage
 id: MASTG-TEST-0x52-1
-type: [static]
-profiles: [L2]
-best-practices: [MASTG-BEST-00xx]
+type: [dynamic, filesystem]
+prerequisites:
+- identify-sensitive-data
+profiles: [L1]
 weakness: MASWE-0006
+best-practices: [MASTG-BEST-00xx]
 ---
 
 ## Overview
 
-This test checks whether the app obtains a path to Private Storage (the app sandbox) and identifies code locations that could write unencrypted sensitive data there. It focuses on:
-
-- APIs commonly used to persist data in the app sandbox, including the Documents, Library, Caches, and Application Support directories, as well as `UserDefaults`. See @MASTG-KNOW-0091 for details.
-- Keychain APIs used to store sensitive data securely within the Keychain or by using a key from the Keychain to encrypt data before writing to Private Storage. See @MASTG-KNOW-0057 for details.
+This test retrieves the data protection classes of files created or modified in the app's private storage (sandbox) during typical app usage. The goal is to ensure that files containing sensitive data are assigned appropriate data protection classes to safeguard them when the device is locked.
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0073 and look for uses of file system APIs that create or write files.
-2. Run a static analysis tool such as @MASTG-TOOL-0073 and look for uses of Keychain APIs and include the specific flags used.
+1. Ensure the device / simulator is in a clean state (no prior test artifacts). Terminate the app if running.
+2. Launch and exercise the app to trigger typical workflows (authentication, profile loading, messaging, caching, offline usage, cryptographic operations).
+3. Retrieve the list of files from the app's private storage (sandbox) directory tree (`/var/mobile/Containers/Data/Application/<UUID>/`) including the data protection classes (@MASTG-TECH-0059).
 
 ## Observation
 
 The output should contain:
 
-- A list of locations where the app writes or may write data to Private Storage.
-- A list of locations where the app uses Keychain APIs, including access control and accessibility attributes.
+- List of files in private storage including at least path and data protection class.
 
 ## Evaluation
 
-The test case fails if there's no indication that sensitive data is protected when written to Private Storage. For example, if you cannot find any code paths performing encryption before writes, or the Keychain API isn't used to store sensitive data securely or to derive encryption keys for data written to Private Storage.
+The test case fails if **files containing sensitive data** have the data protection class set to `NSFileProtectionNone` or `NSFileProtectionCompleteUntilFirstUserAuthentication`, which do not provide adequate protection for sensitive data when the device is locked.
