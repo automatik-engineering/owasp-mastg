@@ -56,7 +56,7 @@ These folders contain information that must be examined closely during applicati
     - iOS apps usually use the `Application Support` and `Caches` subdirectories, but the app can create custom subdirectories under `Library`.
 
 - **Library/Caches/**
-    - Contains semi persistent cached files that can be regenerated.
+    - Contains semi-persistent cached files that can be regenerated.
     - Invisible to users and users cannot write to it directly.
     - Content in this directory is not backed up.
     - The OS may delete files in this directory automatically, for example when storage space is low.
