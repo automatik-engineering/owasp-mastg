@@ -5,7 +5,7 @@ id: MASTG-TEST-0301
 type: [dynamic]
 profiles: [L2]
 weakness: MASWE-0006
-best-practices: [MASTG-BEST-00xx]
+best-practices: [MASTG-BEST-0024]
 ---
 
 ## Overview

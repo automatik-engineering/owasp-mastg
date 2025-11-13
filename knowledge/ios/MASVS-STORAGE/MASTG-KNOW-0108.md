@@ -10,7 +10,7 @@ There are several ways to access the app's sandboxed folder:
 
 - **On any device - Only Debug Builds**: You can use Xcode's Devices and Simulators window to download the app container.
 - **On the iOS Simulator - All Built-in Apps and Debug Builds**: You can navigate to the app's sandboxed folder directly from the macOS filesystem.
-- **On a non-jailbroken device - Only Repackaged Apps or Debug Apps**: You can use @MASTG-TECH-0090 and after that, use @MASTG-TOOL-0074 to explore the app's directory structure.
+- **On a non-jailbroken device - Only Repackaged Apps or Debug Builds**: You can use @MASTG-TECH-0090 and after that, use @MASTG-TOOL-0074 to explore the app's directory structure.
 - **On a jailbroken device - All Apps**:
     - You can use SSH or a file explorer app to navigate the filesystem and access the sandboxed folder directly.
     - You can use @MASTG-TOOL-0074 to explore the app's directory structure.

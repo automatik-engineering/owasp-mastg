@@ -7,7 +7,7 @@ prerequisites:
 - identify-sensitive-data
 profiles: [L1]
 weakness: MASWE-0006
-best-practices: [MASTG-BEST-00xx]
+best-practices: [MASTG-BEST-0024]
 ---
 
 ## Overview
