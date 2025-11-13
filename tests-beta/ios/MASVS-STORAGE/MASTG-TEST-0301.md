@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: Runtime Use of APIs for Storing Unencrypted Data in Private Storage
-id: MASTG-TEST-0x52-3
+id: MASTG-TEST-0301
 type: [dynamic]
 profiles: [L2]
 weakness: MASWE-0006
@@ -12,11 +12,7 @@ best-practices: [MASTG-BEST-00xx]
 
 This test is the dynamic counterpart to @MASTG-TEST-0x52-1 and is designed to be used together with @MASTG-TEST-0x52-3.
 
-It uses runtime method hooking to monitor File System and Keychain API usage in order to:
-
-1. Identify where sensitive data is written to private storage (the app sandbox).
-2. Capture Keychain operations.
-3. Identify whether sensitive data is encrypted (stored directly in the Keychain or encrypted prior to file persistence).
+It uses runtime method hooking to identify if sensitive data is written unencrypted to private storage (@MASTG-KNOW-0108) or directly in the Keychain by monitoring file (@MASTG-KNOW-0091) and Keychain (@MASTG-KNOW-0057) APIs.
 
 Note that some of the target APIs route I/O through system daemons or otherwise avoid direct `open` and `write` syscalls, so you'll have to hook the relevant Objective C or Swift APIs rather than tracing syscalls only.
 

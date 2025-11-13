@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: References to APIs for Storing Unencrypted Data in Private Storage
-id: MASTG-TEST-0x52-2
+id: MASTG-TEST-0300
 type: [static]
 profiles: [L2]
 best-practices: [MASTG-BEST-00xx]
@@ -10,7 +10,7 @@ weakness: MASWE-0006
 
 ## Overview
 
-This test checks whether the app writes unencrypted sensitive data to private storage (the app sandbox). It focuses on:
+This test checks whether the app writes unencrypted sensitive data to private storage (@MASTG-KNOW-0108). It focuses on:
 
 - APIs that persist data in the app sandbox directories (@MASTG-KNOW-0091), including Foundation `FileManager` methods, low-level POSIX and BSD file I/O calls and high-level APIs such as `UserDefaults`, Core Data and SQLite wrappers.
 - Keychain APIs (@MASTG-KNOW-0057) used to:

@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: Data Protection Classes for Files in Private Storage
-id: MASTG-TEST-0x52-1
+id: MASTG-TEST-0299
 type: [dynamic, filesystem]
 prerequisites:
 - identify-sensitive-data
@@ -12,7 +12,7 @@ best-practices: [MASTG-BEST-00xx]
 
 ## Overview
 
-This test retrieves the data protection classes of files created or modified in the app's private storage (sandbox) during typical app usage. The goal is to ensure that files containing sensitive data are assigned appropriate data protection classes to safeguard them when the device is locked.
+This test retrieves the data protection classes of files (@MASTG-KNOW-0091) created or modified in the app's private storage (@MASTG-KNOW-0108) during typical app usage. The goal is to ensure that files containing sensitive data are assigned appropriate data protection classes to safeguard them when the device is locked.
 
 ## Steps
 
