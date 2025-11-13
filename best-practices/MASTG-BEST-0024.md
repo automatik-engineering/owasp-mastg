@@ -1,6 +1,6 @@
 ---
 title: Store Data Encrypted in App Sandbox Directory
-alias: stora-data-encrypted-in-the-app-sandbox-directory
+alias: store-data-encrypted-in-the-app-sandbox-directory
 id: MASTG-BEST-0024
 platform: ios
 ---

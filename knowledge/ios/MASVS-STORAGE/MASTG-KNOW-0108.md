@@ -69,12 +69,12 @@ These folders contain information that must be examined closely during applicati
 - **Library/Preferences/**
     - Used for storing preference values that persist across launches.
     - Information is saved, unencrypted, inside the application sandbox in a plist file named after the app bundle identifier, for example `[BUNDLE_ID].plist`.
-    - All the key or value pairs stored using `UserDefaults` or `NSUserDefaults` can be found in this file.
+    - All the key-value pairs stored using `UserDefaults` or `NSUserDefaults` can be found in this file.
     - Content in this directory is backed up by default.
 
 - **tmp/**
     - Use this directory to write temporary files that do not need to persist between app launches.
-    - Contains non persistent cached or scratch files.
+    - Contains non-persistent cached or scratch files.
     - Invisible to users and users cannot write to it directly.
     - Content in this directory is not backed up.
     - The OS may delete files in this directory automatically at any time, including while the app is not running, especially when storage space is low.
