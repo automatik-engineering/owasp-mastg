@@ -39,38 +39,42 @@ These folders contain information that must be examined closely during applicati
 ### Bundle directory
 
 - **AppName.app**
-    - This is the Application Bundle as seen in the IPA, it contains essential application data, static content as well as the application's compiled binary.
-    - This directory is visible to users, but users can't write to it.
-    - Content in this directory is not backed up.
+    - This is the application bundle as seen in the IPA, it contains essential application resources as well as the compiled binary.
+    - This directory is not writable at runtime and is not normally visible to users in the Files app.
+    - Content in this directory is not backed up, it is distributed with the app and can be restored by reinstalling the app.
     - The contents of this folder are used to validate the code signature.
 
 ### Data directory
 
 - **Documents/**
-    - Contains all the user-generated data. The application end user initiates the creation of this data.
-    - Visible to users and users can write to it.
-    - Content in this directory is backed up.
-    - The app can disable paths by setting `NSURLIsExcludedFromBackupKey`.
+    - Contains user data that should persist and be included in backups, typically user created or user visible content.
+    - May be visible to users in the Files app or via file sharing, depending on app configuration, and users can write to it in those cases.
+    - Content in this directory is backed up by default.
+
 - **Library/**
-    - Contains all files that aren't user-specific, such as caches, preferences, cookies, and property list (plist) configuration files.
-    - iOS apps usually use the `Application Support` and `Caches` subdirectories, but the app can create custom subdirectories.
+    - Contains app specific support files, such as caches, preferences, cookies, and configuration data that is not directly user facing.
+    - iOS apps usually use the `Application Support` and `Caches` subdirectories, but the app can create custom subdirectories under `Library`.
+
 - **Library/Caches/**
-    - Contains semi-persistent cached files.
-    - Invisible to users and users can't write to it.
+    - Contains semi persistent cached files that can be regenerated.
+    - Invisible to users and users cannot write to it directly.
     - Content in this directory is not backed up.
-    - The OS may delete this directory's files automatically when the app is not running and storage space is running low.
+    - The OS may delete files in this directory automatically, for example when storage space is low.
+
 - **Library/Application Support/**
-    - Contains persistent files necessary for running the app.
-    - Invisible to users and users can't write to it.
-    - Content in this directory is backed up.
-    - The app can disable paths by setting `NSURLIsExcludedFromBackupKey`.
+    - Contains persistent files necessary for running the app, such as databases or other support data.
+    - Invisible to users and users cannot write to it directly.
+    - Content in this directory is backed up by default.
+
 - **Library/Preferences/**
-    - Used for storing properties that can persist even after an application is restarted.
-    - Information is saved, unencrypted, inside the application sandbox in a plist file called [BUNDLE_ID].plist.
-    - All the key/value pairs stored using `NSUserDefaults` can be found in this file.
+    - Used for storing preference values that persist across launches.
+    - Information is saved, unencrypted, inside the application sandbox in a plist file named after the app bundle identifier, for example `[BUNDLE_ID].plist`.
+    - All the key or value pairs stored using `UserDefaults` or `NSUserDefaults` can be found in this file.
+    - Content in this directory is backed up by default.
+
 - **tmp/**
     - Use this directory to write temporary files that do not need to persist between app launches.
-    - Contains non-persistent cached files.
-    - Invisible to users.
+    - Contains non persistent cached or scratch files.
+    - Invisible to users and users cannot write to it directly.
     - Content in this directory is not backed up.
-    - The OS may delete this directory's files automatically when the app is not running and storage space is running low.
+    - The OS may delete files in this directory automatically at any time, including while the app is not running, especially when storage space is low.
