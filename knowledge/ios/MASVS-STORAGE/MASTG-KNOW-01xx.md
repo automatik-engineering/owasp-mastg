@@ -4,13 +4,13 @@ platform: ios
 title: App Sandbox Directories
 ---
 
-On iOS, each application gets a sandboxed folder to store its data. As per the iOS security model, an application's sandboxed folder cannot be accessed by another application. Additionally, the users do not have direct access to the iOS filesystem, thus preventing browsing or extraction of data from the filesystem.
+On iOS, each application gets a sandboxed folder to store its data. As per the iOS security model, an application's sandboxed folder cannot be accessed by another application. Additionally, the users do not have direct access to the [iOS filesystem](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW12), thus preventing browsing or extraction of data from the filesystem.
 
 There are several ways to access the app's sandboxed folder:
 
 - **On any device - Only Debug Builds**: You can use Xcode's Devices and Simulators window to download the app container.
 - **On the iOS Simulator - All Built-in Apps and Debug Builds**: You can navigate to the app's sandboxed folder directly from the macOS filesystem.
-- **On a non-jailbroken device - Only Repackaged Apps**: You can use @MASTG-TECH-0090 and after that, use @MASTG-TOOL-0074 to explore the app's directory structure.
+- **On a non-jailbroken device - Only Repackaged Apps or Debug Apps**: You can use @MASTG-TECH-0090 and after that, use @MASTG-TOOL-0074 to explore the app's directory structure.
 - **On a jailbroken device - All Apps**:
     - You can use SSH or a file explorer app to navigate the filesystem and access the sandboxed folder directly.
     - You can use @MASTG-TOOL-0074 to explore the app's directory structure.
