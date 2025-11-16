@@ -10,6 +10,7 @@ refs:
 - https://forums.swift.org/t/random-data-uint8-random-or-secrandomcopybytes/56165
 - https://github.com/apple-oss-distributions/Security/blob/main/OSX/libsecurity_keychain/lib/SecRandom.c
 - https://developer.apple.com/videos/play/wwdc2019/709/?time=1295
+- https://www.niap-ccevs.org/technical-decisions/TD0510
 ---
 
 [Random number generation](https://support.apple.com/en-us/guide/security/seca0c73a75b/web) is a critical component of many cryptographic operations, including key generation, initialization vectors, nonces, and tokens. Apple systems provide a trusted Cryptographically Secure Pseudorandom Number Generator (CSPRNG) that applications should use to ensure the security and unpredictability of generated random values. This CSPRNG is seeded from multiple entropy sources during system startup and over the lifetime of the device. These include the Secure Enclave hardware's True Random Number Generator (TRNG), timing jitter, entropy collected from hardware interrupts, etc.
@@ -51,7 +52,7 @@ for _ in 0..<16 {
 }
 ```
 
-Under the hood, the Swift standard library uses [`SystemRandomNumberGenerator`](https://developer.apple.com/documentation/swift/systemrandomnumbergenerator), which leverages platform-specific secure random mechanisms (the system's CSPRNG). On Apple platforms, the above methods are implemented under the hood using `arc4random_buf`. You can observe this behavior using Frida to trace calls to the Swift random API. `UInt8.random` can be traced via the mangled symbol using the following pattern:
+Under the hood, the Swift standard library uses [`SystemRandomNumberGenerator`](https://developer.apple.com/documentation/swift/systemrandomnumbergenerator), which leverages platform-specific secure random mechanisms (the system's CSPRNG) and is automatically seeded and thread safe. On Apple platforms, the above methods are implemented under the hood using `arc4random_buf`. You can observe this behavior using Frida to trace calls to the Swift random API. `UInt8.random` can be traced via the mangled symbol using the following pattern:
 
 ```bash
 frida-trace -n 'MASTestApp' -i "*FixedWidthInteger*random*"
@@ -60,7 +61,7 @@ frida-trace -n 'MASTestApp' -i "*FixedWidthInteger*random*"
   2959 ms     | arc4random_buf(buf=0x16ef965a8, nbytes=0x8)
 ```
 
-Therefore, using the Swift standard library's random APIs is generally safe for cryptographic purposes, provided that the underlying platform's implementation is secure.
+Therefore, using the Swift standard library's random APIs with the default `SystemRandomNumberGenerator` is generally suitable for cryptographic purposes on Apple platforms, because that generator is defined to use a cryptographically secure algorithm backed by the system CSPRNG.
 
 **Note:** The API also offers additional overloads that accept a custom random number generator conforming to the `RandomNumberGenerator` protocol. For example, the previous `UInt8.random(in: 0...255)` is an alias for:
 
@@ -71,29 +72,25 @@ let b = UInt8.random(in: 0...255, using: &rng)
 
 But developers can implement their own `RandomNumberGenerator`, which may not be secure. Therefore, when using custom generators, ensure they are suitable for cryptographic use cases. See [SE-0202](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0202-random-unification.md) for more details.
 
-## Cryptographically Secure but Discouraged
-
-The following random number generation APIs are considered cryptographically secure on iOS, but their use is discouraged due to potential misuse or misunderstanding by developers. For example, [NIAP FCS_RBG_EXT.1](https://www.niap-ccevs.org/technical-decisions/TD0510) approves `CCRandomGenerateBytes` or `CCRandomCopyBytes`, or uses of `/dev/random` or `/dev/urandom`, but we still recommend using `SecRandomCopyBytes` instead, which is also Apple's recommended API.
-
-### CommonCrypto
+## CommonCrypto
 
 The CommonCrypto library provides the `CCRandomGenerateBytes` and `CCRandomCopyBytes` functions for generating cryptographically secure random bytes. While these functions are secure, they are lower-level APIs compared to `SecRandomCopyBytes` and require more careful handling by developers.
 
-### /dev/random
+## /dev/random
 
-Direct use of `/dev/random` via `open` and `read` is discouraged because it is a low-level interface that does not provide the same guarantees and ease of use as higher-level APIs like `SecRandomCopyBytes`. It can also lead to potential issues such as blocking behavior if the entropy pool is low, which can affect application performance.
+Direct use of `/dev/random` via `open` and `read` is discouraged because it is a low level interface that is easy to misuse from application code. On Apple platforms, `/dev/random` and `/dev/urandom` are backed by the same Fortuna based kernel CSPRNG and behave equivalently, so the usual Linux advice about `/dev/random` blocking when entropy is low does not apply here. For iOS apps, Apple recommends using higher level APIs such as `SecRandomCopyBytes` or the Swift standard library random APIs instead of reading these device files directly.
 
-## Discouraged APIs
+## arc4random
 
-### arc4random
+The `arc4random` family of functions (`arc4random()`, `arc4random_buf()`, `arc4random_uniform()`) is also available on iOS. On modern Apple platforms these functions are backed by the same kernel CSPRNG as `SecRandomCopyBytes`, and are suitable for cryptographic use, but they are legacy C style interfaces and are easier to misuse than the Swift standard library or `SecRandomCopyBytes`. For example:
 
-The `arc4random` family of functions (e.g., `arc4random()`, `arc4random_buf()`, `arc4random_uniform()`) are also available on iOS and provide better randomness than standard C library functions like `rand()`. However, they may not meet all cryptographic security requirements in certain contexts. For example:
+- Using `arc4random() % n` to generate a bounded value can introduce [modulo bias](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias), where some outcomes are slightly more likely than others.
+- `arc4random_uniform(n)` is specifically designed to avoid modulo bias for arbitrary upper bounds, and should be preferred over `arc4random() % n`. 
+- `arc4random_buf()` produces cryptographically strong random bytes, but requires manual buffer management and error handling.
 
-- `arc4random()` can lead to [modulo bias](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias) (aka. "pigeonhole principle", where some numbers are more likely than others) if used improperly for generating bounded random numbers.
-- `arc4random_uniform()` is designed to avoid modulo bias, but only when the upper bound not a power of two.
-- `arc4random_buf()` can be safe when used correctly (indeed, it is used internally by the Swift standard library as shown above), but it requires manual buffer management, which can lead to errors.
+For new Swift code, prefer `UInt8.random(in:)` and related APIs or `SecRandomCopyBytes`, and reserve the `arc4random` family for interoperating with existing C and Objective C code.
 
-### Standard C Library Functions
+## Standard C Library Functions
 
 The standard C library functions `rand()`, `random()`, and their seed setting counterparts `srand()` and `srandom()` are not suitable for cryptographic purposes. Implementations of `rand()` are usually linear congruential generators, and on Apple systems `random()` uses a non linear additive feedback generator, but in all cases these are deterministic pseudorandom generators whose output can be predicted once the internal state or seed is known. See ["Bugs" section of rand(3)](https://www.manpagez.com/man/3/random/) for more details.
 
