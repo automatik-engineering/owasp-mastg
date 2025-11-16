@@ -1,0 +1,34 @@
+---
+platform: ios
+title: Insecure Random API Usage
+id: MASTG-TEST-xx63
+type: [static]
+weakness: MASWE-0027
+profiles: [L1, L2]
+best-practices: [MASTG-BEST-00x1]
+---
+
+## Overview
+
+iOS apps sometimes use insecure pseudorandom number generators (PRNGs) (@MASTG-KNOW-0070) instead of cryptographically secure ones. This test case focuses on detecting the use of insecure alternatives such as standard C library functions like `rand()` and `random()`.
+
+## Steps
+
+1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary and look for insecure random APIs.
+
+## Observation
+
+The output should contain a list of locations where insecure random APIs are used.
+
+## Evaluation
+
+The test case fails if random numbers generated using insecure APIs are used in security-relevant contexts.
+
+For each of the identified API uses, verify the context by decompiling or disassembling the code to determine if the random values are used in security-relevant operations, such as:
+
+- Generating cryptographic keys, initialization vectors (IVs), or nonces
+- Creating authentication tokens or session identifiers
+- Generating passwords or PINs
+- Any other security-critical operations requiring unpredictability
+
+Other uses of insecure random APIs that are not related to security (e.g., generating random delays, non-security-related identifiers, game mechanics) do not cause the test case to fail.
