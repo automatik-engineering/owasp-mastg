@@ -72,7 +72,7 @@ Supported:
 - `manual`: manual steps that require human judgment, such as inspecting app behavior, UI, or configuration. This may include reverse engineering or runtime analysis that cannot be fully automated.
 - `network`: analysis of network traffic, while the app is running. Done externally, for example, using a proxy or network capture tool.
 - `filesystem`: analysis of the app's file system, including local storage or backups, which doesn't involve runtime analysis such as hooking or method tracing.
-- `developer`: tests only the developer can perform because they require access to the source code, build process, or other internal resources.
+- `source-code`: tests only the developer can perform because they require access to the source code, build process, or other internal resources.
 
 Example:
 
@@ -106,9 +106,15 @@ Notes:
 
 #### prerequisites
 
-List the prerequisites needed to execute or evaluate the test. Existing files are in `prerequisites/`. Create new ones if required.
+List the conditions that must be known or available before running or evaluating the test. These items capture internal context that only the developer or the organization can provide. Existing files are in the `prerequisites/` folder. Create new ones when needed.
 
-- If there are no prerequisites, you can omit this field or use an empty list.
+Common examples include:
+
+- Defined categories of sensitive data and their sensitivity levels used within the app.
+- A list of first party packages, libraries, and modules.
+- A list of first party network domains and services the app is expected to contact.
+
+If there are no prerequisites, you can omit this field or use an empty list.
 
 Example:
 
