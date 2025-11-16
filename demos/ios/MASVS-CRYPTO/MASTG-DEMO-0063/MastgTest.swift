@@ -24,7 +24,7 @@ fileprivate func lcgRandByte() -> UInt8 {
 
 struct MastgTest {
 
-    // Insecure: libc rand seeded with time
+    // Insecure: libc rand seeded with time, predictable and not suitable for cryptography
     static func generateInsecureRandomTokenRand() -> String {
         var token = ""
 
@@ -35,7 +35,7 @@ struct MastgTest {
         return token
     }
 
-    // Insecure: custom LCG seeded with time
+    // Insecure: custom LCG seeded with time, predictable and not suitable for cryptography
     static func generateInsecureRandomTokenLCG() -> String {
         var token = ""
         for _ in 0..<16 {
@@ -45,11 +45,9 @@ struct MastgTest {
         return token
     }
 
-    // Discouraged: Swift random APIs used for crypto tokens
-    // These APIs are not intended as a token generation interface
-    //    2717 ms  $ss17FixedWidthIntegerPsE6random2inxSNyxG_tFZ()
-    //    2717 ms     | swift_stdlib_random()
-    //    2717 ms     |    | arc4random_buf(buf=0x16ef65c78, nbytes=0x8)
+    // Cryptographically secure on Apple platforms
+    // Swift random APIs use SystemRandomNumberGenerator backed by the system CSPRNG via arc4random_buf
+    // Shown here as a secure source that is not a dedicated crypto token API
     static func generateInsecureRandomTokenSwiftRandom() -> String {
         var token = ""
         for _ in 0..<16 {
@@ -59,14 +57,14 @@ struct MastgTest {
         return token
     }
     
-    // Discouraged: direct read from /dev/random
-    // This works and it's cryptographycally secure but is not the recommended interface on Apple platforms
+    // Cryptographically secure: direct read from /dev/random on Apple platforms
+    // However, this is a low level interface and is discouraged in favor of SecRandomCopyBytes
     static func generateInsecureRandomTokenDevRandom() -> String {
         let count = 16
 
         let fd = open("/dev/random", O_RDONLY)
         if fd < 0 {
-            return "Error opening dev random"
+            return "Error opening /dev/random"
         }
 
         var buffer = [UInt8](repeating: 0, count: count)
@@ -74,14 +72,14 @@ struct MastgTest {
         close(fd)
 
         if readCount != count {
-            return "Error reading dev random"
+            return "Error reading /dev/random"
         }
 
         return buffer.map { String(format: "%02x", $0) }.joined()
     }
     
-    // Discouraged: arc4random_uniform used as a crypto token source
-    // On Apple platforms arc4random_uniform is strong, but it is not the recommended crypto API
+    // Cryptographically secure but discouraged as a direct token API
+    // On Apple platforms arc4random_uniform is strong, but SecRandomCopyBytes or CryptoKit are preferred
     static func generateInsecureRandomTokenArc4RandomUniform() -> String {
         var token = ""
         for _ in 0..<16 {
@@ -91,7 +89,7 @@ struct MastgTest {
         return token
     }
 
-    // Discouraged: arc4random used as a crypto token source
+    // Cryptographically secure but discouraged as a direct token API
     // On Apple platforms arc4random is strong, but it is not the recommended crypto API
     static func generateInsecureRandomTokenArc4Random() -> String {
         var token = ""
@@ -102,8 +100,9 @@ struct MastgTest {
         return token
     }
     
-    // Discouraged: SystemRandomNumberGenerator used as a token source
-    // This generator is suitable for nondeterministic randomness but is not a crypto token API
+    // Cryptographically secure: SystemRandomNumberGenerator uses the system CSPRNG
+    // It is suitable for cryptographic use, and CryptoKit builds on it
+    // Included here to contrast secure generators with insecure ones
     static func generateInsecureRandomTokenSystemRNG() -> String {
         var token = ""
         var rng = SystemRandomNumberGenerator()
@@ -115,8 +114,8 @@ struct MastgTest {
         return token
     }
     
-    // Discouraged: drand48 used as a token source
-    // This generator is suitable for nondeterministic randomness but is not a crypto token API
+    // Insecure: drand48 uses a 48 bit linear congruential generator
+    // Not thread safe and not suitable for cryptographic purposes
     static func generateInsecureRandomTokenDrand48() -> String {
         var token = ""
         for _ in 0..<16 {
@@ -126,7 +125,8 @@ struct MastgTest {
         return token
     }
     
-    // Discouraged: CCRandomGenerateBytes used as a token source
+    // Cryptographically secure: CCRandomGenerateBytes uses the system CSPRNG
+    // Secure, but a lower level API that is generally discouraged in favor of SecRandomCopyBytes
     static func generateSecureRandomTokenCC() -> String {
         var buffer = [UInt8](repeating: 0, count: 16)
         let status = CCRandomGenerateBytes(&buffer, buffer.count)
@@ -138,7 +138,7 @@ struct MastgTest {
         return buffer.map { String(format: "%02x", $0) }.joined()
     }
 
-    // Secure: SecRandomCopyBytes
+    // Recommended: SecRandomCopyBytes is the high level, Apple recommended API for secure random bytes
     static func generateSecureRandomToken() -> String {
         var randomBytes = [UInt8](repeating: 0, count: 16)
         let status = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
@@ -158,37 +158,38 @@ struct MastgTest {
         // Seed LCG with the same time to show predictability
         lcgSeed(now)
         
+        // Example of seeding drand48 with time, which also makes it predictable if the seed is known
         // srand48(time(nil))
 
         let value = """
-        Insecure Random Token using libc rand seeded with time
+        Insecure random token using libc rand seeded with time
         Token: \(generateInsecureRandomTokenRand())
 
-        Insecure Random Token using custom LCG seeded with time
+        Insecure random token using custom LCG seeded with time
         Token: \(generateInsecureRandomTokenLCG())
 
-        Discouraged Random Token using Swift random API as token source
+        Cryptographically secure random token using Swift random API backed by SystemRandomNumberGenerator
         Token: \(generateInsecureRandomTokenSwiftRandom())
         
-        Discouraged Random Token using dev random
+        Cryptographically secure random token using /dev/random low level interface
         Token: \(generateInsecureRandomTokenDevRandom())
 
-        Discouraged Random Token using arc4random_uniform misused for crypto tokens
+        Discouraged random token using arc4random_uniform as a direct token source
         Token: \(generateInsecureRandomTokenArc4RandomUniform())
         
-        Discouraged Random Token using arc4random misused for crypto tokens
+        Discouraged random token using arc4random as a direct token source
         Token: \(generateInsecureRandomTokenArc4Random())
 
-        Discouraged Random Token using SystemRandomNumberGenerator
+        Cryptographically secure random token using SystemRandomNumberGenerator directly
         Token: \(generateInsecureRandomTokenSystemRNG())
         
-        Discouraged Random Token using drand48
+        Insecure random token using drand48 linear congruential generator
         Token: \(generateInsecureRandomTokenDrand48())
 
-        Secure Random Token using CCRandomGenerateBytes
+        Cryptographically secure random token using CCRandomGenerateBytes lower level API
         Token: \(generateSecureRandomTokenCC())
 
-        Secure Random Token using SecRandomCopyBytes
+        Recommended secure random token using SecRandomCopyBytes
         Token: \(generateSecureRandomToken())
         """
 
