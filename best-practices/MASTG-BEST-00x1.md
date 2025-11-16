@@ -5,13 +5,13 @@ id: MASTG-BEST-00x1
 platform: ios
 ---
 
-Use a cryptographically secure pseudorandom number generator as provided by the platform or programming language you are using.
+Use a cryptographically secure pseudorandom number generator provided by the platform or language you are using.
 
 ## Swift
 
-Use the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) API from the Security framework, which generates cryptographically secure random bytes backed by the system CSPRNG.
+Use the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) API from the Security framework, which produces cryptographically secure random bytes backed by the system CSPRNG.
 
-For key generation and other cryptographic operations, always [prefer the dedicated cryptographic APIs such as `CryptoKit`](https://developer.apple.com/videos/play/wwdc2019/709/?time=1295) which provides e.g. [`SymmetricKey`](https://developer.apple.com/documentation/cryptokit/symmetrickey) (which [internally uses the `SystemRandomNumberGenerator`](https://github.com/apple/swift-crypto/blob/4.1.0/Sources/Crypto/Keys/Symmetric/SymmetricKeys.swift#L118)). This ensures that keys are generated securely and correctly without needing to manually handle random byte generation, which can be error-prone.
+For key generation and other cryptographic operations, prefer dedicated cryptographic APIs such as [`CryptoKit`](https://developer.apple.com/videos/play/wwdc2019/709/?time=1295). For example, [`SymmetricKey`](https://developer.apple.com/documentation/cryptokit/symmetrickey) uses [`SystemRandomNumberGenerator`](https://github.com/apple/swift-crypto/blob/4.1.0/Sources/Crypto/Keys/Symmetric/SymmetricKeys.swift#L118) internally, which draws from the system CSPRNG. This avoids manual byte handling and reduces the chance of mistakes.
 
 ```swift
 // Generating and releasing a cryptographic key for a C Crypto API
@@ -31,14 +31,14 @@ memset_s(&key, keyByteCount, 0, keyByteCount)
 let key = SymmetricKey(size: .bits256)
 // Use the key
 ...
-// When key goes out of scope, CryptoKit handles cleanup
+// When the key goes out of scope, CryptoKit handles cleanup
 ```
 
 ## Other Languages
 
-Consult the standard library or framework documentation to find the API that exposes the operating system's cryptographically secure pseudorandom number generator. This is usually the safest approach, provided there are no known vulnerabilities in that library's random number generation.
+Consult the standard library or framework to locate the API that exposes the operating system CSPRNG. This is usually the safest path, provided the library itself has no known weaknesses.
 
-For cross-platform/hybrid apps on iOS you should rely on frameworks that bridge into the operating system's CSPRNG rather than falling back to less secure JS or VM-based randomness. For example:
+For cross-platform or hybrid apps on iOS rely on frameworks that forward calls to the underlying system CSPRNG. For example:
 
-- In Flutter / Dart use [`Random.secure()`](https://api.flutter.dev/flutter/dart-math/Random/Random.secure.html) from [`dart:math`](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/sdk/lib/math/random.dart#L12) which is documented as cryptographically secure (internally, this is the flow: [`Random.secure()`](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/sdk/lib/_internal/vm/lib/math_patch.dart#L285), [`SecRandom_getBytes`](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/runtime/lib/math.cc#L20), [`dart::bin::GetEntropy`](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/runtime/bin/dart_io_api_impl.cc#L79), and finally [`Crypto::GetRandomBytes`](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/runtime/bin/crypto_macos.cc#L16) which uses `SecRandomCopyBytes`). Refer to [this article](https://www.zellic.io/blog/proton-dart-flutter-csprng-prng/) for research on the security of Dart's random number generation.
-- In React Native use a library such as [`react-native-secure-random`](https://github.com/robhogan/react-native-securerandom) or [`react-native-get-random-values`](https://github.com/LinusU/react-native-get-random-values) which internally calls `SecRandomCopyBytes` on iOS.
+- In Flutter or Dart use [`Random.secure()`](https://api.flutter.dev/flutter/dart-math/Random/Random.secure.html), which is documented as cryptographically secure. It reaches `SecRandomCopyBytes` through [the platform integration layers](https://github.com/dart-lang/sdk/blob/47e77939fce74ffda0b7252f33ba1ced2ea09c52/runtime/bin/crypto_macos.cc#L16). See [this article](https://www.zellic.io/blog/proton-dart-flutter-csprng-prng/) for a security review.
+- In React Native use a library such as [`react-native-secure-random`](https://github.com/robhogan/react-native-securerandom) or [`react-native-get-random-values`](https://github.com/LinusU/react-native-get-random-values), which internally calls `SecRandomCopyBytes` on iOS.
