@@ -1,77 +1,10 @@
-
-Searching for insecure random number generation functions:
-0x100003d40    1     60 sym.imp.rand
-0x100003d48    1     60 sym.imp.srand
-0x100004820    1    256 sym.MastgTest.generateInsecureRandomToken
-0x100004920    1    180 sym.MastgTest.generateSecureRandomToken
-
-
-xrefs to rand:
-sym.MastgTest.generateInsecureRandomToken 0x100004884 [CALL:--x] bl sym.imp.rand
-sym.MastgTest.generateInsecureRandomToken 0x100004894 [CALL:--x] bl sym.imp.rand
-
-
-xrefs to srand:
-sym.MastgTest.mastgTest 0x100004a5c [CALL:--x] bl sym.imp.srand
-
-
-Disassembly of generateInsecureRandomToken function:
-(showing calls to rand)
-0x100004820    1    256 sym.MastgTest.generateInsecureRandomToken
-            ; CALL XREF from sym.MastgTest.mastgTest @ 0x100004a78
-┌ 256: sym.MastgTest.generateInsecureRandomToken ();
-│           ; var int64_t var_10h @ sp+0x10
-│           ; var int64_t var_18h @ sp+0x18
-│           0x100004820      ff8301d1       sub sp, sp, 0x60
-│           0x100004824      fd7b05a9       stp x29, x30, [sp, 0x50]
-│           0x100004828      fd430191       add x29, sp, 0x50
-│           0x10000482c      e81301f0       adrp x8, segment.LINKEDIT
-│           0x100004830      089d40f9       ldr x8, [x8, 0x138]
-│           0x100004834      080140f9       ldr x8, [x8]
-│           0x100004838      e81f00f9       str x8, [sp, 0x38]
-│           0x10000483c      e80300aa       mov x8, x0
-│           0x100004840      e90f00b9       str w9, [sp, 0xc]
-│           0x100004844      e81f40b9       ldrh w8, [sp, 0x1e]
-│           0x100004848      e81300b9       str w8, [sp, 0x10]
-│           0x10000484c      08008052       movz w8, 0
-│           0x100004850      e81700b9       str w8, [sp, 0x14]
-│       ┌─< 0x100004854      18000014       b 0x1000048b4
-│       │   ; CODE XREF from sym.MastgTest.generateInsecureRandomToken @ 0x1000048bc
-│      ┌──> 0x100004858      fd030094       bl sym.imp.rand
-│      ╎│   0x10000485c      e01b00b9       str w0, [sp, 0x18]
-│      ╎│   0x100004860      e81b40b9       ldr w8, [sp, 0x18]
-│      ╎│   0x100004864      090d8052       movz w9, 0x68
-│      ╎│   0x100004868      0a008052       movz w10, 0
-│      ╎│   0x10000486c      09a10011       sdiv w9, w8, w9
-│      ╎│   0x100004870      291d001b       msub w9, w9, w0, w8
-│      ╎│   0x100004874      e91f00b9       str w9, [sp, 0x1c]
-│      ╎│   ... (truncated for brevity)
-
-
-Disassembly of generateSecureRandomToken function:
-(showing calls to SecRandomCopyBytes)
-0x100004920    1    180 sym.MastgTest.generateSecureRandomToken
-            ; CALL XREF from sym.MastgTest.mastgTest @ 0x100004abc
-┌ 180: sym.MastgTest.generateSecureRandomToken ();
-│           ; var int64_t var_8h @ sp+0x8
-│           ; var int64_t var_10h @ sp+0x10
-│           0x100004920      ffc300d1       sub sp, sp, 0x30
-│           0x100004924      fd7b02a9       stp x29, x30, [sp, 0x20]
-│           0x100004928      fd830091       add x29, sp, 0x20
-│           0x10000492c      e80300aa       mov x8, x0
-│           0x100004930      e90f00b9       str w9, [sp, 0xc]
-│           0x100004934      e81f40b9       ldrh w8, [sp, 0x1e]
-│           0x100004938      e81300b9       str w8, [sp, 0x10]
-│           0x10000493c      e8034039       ldrb w8, [sp, 0x10]
-│           0x100004940      090d8052       movz w9, 0x68
-│           0x100004944      e91700f9       str x9, [sp, 0x28]
-│           0x100004948      e80700f9       str x8, [sp, 0x8]
-│           0x10000494c      00008052       movz w0, 0
-│           0x100004950      e80740b9       ldr w8, [sp, 0x8]
-│           0x100004954      e21700f9       ldr x2, [sp, 0x28]
-│           0x100004958      e1630091       add x1, sp, 0x18
-│           0x10000495c      21008052       movz w1, 1
-│           0x100004960      e31700f9       str x3, [sp, 0x28]
-│           0x100004964      02004094       bl sym.imp.SecRandomCopyBytes
-│           0x100004968      e00300b9       str w0, [sp]
-│           ... (truncated for brevity)
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenSystemRNG_...yFZ_ 0x2ea0 [CALL:--x] bl sym.imp.FixedWidthInteger.random.setter....ztSGRd__lFZ
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenSwift...G0SSyFZ 0x1a80 [CALL:--x] bl sym.imp.FixedWidthInteger.random.setter_...FZ_
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenSystemRNG_...yFZ_ 0x2de4 [CALL:--x] bl sym.imp.SystemRandomNumberGenerator...VABycfC
+sym.MASTestApp.MastgTest.generateSecureRandomTokenCC_...yFZ_ 0x350c [CALL:--x] bl sym.imp.CCRandomGenerateBytes
+sym.MASTestApp.MastgTest.generateSecureRandomToken_...yFZ_ 0x3a58 [CALL:--x] bl sym.imp.SecRandomCopyBytes
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenArc4...G0SSyFZ 0x2c80 [CALL:--x] bl sym.imp.arc4random
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenArc4.Uniform_...yFZ_ 0x2ac0 [CALL:--x] bl sym.imp.arc4random_uniform
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_ 0x309c [CALL:--x] bl sym.imp.drand48
+sym.MASTestApp.MastgTest.generateInsecureRandomTokenRand_...yFZ_ 0x146c [CALL:--x] bl sym.imp.rand
+sym.MASTestApp.MastgTest.mastgTest.completion_...FZ_ 0x3e84 [CALL:--x] bl sym.imp.srand
