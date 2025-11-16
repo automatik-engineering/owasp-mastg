@@ -85,7 +85,7 @@ Direct use of `/dev/random` via `open` and `read` is discouraged because it is a
 The `arc4random` family of functions (`arc4random()`, `arc4random_buf()`, `arc4random_uniform()`) is also available on iOS. On modern Apple platforms these functions are backed by the same kernel CSPRNG as `SecRandomCopyBytes`, and are suitable for cryptographic use, but they are legacy C style interfaces and are easier to misuse than the Swift standard library or `SecRandomCopyBytes`. For example:
 
 - Using `arc4random() % n` to generate a bounded value can introduce [modulo bias](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias), where some outcomes are slightly more likely than others.
-- `arc4random_uniform(n)` is specifically designed to avoid modulo bias for arbitrary upper bounds, and should be preferred over `arc4random() % n`. 
+- `arc4random_uniform(n)` is specifically designed to avoid modulo bias for arbitrary upper bounds, and should be preferred over `arc4random() % n`.
 - `arc4random_buf()` produces cryptographically strong random bytes, but requires manual buffer management and error handling.
 
 For new Swift code, prefer `UInt8.random(in:)` and related APIs or `SecRandomCopyBytes`, and reserve the `arc4random` family for interoperating with existing C and Objective C code.
