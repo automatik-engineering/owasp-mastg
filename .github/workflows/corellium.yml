@@ -32,7 +32,7 @@ jobs:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
-          filters: data/config/dorny-paths-filter.yaml
+          filters: src/corellium/data/config/dorny-paths-filter.yaml
           list-files: 'shell'
 
   frida:
