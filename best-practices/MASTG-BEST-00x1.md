@@ -5,34 +5,16 @@ id: MASTG-BEST-00x1
 platform: ios
 ---
 
-Use a cryptographically secure pseudorandom number generator provided by the platform or language you are using.
+Use a cryptographically secure pseudorandom number generator (PRNG) that is backed by the operating system CSPRNG. Do not build your own PRNG.
 
-## Swift
+## Swift / Objective-C
 
-Use the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) API from the Security framework, which produces cryptographically secure random bytes backed by the system CSPRNG.
+- **Security Framework (preferred)**: Use the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) API from the Security framework, which produces cryptographically secure random bytes backed by the system CSPRNG.
+- **CommonCrypto**: You _could_ use `CCRandomCopyBytes` or `CCRandomGenerateBytes` (not documented on the Apple Developers website), which are also backed by the system CSPRNG. However, prefer `SecRandomCopyBytes` which is a wrapper around these functions.
+- **Swift Standard Library**: You can use the Swift Standard Library `.random` APIs which are backed by `SystemRandomNumberGenerator`. However, note that their random number generator can be customized, so ensure you use the default `SystemRandomNumberGenerator` (e.g., by not specifying a custom generator) or a secure alternative (ensure it is cryptographically secure).
+- ***CryptoKit**: CryptoKit doesn't expose a direct random byte generator, but it provides secure random nonces and keys through its cryptographic operations, which are backed by the system CSPRNG. For example, you can use `SymmetricKey` for keys and `AES.GCM.Nonce` for nonces without needing to manage raw random bytes directly.
 
-For key generation and other cryptographic operations, prefer dedicated cryptographic APIs such as [`CryptoKit`](https://developer.apple.com/videos/play/wwdc2019/709/?time=1295). For example, [`SymmetricKey`](https://developer.apple.com/documentation/cryptokit/symmetrickey) uses [`SystemRandomNumberGenerator`](https://github.com/apple/swift-crypto/blob/4.1.0/Sources/Crypto/Keys/Symmetric/SymmetricKeys.swift#L118) internally, which draws from the system CSPRNG. This avoids manual byte handling and reduces the chance of mistakes.
-
-```swift
-// Generating and releasing a cryptographic key for a C Crypto API
-let keyByteCount = 256 / 8
-var key = Array(repeating: 0 as UInt8, count: keyByteCount)
-let err = SecRandomCopyBytes(kSecRandomDefault, keyByteCount, &key)
-if err != errSecSuccess {
-    // Safely handle the error
-}
-// Use the key
-...
-// Zeroize the key
-memset_s(&key, keyByteCount, 0, keyByteCount)
-
-
-// Generating and releasing a cryptographic key with Apple CryptoKit
-let key = SymmetricKey(size: .bits256)
-// Use the key
-...
-// When the key goes out of scope, CryptoKit handles cleanup
-```
+See @MASTG-KNOW-0070 for code examples of these APIs.
 
 ## Other Languages
 
