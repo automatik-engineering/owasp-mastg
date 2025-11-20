@@ -26,7 +26,7 @@ The test case fails if random numbers generated using insecure APIs are used in 
 
 For each of the identified API uses, verify the context by decompiling or disassembling the code (see @MASTG-TECH-0076) to determine if the generated random values are used for security-relevant purposes, such as:
 
-- Generating cryptographic keys, initialization vectors IVs, or nonces
+- Generating cryptographic keys, initialization vectors (IVs), or nonces
 - Creating authentication tokens or session identifiers
 - Generating passwords or PINs
 - Any other security-relevant operations requiring unpredictability

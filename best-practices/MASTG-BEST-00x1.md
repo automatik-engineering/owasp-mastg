@@ -12,7 +12,7 @@ Use a cryptographically secure pseudorandom number generator (PRNG) that is back
 - **Security Framework (preferred)**: Use the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) API from the Security framework, which produces cryptographically secure random bytes backed by the system CSPRNG.
 - **CommonCrypto**: You _could_ use `CCRandomCopyBytes` or `CCRandomGenerateBytes` (not documented on the Apple Developers website), which are also backed by the system CSPRNG. However, prefer `SecRandomCopyBytes` which is a wrapper around these functions.
 - **Swift Standard Library**: You can use the Swift Standard Library `.random` APIs which are backed by `SystemRandomNumberGenerator`. However, note that their random number generator can be customized, so ensure you use the default `SystemRandomNumberGenerator` (e.g., by not specifying a custom generator) or a secure alternative (ensure it is cryptographically secure).
-- ***CryptoKit**: CryptoKit doesn't expose a direct random byte generator, but it provides secure random nonces and keys through its cryptographic operations, which are backed by the system CSPRNG. For example, you can use `SymmetricKey` for keys and `AES.GCM.Nonce` for nonces without needing to manage raw random bytes directly.
+- **CryptoKit**: CryptoKit doesn't expose a direct random byte generator, but it provides secure random nonces and keys through its cryptographic operations, which are backed by the system CSPRNG. For example, you can use `SymmetricKey` for keys and `AES.GCM.Nonce` for nonces without needing to manage raw random bytes directly.
 
 See @MASTG-KNOW-0070 for code examples of these APIs.
 

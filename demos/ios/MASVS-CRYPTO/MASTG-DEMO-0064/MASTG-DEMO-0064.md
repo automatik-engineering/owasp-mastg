@@ -8,7 +8,7 @@ test: MASTG-TEST-xx63
 
 ### Sample
 
-The this demo uses the same sample code as in @MASTG-DEMO-0063. It demonstrates the use of insecure random number generation using various APIs.
+This demo uses the same sample code as in @MASTG-DEMO-0063. It demonstrates the use of insecure random number generation using various APIs.
 
 {{ ../MASTG-DEMO-0063/MastgTest.swift }}
 

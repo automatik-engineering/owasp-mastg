@@ -36,7 +36,7 @@ This script:
 
 The output of the script shows cross references to calls to functions whose names contain `rand` in the sample binary.
 
-{{ output.txt }}
+{{ output.json }}
 
 **Note:** the output also shows calls to secure sources such as `SecRandomCopyBytes`, `CCRandomGenerateBytes`, `SystemRandomNumberGenerator`, and the Swift `FixedWidthInteger.random` implementation. These are present in the sample for contrast, but they are not the reason the test fails. The evaluation only treats uses of insecure libc PRNGs as findings.
 
