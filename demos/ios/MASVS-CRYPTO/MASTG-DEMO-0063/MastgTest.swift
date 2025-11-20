@@ -10,18 +10,6 @@ func c_srand(_ seed: UInt32)
 @_silgen_name("rand")
 func c_rand() -> Int32
 
-// Simple linear congruential generator for another insecure example
-fileprivate var lcgState: UInt32 = 0
-
-fileprivate func lcgSeed(_ seed: UInt32) {
-    lcgState = seed
-}
-
-fileprivate func lcgRandByte() -> UInt8 {
-    lcgState = 1103515245 &* lcgState &+ 12345
-    return UInt8(truncatingIfNeeded: lcgState >> 16)
-}
-
 struct MastgTest {
 
     // Insecure: libc rand seeded with time, predictable and not suitable for cryptography
@@ -31,16 +19,6 @@ struct MastgTest {
         for _ in 0..<16 {
             let value = c_rand() % 256
             token += String(format: "%02x", value)
-        }
-        return token
-    }
-
-    // Insecure: custom LCG seeded with time, predictable and not suitable for cryptography
-    static func generateInsecureRandomTokenLCG() -> String {
-        var token = ""
-        for _ in 0..<16 {
-            let b = lcgRandByte()
-            token += String(format: "%02x", b)
         }
         return token
     }
@@ -154,42 +132,36 @@ struct MastgTest {
         // Seed libc rand with current time
         let now = UInt32(time(nil))
         c_srand(now)
-
-        // Seed LCG with the same time to show predictability
-        lcgSeed(now)
         
         // Example of seeding drand48 with time, which also makes it predictable if the seed is known
         // srand48(time(nil))
 
         let value = """
-        Insecure random token using libc rand seeded with time
+        Using libc rand seeded with time
         Token: \(generateInsecureRandomTokenRand())
 
-        Insecure random token using custom LCG seeded with time
-        Token: \(generateInsecureRandomTokenLCG())
-
-        Cryptographically secure random token using Swift random API backed by SystemRandomNumberGenerator
+        Using Swift random API backed by SystemRandomNumberGenerator
         Token: \(generateInsecureRandomTokenSwiftRandom())
         
-        Cryptographically secure random token using /dev/random low level interface
+        Using /dev/random low level interface
         Token: \(generateInsecureRandomTokenDevRandom())
 
-        Discouraged random token using arc4random_uniform as a direct token source
+        Using arc4random_uniform as a direct token source
         Token: \(generateInsecureRandomTokenArc4RandomUniform())
         
-        Discouraged random token using arc4random as a direct token source
+        Using arc4random as a direct token source
         Token: \(generateInsecureRandomTokenArc4Random())
 
-        Cryptographically secure random token using SystemRandomNumberGenerator directly
+        Using SystemRandomNumberGenerator directly
         Token: \(generateInsecureRandomTokenSystemRNG())
         
-        Insecure random token using drand48 linear congruential generator
+        Using drand48 linear congruential generator
         Token: \(generateInsecureRandomTokenDrand48())
 
-        Cryptographically secure random token using CCRandomGenerateBytes lower level API
+        Using CCRandomGenerateBytes lower level API
         Token: \(generateSecureRandomTokenCC())
 
-        Recommended secure random token using SecRandomCopyBytes
+        Using SecRandomCopyBytes
         Token: \(generateSecureRandomToken())
         """
 
