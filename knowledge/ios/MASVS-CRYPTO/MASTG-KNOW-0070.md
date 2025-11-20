@@ -61,7 +61,7 @@ frida-trace -n 'MASTestApp' -i "*FixedWidthInteger*random*"
   2959 ms     | arc4random_buf(buf=0x16ef965a8, nbytes=0x8)
 ```
 
-Therefore, using the Swift standard library's random APIs with the default `SystemRandomNumberGenerator` is generally suitable for cryptographic purposes on Apple platforms, because that generator is defined to use a cryptographically secure algorithm backed by the system CSPRNG.
+Therefore, using the Swift standard library's random APIs with the default `SystemRandomNumberGenerator` is generally suitable for cryptographic purposes on Apple platforms because that generator is defined to use a cryptographically secure algorithm backed by the system CSPRNG.
 
 **Note:** The API also offers additional overloads that accept a custom random number generator conforming to the `RandomNumberGenerator` protocol. For example, the previous `UInt8.random(in: 0...255)` is an alias for:
 
