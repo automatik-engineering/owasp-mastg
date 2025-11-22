@@ -10,7 +10,7 @@ profiles: [L1, L2]
 
 ## Overview
 
-To test for the use of broken encryption modes in iOS apps, we need to focus on methods from cryptographic frameworks and libraries that are used to configure and apply encryption modes.
+To test for the [use of broken encryption modes](../../../Document/0x04g-Testing-Cryptography.md#broken-block-cipher-modes) in iOS apps, we need to focus on methods from cryptographic frameworks and libraries that are used to configure and apply encryption modes.
 
 In iOS development, the `CCCrypt` function from CommonCrypto is the primary API that allows you to specify the encryption mode through the `options` parameter. The [`CCCrypt`](https://opensource.apple.com/source/CommonCrypto/CommonCrypto-36064/CommonCrypto/CommonCryptor.h) function accepts a `CCOptions` parameter which controls the mode of operation:
 
