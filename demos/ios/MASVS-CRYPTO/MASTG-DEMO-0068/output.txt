@@ -1,0 +1,23 @@
+0x1000076c4    1     12 sym.imp.CCCrypt
+fcn.100004000 0x100004020 [CALL:--x] bl sym.imp.CCCrypt
+┌ 64: fcn.100004000 (int64_t arg_20h, int64_t arg_30h, int64_t arg_40h, int64_t arg_50h, int64_t arg_60h, int64_t arg_70h);
+│           ; arg int64_t arg_20h @ sp+0x20
+│           ; arg int64_t arg_30h @ sp+0x30
+│           ; arg int64_t arg_40h @ sp+0x40
+│           ; arg int64_t arg_50h @ sp+0x50
+│           ; arg int64_t arg_60h @ sp+0x60
+│           ; arg int64_t arg_70h @ sp+0x70
+│           0x100004000      fd7b46a9       stp x29, x30, [sp, 0x60]
+│           0x100004004      f44f47a9       stp x20, x19, [sp, 0x70]
+│           0x100004008      00008052       mov w0, 0
+│           0x10000400c      01008052       mov w1, 0
+│           0x100004010      42008052       mov w2, 2
+│           0x100004014      e30313aa       mov x3, x19
+│           0x100004018      04028052       mov w4, 0x10
+│           0x10000401c      050080d2       mov x5, 0
+│           0x100004020      680d0094       bl sym.imp.CCCrypt
+│           0x100004024      800200b9       str w0, [x20]
+│           0x100004028      f44f47a9       ldp x20, x19, [sp, 0x70]
+│           0x10000402c      fd7b46a9       ldp x29, x30, [sp, 0x60]
+│           0x100004030      ff030191       add sp, sp, 0x40
+└           0x100004034      c0035fd6       ret

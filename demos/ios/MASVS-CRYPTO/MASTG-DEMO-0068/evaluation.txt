@@ -1,0 +1,7 @@
+│           0x100004008      00008052       mov w0, 0           -> kCCEncrypt (0 for encryption)
+│           0x10000400c      01008052       mov w1, 0           -> kCCAlgorithmAES (0 for AES)
+│           0x100004010      42008052       mov w2, 2           -> kCCOptionECBMode (2 for ECB mode - INSECURE!)
+│           0x100004014      e30313aa       mov x3, x19         -> key (pointer to the encryption key)
+│           0x100004018      04028052       mov w4, 0x10        -> keyLength (0x10 or 16 bytes for AES-128)
+│           0x10000401c      050080d2       mov x5, 0           -> iv (0 or NULL, no IV needed for ECB)
+│           0x100004020      680d0094       bl sym.imp.CCCrypt  -> Call to CCCrypt function
