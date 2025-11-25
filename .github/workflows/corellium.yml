@@ -95,6 +95,7 @@ jobs:
           cache-dependency-path: src/corellium/requirements-pip-frida.txt
           python-version: 3.14
       - name: Install API dependencies
+        working-directory: src/corellium
         run: |
           npm ci
           echo "$(pwd)/node_modules/.bin" >> "${GITHUB_PATH}"
