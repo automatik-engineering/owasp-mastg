@@ -41,6 +41,7 @@ jobs:
     needs: changes
     if: >-
       ${{
+        github.event_name == 'workflow_dispatch' ||
         needs.changes.outputs.frida == 'true' ||
         needs.changes.outputs.javascript-deps == 'true' ||
         needs.changes.outputs.shell == 'true'
@@ -77,12 +78,12 @@ jobs:
       - name: Check Node package lock
         run: |
           npm install --package-lock-only --quiet --no-audit --no-fund
-          if ! git diff --quiet package-lock.json; then
+          if ! git diff --quiet src/corellium/package-lock.json; then
             {
               echo -e "\nERROR:\n  Your package-lock.json is out of sync with dependencies."
               echo -e "\nTO FIX:\n  Run 'npm install --package-lock-only' and commit changes."
               echo -e "\nGIT DIFF RESULTS:\n"
-              git diff package-lock.json
+              git diff src/corellium/package-lock.json
             } >&2
             exit 1
           fi
