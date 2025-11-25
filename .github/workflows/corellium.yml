@@ -102,7 +102,7 @@ jobs:
       - name: Debug Corellium secrets
         env:
             CORELLIUM_API_TOKEN: ${{ secrets.CORELLIUM_API_TOKEN }}
-            CORELLIUM_API_URL: ${{ vars.CORELLIUM_API_URL }} # or secrets/inline, whatever you use
+            CORELLIUM_API_URL: ${{ vars.CORELLIUM_API_ENDPOINT }} # or secrets/inline, whatever you use
         run: |
             if [ -z "${CORELLIUM_API_TOKEN:-}" ]; then
             echo "CORELLIUM_API_TOKEN is EMPTY in this job."
