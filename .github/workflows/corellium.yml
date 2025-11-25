@@ -99,6 +99,18 @@ jobs:
         run: |
           npm ci
           echo "$(pwd)/node_modules/.bin" >> "${GITHUB_PATH}"
+      - name: Debug Corellium secrets
+        env:
+            CORELLIUM_API_TOKEN: ${{ secrets.CORELLIUM_API_TOKEN }}
+            CORELLIUM_API_URL: ${{ vars.CORELLIUM_API_URL }} # or secrets/inline, whatever you use
+        run: |
+            if [ -z "${CORELLIUM_API_TOKEN:-}" ]; then
+            echo "CORELLIUM_API_TOKEN is EMPTY in this job."
+            exit 1
+            fi
+
+            echo "CORELLIUM_API_TOKEN length: ${#CORELLIUM_API_TOKEN}"
+            echo "CORELLIUM_API_URL: ${CORELLIUM_API_URL:-<not set>}"
       - name: Log in to Corellium
         run: |
           corellium login \
