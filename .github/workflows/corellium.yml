@@ -2,7 +2,8 @@ name: Run Frida demo
 
 on:
 #   pull_request:
-#     branches: master
+#     types: [opened, synchronize, reopened]
+
 #   push:
 #     branches: master
 #   schedule:
