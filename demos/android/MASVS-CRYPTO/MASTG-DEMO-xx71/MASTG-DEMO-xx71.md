@@ -30,13 +30,25 @@ In this sample, we reuse code from @MASTG-DEMO-xx70 and intercept below cryptogr
 
 The output shows all usages of cryptographic operations.
 
-{{ output.json }}
+{{ output.txt }}
+
+Note all `WARNING` messages in the output.
 
 ### Evaluation
 
-The test fails because one key is reused for the following operations:
+The test failed because the same key was detected being reused for different cryptographic actions:
 
-- Encryption (Line 23 in output.json)
-- Decryption (Line 93 in output.json)
-- Signing (Line 159 in output.json)
-- Verification (Line 188 in output.json)
+- Signing (Line 35 in output.txt)
+- Verifying (Line 51 in output.txt)
+
+The warning in output.txt points to the key identified as `sign/verify with key: "android.security.keystore2.AndroidKeyStoreRSAPrivateKey@3818961"`. By searching output.txt for all occurrences of the object reference `@3818961`, we can trace the key's usage back to the first time it was used.
+
+```default
+🔒 *** Cipher.init(Key) HOOKED ***
+  encryption/decryption with key: "android.security.keystore2.AndroidKeyStoreRSAPrivateKey@3818961"
+  Stack Trace:
+    javax.crypto.Cipher.init(Native Method)
+    org.owasp.mastestapp.MastgTest.decrypt(MastgTest.kt:145)
+```
+
+Therefore, it is clear this key pair was used for Signing/Verifying after being previously used for Encrypting/Decrypting.

@@ -1,2 +1,7 @@
 #!/bin/bash
-../../../../utils/frida/android/run.sh ./hooks.js
+
+frida \
+    -U \
+    -f org.owasp.mastestapp \
+    -l script.js \
+    -o output.txt
