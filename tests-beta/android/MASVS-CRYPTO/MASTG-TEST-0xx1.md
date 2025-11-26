@@ -1,7 +1,7 @@
 ---
 platform: android
-title: References to asymmetric key pair used for multiple purposes
-id: MASTG-TEST-0x15-1
+title: References to Asymmetric Key Pairs Used For Multiple Purposes
+id: MASTG-TEST-0xx1
 type: [static]
 weakness: MASWE-0012
 profiles: [L1, L2, P]
@@ -9,7 +9,9 @@ profiles: [L1, L2, P]
 
 ## Overview
 
-This test verifies that asymmetric keys are used for only one clearly defined purpose, as required by NIST. This prevents a single key pair from being reused across different cryptographic functions, which can weaken security boundaries. If one key is used for more than one purpose, an attacker could misuse one part of the system to trick or break another, potentially causing fake or tampered data to be accepted.
+An asymmetric key has a defined role. A signing key should not decrypt. An encryption key should not sign. A long term key should not serve multiple unrelated protocols. Misuse exposes the key to operations it was never hardened for and creates cross protocol attack paths.
+
+This test verifies that asymmetric keys are used for only one clearly defined purpose, as required by NIST.
 
 Check ["NIST.SP.800-57pt1r5"](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf) for details.
 
