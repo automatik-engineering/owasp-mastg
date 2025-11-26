@@ -10,7 +10,7 @@ best-practices: [MASTG-BEST-0024]
 
 ## Overview
 
-This test is the dynamic counterpart to @MASTG-TEST-0x52-1 and is designed to be used together with @MASTG-TEST-0x52-3.
+This test is the dynamic counterpart to @MASTG-TEST-0300 and is designed to be used together with @MASTG-TEST-0302.
 
 It uses runtime method hooking to identify if sensitive data is written unencrypted to private storage (@MASTG-KNOW-0108) or directly in the Keychain by monitoring file (@MASTG-KNOW-0091) and Keychain (@MASTG-KNOW-0057) APIs.
 
