@@ -5,7 +5,7 @@
 └────────────────┘
                            
     MastgTest_reversed.java
-    ❯❱ rules.mastg-android-multipurpose-key
+    ❯❱ rules.mastg-android-asymmetric-key-pair-used-for-multiple-purposes
           [MASVS-CRYPTO-1] The key is configured for multiple distinct cryptographic purposes (mixing      
           encryption, signing, and/or wrapping). This is a cryptographic anti-pattern and violates the     
           principle of key separation, which mandates that keys used for different functions (e.g., signing
