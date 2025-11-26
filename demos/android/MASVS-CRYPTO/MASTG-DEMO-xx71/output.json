@@ -1,0 +1,198 @@
+{
+  "id": "1facd284-e9dd-4a22-8090-c8327d57213b",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.681Z",
+  "class": "javax.crypto.Cipher",
+  "method": "init",
+  "stackTrace": [
+    "javax.crypto.Cipher.init(Native Method)",
+    "javax.crypto.Cipher.init(Cipher.java:1103)",
+    "javax.crypto.Cipher.init(Native Method)",
+    "org.owasp.mastestapp.MastgTest.encrypt(MastgTest.kt:126)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:47)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)"
+  ],
+  "inputParameters": [
+    {
+      "type": "int",
+      "value": 1
+    },
+    {
+      "type": "java.security.Key",
+      "value": "<instance: java.security.Key, $className: com.android.org.conscrypt.OpenSSLRSAPublicKey>"
+    },
+    {
+      "type": "java.security.SecureRandom",
+      "value": "<instance: java.security.SecureRandom>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
+{
+  "id": "17344fb1-92d0-40d5-bf49-cc03c7d7bc91",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.671Z",
+  "class": "javax.crypto.Cipher",
+  "method": "init",
+  "stackTrace": [
+    "javax.crypto.Cipher.init(Native Method)",
+    "org.owasp.mastestapp.MastgTest.encrypt(MastgTest.kt:126)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:47)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke(Clickable.kt:981)",
+    "androidx.compose.foundation.gestures.TapGestureDetectorKt$detectTapAndPress$2$1.invokeSuspend(TapGestureDetector.kt:255)"
+  ],
+  "inputParameters": [
+    {
+      "type": "int",
+      "value": 1
+    },
+    {
+      "type": "java.security.Key",
+      "value": "<instance: java.security.Key, $className: com.android.org.conscrypt.OpenSSLRSAPublicKey>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
+{
+  "id": "1bafdffd-6678-46ee-9126-115f39b79483",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.700Z",
+  "class": "javax.crypto.Cipher",
+  "method": "init",
+  "stackTrace": [
+    "javax.crypto.Cipher.init(Native Method)",
+    "javax.crypto.Cipher.init(Cipher.java:1103)",
+    "javax.crypto.Cipher.init(Native Method)",
+    "org.owasp.mastestapp.MastgTest.decrypt(MastgTest.kt:145)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:55)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)"
+  ],
+  "inputParameters": [
+    {
+      "type": "int",
+      "value": 2
+    },
+    {
+      "type": "java.security.Key",
+      "value": "<instance: java.security.Key, $className: android.security.keystore2.AndroidKeyStoreRSAPrivateKey>"
+    },
+    {
+      "type": "java.security.SecureRandom",
+      "value": "<instance: java.security.SecureRandom>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
+{
+  "id": "aacbdfaf-caa7-450a-89d4-4e0acbb1af78",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.694Z",
+  "class": "javax.crypto.Cipher",
+  "method": "init",
+  "stackTrace": [
+    "javax.crypto.Cipher.init(Native Method)",
+    "org.owasp.mastestapp.MastgTest.decrypt(MastgTest.kt:145)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:55)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke(Clickable.kt:981)",
+    "androidx.compose.foundation.gestures.TapGestureDetectorKt$detectTapAndPress$2$1.invokeSuspend(TapGestureDetector.kt:255)"
+  ],
+  "inputParameters": [
+    {
+      "type": "int",
+      "value": 2
+    },
+    {
+      "type": "java.security.Key",
+      "value": "<instance: java.security.Key, $className: android.security.keystore2.AndroidKeyStoreRSAPrivateKey>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
+{
+  "id": "e365d18a-1750-496a-8d05-ac1db9092b57",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.726Z",
+  "class": "java.security.Signature",
+  "method": "initSign",
+  "stackTrace": [
+    "java.security.Signature.initSign(Native Method)",
+    "org.owasp.mastestapp.MastgTest.sign(MastgTest.kt:163)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:60)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke(Clickable.kt:981)",
+    "androidx.compose.foundation.gestures.TapGestureDetectorKt$detectTapAndPress$2$1.invokeSuspend(TapGestureDetector.kt:255)"
+  ],
+  "inputParameters": [
+    {
+      "type": "java.security.PrivateKey",
+      "value": "<instance: java.security.PrivateKey, $className: android.security.keystore2.AndroidKeyStoreRSAPrivateKey>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
+{
+  "id": "7e0e3dab-346f-4338-ae5f-553fb47f2d84",
+  "category": "CRYPTOGRAPHY",
+  "time": "2025-11-26T08:36:14.760Z",
+  "class": "java.security.Signature",
+  "method": "initVerify",
+  "stackTrace": [
+    "java.security.Signature.initVerify(Native Method)",
+    "org.owasp.mastestapp.MastgTest.verify(MastgTest.kt:177)",
+    "org.owasp.mastestapp.MastgTest.mastgTest(MastgTest.kt:67)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:73)",
+    "org.owasp.mastestapp.MainActivityKt$MyScreenContent$1$1$1.invoke(MainActivity.kt:71)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke-k-4lQ0M(Clickable.kt:987)",
+    "androidx.compose.foundation.ClickablePointerInputNode$pointerInput$3.invoke(Clickable.kt:981)",
+    "androidx.compose.foundation.gestures.TapGestureDetectorKt$detectTapAndPress$2$1.invokeSuspend(TapGestureDetector.kt:255)"
+  ],
+  "inputParameters": [
+    {
+      "type": "java.security.PublicKey",
+      "value": "<instance: java.security.PublicKey, $className: com.android.org.conscrypt.OpenSSLRSAPublicKey>"
+    }
+  ],
+  "returnValue": [
+    {
+      "type": "void",
+      "value": "void"
+    }
+  ]
+}
