@@ -23,15 +23,15 @@ The snippet below shows sample code that uses the insecure ECB (Electronic Codeb
 
 ### Observation
 
-The output contains the disassembled code of the function using `CCCrypt` with ECB mode.
+The output contains the disassembled code for the `CCCrypt` function in ECB mode.
 
-{{ output.txt }}
+{{ output.asm }}
 
 ### Evaluation
 
 Inspect the disassembled code to identify the use of insecure encryption modes.
 
-In [CommonCryptor.h](https://web.archive.org/web/20240606000307/https://opensource.apple.com/source/CommonCrypto/CommonCrypto-36064/CommonCrypto/CommonCryptor.h) you can find the definition of the `CCCrypt` function:
+In [CommonCryptor.h](https://web.archive.org/web/20240606000307/https://opensource.apple.com/source/CommonCrypto/CommonCrypto-36064/CommonCrypto/CommonCryptor.h), you can find the definition of the `CCCrypt` function:
 
 ```c
 CCCryptorStatus CCCrypt(
@@ -48,7 +48,7 @@ CCCryptorStatus CCCrypt(
     size_t *dataOutMoved);
 ```
 
-There you will also find the `options` parameter which can include `kCCOptionECBMode`:
+There you will also find the `options` parameter, which can include `kCCOptionECBMode`:
 
 ```c
 /*!
@@ -66,10 +66,7 @@ enum {
 typedef uint32_t CCOptions;
 ```
 
-With this information we can now inspect the disassembled code and we'll see that the ECB mode option (`kCCOptionECBMode`) can be found by its numeric value `2` or `0x0002` in the third argument of the `CCCrypt` function (`w2`). The `CCCrypt` function is called with the ECB mode option, AES algorithm, and a key of 16 bytes:
-
-{{ evaluation.txt }}
+With this information, we can now inspect the disassembled code and, in particular, the third argument of the `CCCrypt` function (`w2`), which has a numeric value `3`. Since there is no enum value `3`, we derive that both `kCCOptionPKCS7Padding` with value `1` and ECB mode option (`kCCOptionECBMode`) with value `2` are set, as `1+2=3`.
+Therefore, the `CCCrypt` function is called with the ECB mode option, AES algorithm, and a key of 16 bytes:
 
 The test fails because ECB mode was found in the code.
-
-**Note**: Using artificial intelligence we're able to decompile the disassembled code and review it. The output is a human-readable version of the assembly code. The AI decompiled code may not be perfect and might contain errors but, in this case, it clearly shows the use of `CCCrypt` with the `kCCOptionECBMode` option.

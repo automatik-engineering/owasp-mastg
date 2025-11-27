@@ -8,13 +8,9 @@ afl~CCCrypt
 ?e
 
 ?e xrefs to CCCrypt:
-axt @ 0x1000076c4
-
+axt @ 0x1000075ec
 ?e
 
 ?e Use of CCCrypt with ECB mode:
-
 # Seek to the function where CCCrypt is called with ECB mode
-pd-- 9 @ 0x100004000
-
-pdf @ sym.func.100004000 > function.asm
+pd-- 7 @ 0x100004824
