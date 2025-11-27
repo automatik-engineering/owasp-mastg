@@ -174,9 +174,41 @@ jobs:
             && echo "Copied data_extraction_rules.xml for $demo" \
             || echo "No data_extraction_rules.xml found for $demo"
 
-          if [ -f "$demo/build.gradle.kts.libs" ]; then
-            libs_content=$(cat "$demo/build.gradle.kts.libs")
-            sed -i "s|// ADD_LIBS_HERE|$libs_content|g" MASTestApp-Android/app/build.gradle.kts
+          # Helper function to replace placeholders in build.gradle.kts
+          replace_placeholder() {
+            local placeholder="$1"
+            local content_file="$2"
+            if [ -f "$content_file" ]; then
+              awk -v content="$(cat "$content_file")" "{gsub(/$placeholder/, content)}1" MASTestApp-Android/app/build.gradle.kts > tmp_build.gradle.kts && mv tmp_build.gradle.kts MASTestApp-Android/app/build.gradle.kts
+              return 0
+            fi
+            return 1
+          }
+
+          # Copy .proto files if any exist
+          if find "$demo" -maxdepth 1 -name "*.proto" -print -quit 2>/dev/null | grep -q .; then
+            mkdir -p MASTestApp-Android/app/src/main/proto
+            find "$demo" -maxdepth 1 -name "*.proto" -print0 2>/dev/null | while IFS= read -r -d '' proto_file; do
+              cp -f "$proto_file" MASTestApp-Android/app/src/main/proto/ \
+                && echo "Copied $(basename "$proto_file") for $demo"
+            done
+          else
+            echo "No .proto files found for $demo"
+          fi
+
+          if replace_placeholder '\/\/ ADD_PLUGINS_HERE' "$demo/build.gradle.kts.plugins"; then
+            echo "Replaced plugins in build.gradle.kts for $demo"
+          else
+            echo "No build.gradle.kts.plugins found for $demo, skipping plugins replacement"
+          fi
+
+          if replace_placeholder '\/\/ ADD_SECTIONS_HERE' "$demo/build.gradle.kts.sections"; then
+            echo "Replaced sections in build.gradle.kts for $demo"
+          else
+            echo "No build.gradle.kts.sections found for $demo, skipping sections replacement"
+          fi
+
+          if replace_placeholder '\/\/ ADD_LIBS_HERE' "$demo/build.gradle.kts.libs"; then
             echo "Replaced dependencies in build.gradle.kts for $demo"
           else
             echo "No build.gradle.kts.libs found for $demo, skipping dependencies replacement"
