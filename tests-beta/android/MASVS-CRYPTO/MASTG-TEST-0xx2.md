@@ -11,15 +11,16 @@ profiles: [L2]
 
 This test is the dynamic counterpart to @MASTG-TEST-0xx1, but it focuses on intercepting cryptographic operations rather than generating keys with multiple properties.
 
+Some of the relevant functions to intercept are:
+
+- [`Cipher.init(int opmode, Key key, AlgorithmParameters params)`](https://developer.android.com/reference/javax/crypto/Cipher#init(int,%20java.security.Key,%20java.security.AlgorithmParameters))
+- [`Signature.initSign(PrivateKey privateKey)`](https://developer.android.com/reference/java/security/Signature#initSign(java.security.PrivateKey))
+- [`Signature.initVerify(PublicKey publicKey)`](https://developer.android.com/reference/java/security/Signature#initVerify(java.security.PublicKey))
+
 ## Steps
 
 1. Run a dynamic analysis tool such as @MASTG-TOOL-0001.
-2. Intercept all functions that use an asymmetric key to perform cryptographic operations. For example:
-
-   - [`Cipher.init(int opmode, Key key, AlgorithmParameters params)`](https://developer.android.com/reference/javax/crypto/Cipher#init(int,%20java.security.Key,%20java.security.AlgorithmParameters))
-   - [`Signature.initSign(PrivateKey privateKey)`](https://developer.android.com/reference/java/security/Signature#initSign(java.security.PrivateKey))
-   - [`Signature.initVerify(PublicKey publicKey)`](https://developer.android.com/reference/java/security/Signature#initVerify(java.security.PublicKey))
-
+2. Intercept all functions that use an asymmetric key to perform cryptographic operations.
 3. Ensure that each key-pair is not used for multiple purposes.
 
 ## Observation

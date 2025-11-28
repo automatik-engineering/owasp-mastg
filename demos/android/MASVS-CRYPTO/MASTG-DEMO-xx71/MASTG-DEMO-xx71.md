@@ -8,11 +8,7 @@ test: MASTG-TEST-0xx2
 
 ### Sample
 
-In this sample, we reuse code from @MASTG-DEMO-xx70 and intercept below cryptographic operations to monitor the key being used:
-
-- [`Cipher.init(int opmode, Key key, AlgorithmParameters params)`](https://developer.android.com/reference/javax/crypto/Cipher#init(int,%20java.security.Key,%20java.security.AlgorithmParameters))
-- [`Signature.initSign(PrivateKey privateKey)`](https://developer.android.com/reference/java/security/Signature#initSign(java.security.PrivateKey))
-- [`Signature.initVerify(PublicKey publicKey)`](https://developer.android.com/reference/java/security/Signature#initVerify(java.security.PublicKey))
+In this sample, we reuse code from @MASTG-DEMO-xx70 and intercept the cryptographic operations at runtime (including encryption, decryption, signing, and verification) to demonstrate the misuse of an asymmetric key pair for multiple purposes.
 
 {{ ../MASTG-DEMO-xx70/MastgTest.kt }}
 

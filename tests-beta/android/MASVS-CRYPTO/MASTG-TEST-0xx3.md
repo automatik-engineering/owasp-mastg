@@ -6,5 +6,5 @@ type: [static]
 weakness: MASWE-0022
 status: placeholder
 profiles: [L2]
-note: Reusing a symmetric key is normal, but only when IVs or nonces follow the rules of the mode. CBC needs fresh or unpredictable IVs. Stream and counter-based modes need nonces that never repeat under the same key. Repeated key and nonce pairs break confidentiality and often integrity.
+note: Reusing a symmetric key is acceptable when IVs or nonces follow the rules defined for the mode. NIST SP 800 38A states that CBC requires a fresh or unpredictable IV for every encryption. NIST SP 800 38D states that counter based modes require a nonce that never repeats under the same key. Repeating a key and IV or nonce pair defeats confidentiality and can also undermine integrity.
 ---

@@ -8,7 +8,7 @@ test: MASTG-TEST-0xx1
 
 ### Sample
 
-This sample generates a new key pair and subsequently uses it for encryption, decryption, signing, and verification. We will run the @MASTG-TOOL-0110 rule to check for this multipurpose key pair usage violation.
+This sample generates an RSA key pair using `KeyGenParameterSpec` with multiple purposes: `PURPOSE_SIGN`, `PURPOSE_VERIFY`, `PURPOSE_ENCRYPT`, and `PURPOSE_DECRYPT`. It subsequently uses it for encryption, decryption, signing, and verification.
 
 {{ MastgTest.kt # MastgTest_reversed.java }}
 
@@ -28,6 +28,6 @@ The rule correctly identified one instance in the compiled Java code where an as
 
 ### Evaluation
 
-The test fails because the reported finding demonstrates a violation of the key separation principle.
+The test fails because the key is used for multiple purposes.
 
-On Line 83 the key is generated with the integer purpose 15, which is the bitwise OR of `PURPOSE_ENCRYPT` (1), `PURPOSE_DECRYPT` (2), `PURPOSE_SIGN` (4), and `PURPOSE_VERIFY` (8). This insecure practice allows the same private key to be used for multiple distinct cryptographic operations. If the key is compromised during one operation (e.g., encryption), the integrity of signatures made with the same key is also compromised.
+On Line 83 the key is generated with the integer purpose `15`, which is the bitwise OR of `PURPOSE_ENCRYPT` (`1`), `PURPOSE_DECRYPT` (`2`), `PURPOSE_SIGN` (`4`), and `PURPOSE_VERIFY` (`8`). This insecure practice allows the same private key to be used for multiple distinct cryptographic operations. If the key is compromised during one operation (e.g., encryption), the integrity of signatures made with the same key is also compromised.
