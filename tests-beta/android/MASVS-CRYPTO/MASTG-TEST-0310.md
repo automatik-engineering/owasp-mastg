@@ -1,7 +1,7 @@
 ---
 platform: android
 title: Runtime Use of Reused Initialization Vectors in Symmetric Encryption
-id: MASTG-TEST-0xx4
+id: MASTG-TEST-0310
 type: [dynamic]
 weakness: MASWE-0022
 status: placeholder

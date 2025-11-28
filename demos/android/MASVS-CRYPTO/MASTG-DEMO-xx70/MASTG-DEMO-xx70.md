@@ -3,7 +3,7 @@ platform: android
 title: References to Asymmetric Key Pairs Used For Multiple Purposes (ripgrep)
 id: MASTG-DEMO-xx70
 code: [java]
-test: MASTG-TEST-0xx1
+test: MASTG-TEST-0307
 ---
 
 ### Sample

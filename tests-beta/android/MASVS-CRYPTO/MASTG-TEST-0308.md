@@ -1,7 +1,7 @@
 ---
 platform: android
 title: Runtime Use of Asymmetric Key Pairs Used For Multiple Purposes
-id: MASTG-TEST-0xx2
+id: MASTG-TEST-0308
 type: [dynamic]
 weakness: MASWE-0012
 profiles: [L2]
@@ -9,7 +9,7 @@ profiles: [L2]
 
 ## Overview
 
-This test is the dynamic counterpart to @MASTG-TEST-0xx1, but it focuses on intercepting cryptographic operations rather than generating keys with multiple purposes.
+This test is the dynamic counterpart to @MASTG-TEST-0307, but it focuses on intercepting cryptographic operations rather than generating keys with multiple purposes.
 
 Some of the relevant functions to intercept are:
 

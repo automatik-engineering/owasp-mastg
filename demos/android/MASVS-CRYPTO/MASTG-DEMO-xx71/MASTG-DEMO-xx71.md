@@ -3,7 +3,7 @@ platform: android
 title: Runtime Use of Asymmetric Key Pairs Used For Multiple Purposes With Frida
 id: MASTG-DEMO-xx71
 code: [kotlin]
-test: MASTG-TEST-0xx2
+test: MASTG-TEST-0308
 ---
 
 ### Sample
