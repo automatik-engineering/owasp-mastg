@@ -1,5 +1,6 @@
+---
 platform: android
-title: References to Asymmetric Key Pairs Used For Multiple Purposes With Semgrep
+title: References to Asymmetric Key Pairs Used For Multiple Purposes (ripgrep)
 id: MASTG-DEMO-xx70
 code: [java]
 test: MASTG-TEST-0xx1
@@ -13,20 +14,22 @@ This sample generates an RSA key pair using `KeyGenParameterSpec` with multiple 
 
 ### Steps
 
-Run the @MASTG-TOOL-0110 rule, as defined below, against the sample code.
-
-{{ ../../../../rules/mastg-android-asymmetric-key-pair-used-for-multiple-purposes.yml }}
+Run the ripgrep-based script:
 
 {{ run.sh }}
 
 ### Observation
 
-The rule flags the constructor call to `KeyGenParameterSpec.Builder` in the decompiled Java. This is an observation-only finding meant to capture all key generation instances. You must evaluate the configured purposes to determine whether multiple distinct categories (cipher, signature, wrapping) are combined.
+We capture constructor calls to `KeyGenParameterSpec.Builder` via ripgrep and store observations in `output.json` containing: `file`, `line`, `class`, `keystoreAlias`, and `purposes`.
 
-{{ output.txt }}
+{{ output.json }}
 
 ### Evaluation
 
 The test fails because, after reviewing the observation, the key is indeed configured for multiple purposes.
+
+We inspect the output to see whether `purposes` mixes categories (cipher: 1|2, signature: 4|8, wrap: 32).
+
+{{ evaluation.txt # evaluate.py }}
 
 In this sample, the constructor receives a combined purpose value of `15`, which is the bitwise OR of `PURPOSE_ENCRYPT` (`1`), `PURPOSE_DECRYPT` (`2`), `PURPOSE_SIGN` (`4`), and `PURPOSE_VERIFY` (`8`). This mixes encryption/decryption with signing/verification and violates key separation: keys used for different functions must be distinct. If the key is compromised during one operation (for example, encryption), signatures made with the same key are also impacted.
