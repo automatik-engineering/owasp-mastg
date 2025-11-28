@@ -11,8 +11,8 @@ rules:
           - pattern: $X.getInstance($ALGO, $PROVIDER)
           - pattern: $X.getInstance($ALGO, (String $PROVIDER))
           - pattern: $X.getInstance($ALGO, (java.security.Provider $PROVIDER))
-      - pattern-not: $X.getInstance($ALGO, "AndroidKeyStore")
-      - pattern-not: KeyStore.getInstance($ALGO, $PROVIDER)
+      - pattern-not: KeyStore.getInstance("AndroidKeyStore")
       - metavariable-regex:
           metavariable: $X
-          regex: (Cipher|KeyGenerator|KeyPairGenerator|MessageDigest|Signature|Mac|SecretKeyFactory|KeyFactory|SecureRandom|KeyAgreement|AlgorithmParameters|AlgorithmParameterGenerator|CertificateFactory|CertPathBuilder|CertPathValidator|CertStore)
+          regex: (Cipher|KeyGenerator|KeyPairGenerator|MessageDigest|Signature|Mac|SecretKeyFactory|KeyFactory|SecureRandom|KeyAgreement|AlgorithmParameters|AlgorithmParameterGenerator|CertificateFactory|CertPathBuilder|CertPathValidator|CertStore|KeyStore)
+
