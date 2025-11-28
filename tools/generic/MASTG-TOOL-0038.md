@@ -20,3 +20,5 @@ Objection can be installed through pip as described on [Objection's Wiki](https:
 ```bash
 pip3 install objection
 ```
+
+If the pip version is out of sync with the latest release or you want to use the latest development version, you can install Objection directly from the source repository's `master` branch. See [Development Environment Installation](https://github.com/sensepost/objection/wiki/Development-Environment-Installation) for instructions.
