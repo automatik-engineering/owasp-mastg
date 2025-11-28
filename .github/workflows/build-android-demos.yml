@@ -185,38 +185,27 @@ jobs:
             echo "No .proto files found for $demo"
           fi
 
-          if [ -f "$demo/build.gradle.kts.plugins" ]; then
-            sed -i '/\/\/ ADD_PLUGINS_HERE/{
-              r '"$demo"'/build.gradle.kts.plugins
-              d
-            }' mas-app-android/app/build.gradle.kts
+          insert_block() {
+            local kind="$1"          # plugins / sections / libs
+            local upper="${kind^^}"  # PLUGINS / SECTIONS / LIBS  (bash-specific)
+            local file="$demo/build.gradle.kts.$kind"
+            local target="mas-app-android/app/build.gradle.kts"
           
-            echo "Replaced plugins in build.gradle.kts for $demo"
-          else
-            echo "No build.gradle.kts.plugins found for $demo, skipping plugins replacement"
-          fi
-
-          if [ -f "$demo/build.gradle.kts.sections" ]; then
-            sed -i '/\/\/ ADD_SECTIONS_HERE/{
-              r '"$demo"'/build.gradle.kts.sections
-              d
-            }' mas-app-android/app/build.gradle.kts
+            if [ -f "$file" ]; then
+              sed -i '/\/\/ ADD_'"$upper"'_HERE/{
+                r '"$file"'
+                d
+              }' "$target"
           
-            echo "Replaced sections in build.gradle.kts for $demo"
-          else
-            echo "No build.gradle.kts.sections found for $demo, skipping sections replacement"
-          fi
-
-          if [ -f "$demo/build.gradle.kts.libs" ]; then
-            sed -i '/\/\/ ADD_LIBS_HERE/{
-              r '"$demo"'/build.gradle.kts.libs
-              d
-            }' mas-app-android/app/build.gradle.kts
+              echo "Replaced $kind in build.gradle.kts for $demo"
+            else
+              echo "No build.gradle.kts.$kind found for $demo, skipping $kind replacement"
+            fi
+          }
           
-            echo "Replaced libs in build.gradle.kts for $demo"
-          else
-            echo "No build.gradle.kts.libs found for $demo, skipping libs replacement"
-          fi
+          insert_block plugins
+          insert_block sections
+          insert_block libs
 
           echo "Building APK for $demo"
           cd mas-app-android
