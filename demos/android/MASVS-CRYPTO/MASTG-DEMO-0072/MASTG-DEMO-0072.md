@@ -1,16 +1,16 @@
 ---
 platform: android
 title: Runtime Use of Asymmetric Key Pairs Used For Multiple Purposes With Frida
-id: MASTG-DEMO-xx71
+id: MASTG-DEMO-0072
 code: [kotlin]
 test: MASTG-TEST-0308
 ---
 
 ### Sample
 
-In this sample, we reuse code from @MASTG-DEMO-xx70 and intercept the cryptographic operations at runtime (including encryption, decryption, signing, and verification) to demonstrate the misuse of an asymmetric key pair for multiple purposes.
+In this sample, we reuse code from @MASTG-DEMO-0071 and intercept the cryptographic operations at runtime (including encryption, decryption, signing, and verification) to demonstrate the misuse of an asymmetric key pair for multiple purposes.
 
-{{ ../MASTG-DEMO-xx70/MastgTest.kt }}
+{{ ../MASTG-DEMO-0071/MastgTest.kt }}
 
 ### Steps
 
