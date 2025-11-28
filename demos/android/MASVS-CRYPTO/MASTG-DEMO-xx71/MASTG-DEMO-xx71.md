@@ -32,14 +32,20 @@ Note all `WARNING` messages in the output.
 
 ### Evaluation
 
-The test failed because the same key was detected being reused for different cryptographic actions:
+The test fails because the same asymmetric key pair is used across different cryptographic roles.
 
-- Signing (Line 35 in output.txt)
-- Verifying (Line 51 in output.txt)
+A single RSA key pair is performing both encryption or decryption and signing or verification, which violates the requirement that an asymmetric key be restricted to one purpose class.
 
-The warning in output.txt points to the key identified as `sign/verify with key: "android.security.keystore2.AndroidKeyStoreRSAPrivateKey@3818961"`. By searching output.txt for all occurrences of the object reference `@3818961`, we can trace the key's usage back to the first time it was used.
+In the sample output:
 
-```default
+- the private key instance (`android.security.keystore2.AndroidKeyStoreRSAPrivateKey`) is consistently identified by the instance ID `@3818961`
+- the matching public key instance (`OpenSSLRSAPublicKey`) is identified by its modulus beginning with `a41226cf3ca5b...`
+
+These two objects form one key pair in the Android Keystore. Their appearances across different operations show the misuse.
+
+Following the private key reference `@3818961`, the first usage appears during decryption:
+
+```bash
 🔒 *** Cipher.init(Key) HOOKED ***
   encryption/decryption with key: "android.security.keystore2.AndroidKeyStoreRSAPrivateKey@3818961"
   Stack Trace:
@@ -47,4 +53,24 @@ The warning in output.txt points to the key identified as `sign/verify with key:
     org.owasp.mastestapp.MastgTest.decrypt(MastgTest.kt:145)
 ```
 
-Therefore, it is clear this key pair was used for Signing/Verifying after being previously used for Encrypting/Decrypting.
+Later in the output, the same private key instance is used for signing:
+
+```bash
+✍️ *** Signature.initSign(PrivateKey) HOOKED ***
+  sign/verify with key: "android.security.keystore2.AndroidKeyStoreRSAPrivateKey@3818961"
+!!! WARNING: This key is used for multiple, conflicting purposes: encryption/decryption and sign/verify
+```
+
+The matching public key, identified by its modulus (`a41226cf3ca5b...`), appears in both encryption:
+
+```bash
+🔒 *** Cipher.init(Key) HOOKED ***
+  encryption/decryption with key: "OpenSSLRSAPublicKey{modulus=a41226cf3ca5b...
+```
+
+And verification:
+
+```bash
+✅ *** Signature.initVerify(PublicKey) HOOKED ***
+  sign/verify with key: "OpenSSLRSAPublicKey{modulus=a41226cf3ca5b...
+```
