@@ -24,7 +24,7 @@ In this sample, we reuse code from @MASTG-DEMO-xx70 and intercept below cryptogr
 4. Click the **Start** button
 5. Stop the script by pressing `Ctrl+C` and/or `q` to quit the Frida CLI
 
-{{ hooks.js # run.sh }}
+{{ script.js # run.sh }}
 
 ### Observation
 

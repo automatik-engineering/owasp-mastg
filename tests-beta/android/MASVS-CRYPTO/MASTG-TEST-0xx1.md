@@ -4,7 +4,7 @@ title: References to Asymmetric Key Pairs Used For Multiple Purposes
 id: MASTG-TEST-0xx1
 type: [static]
 weakness: MASWE-0012
-profiles: [L1, L2, P]
+profiles: [L2]
 ---
 
 ## Overview
@@ -29,11 +29,11 @@ In other words, ensure that the app doesn't create a key that combines purposes 
 
 ## Observation
 
-The output should contain a list of locations where asymmetric keys are created, along with backtraces showing each KeyPair instantiation
+The output should contain a list of locations where asymmetric keys are created, along with backtraces showing each `KeyPair` instantiation.
 
 ## Evaluation
 
-The test case fails if you find any keys with mixed roles as described in **Steps** section.
+The test case fails if you find any keys used for multiple purposes.
 
 ## References
 

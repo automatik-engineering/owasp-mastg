@@ -4,7 +4,7 @@ title: Runtime Use of Asymmetric Key Pairs Used For Multiple Purposes
 id: MASTG-TEST-0xx2
 type: [dynamic]
 weakness: MASWE-0012
-profiles: [L1, L2, P]
+profiles: [L2]
 ---
 
 ## Overview
@@ -20,7 +20,7 @@ This test is the dynamic counterpart to @MASTG-TEST-0xx1, but it focuses on inte
    - [`Signature.initSign(PrivateKey privateKey)`](https://developer.android.com/reference/java/security/Signature#initSign(java.security.PrivateKey))
    - [`Signature.initVerify(PublicKey publicKey)`](https://developer.android.com/reference/java/security/Signature#initVerify(java.security.PublicKey))
 
-3. Ensure that each key-pair is not used for multiple purposes
+3. Ensure that each key-pair is not used for multiple purposes.
 
 ## Observation
 
