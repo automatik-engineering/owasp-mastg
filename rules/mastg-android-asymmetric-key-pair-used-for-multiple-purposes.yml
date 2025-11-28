@@ -4,62 +4,10 @@ rules:
     languages:
       - java
     metadata:
-      summary: Detects KeyGenParameterSpec keys configured for multiple distinct cryptographic purposes (Cipher, Signature, or Wrapping).
-      original_source: Custom
-      masvs:
-        - CRYPTO-1
+      summary: Detects usage of KeyGenParameterSpec.Builder to collect observations for key-purposes evaluation.
     message: |
-      [MASVS-CRYPTO-1] The key is configured for multiple distinct cryptographic purposes (mixing encryption, signing, and/or wrapping).
-      This is a cryptographic anti-pattern and violates the principle of key separation, which mandates that keys used for different
-      functions (e.g., signing vs. encryption) must be distinct.
+      [MASVS-CRYPTO-1] Detected usage of KeyGenParameterSpec.Builder. Review the configured purposes to ensure key separation (avoid mixing encryption/decryption with signing/verification or wrapping).
 
-    # Match the KeyGenParameterSpec.Builder constructor call that takes a hardcoded integer purpose.
-    # We focus on the resulting integer values that combine purposes from two or more distinct groups:
-    # Cipher (C: 1, 2), Signature (S: 4, 8), and Wrap (W: 32).
-    pattern-either:
-      # --- C + S Combinations (Cipher: 1, 2 | Signature: 4, 8) ---
-      # PURPOSE_ENCRYPT | PURPOSE_SIGN (1 | 4) = 5
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 5)
-      # PURPOSE_DECRYPT | PURPOSE_SIGN (2 | 4) = 6
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 6)
-      # PURPOSE_ENCRYPT | PURPOSE_VERIFY (1 | 8) = 9
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 9)
-      # PURPOSE_DECRYPT | PURPOSE_VERIFY (2 | 8) = 10
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 10)
-      # All C & S: (1 | 2 | 4 | 8) = 15
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 15)
-
-      # --- C + W Combinations (Cipher: 1, 2 | Wrap: 32) ---
-      # PURPOSE_ENCRYPT | PURPOSE_WRAP_KEY (1 | 32) = 33
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 33)
-      # PURPOSE_DECRYPT | PURPOSE_WRAP_KEY (2 | 32) = 34
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 34)
-      # All C & W: (1 | 2 | 32) = 35
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 35)
-
-      # --- S + W Combinations (Signature: 4, 8 | Wrap: 32) ---
-      # PURPOSE_SIGN | PURPOSE_WRAP_KEY (4 | 32) = 36
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 36)
-      # PURPOSE_VERIFY | PURPOSE_WRAP_KEY (8 | 32) = 40
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 40)
-      # All S & W: (4 | 8 | 32) = 44
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 44)
-
-      # --- C + S + W Combinations (All 3 Types) ---
-      # PURPOSE_ENCRYPT | PURPOSE_SIGN | PURPOSE_WRAP_KEY (1 | 4 | 32) = 37
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 37)
-      # All C, S, W: (1 | 2 | 4 | 8 | 32) = 47
-      - pattern: |
-          new KeyGenParameterSpec.Builder($ALIAS, 47)
+    # Match any construction of KeyGenParameterSpec.Builder, capturing alias and purposes.
+    pattern: |
+      new KeyGenParameterSpec.Builder($ALIAS, $PURPOSES)

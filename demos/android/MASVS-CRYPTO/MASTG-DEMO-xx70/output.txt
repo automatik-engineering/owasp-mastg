@@ -6,10 +6,8 @@
                            
     MastgTest_reversed.java
     ❯❱ rules.mastg-android-asymmetric-key-pair-used-for-multiple-purposes
-          [MASVS-CRYPTO-1] The key is configured for multiple distinct cryptographic purposes (mixing      
-          encryption, signing, and/or wrapping). This is a cryptographic anti-pattern and violates the     
-          principle of key separation, which mandates that keys used for different functions (e.g., signing
-          vs. encryption) must be distinct.                                                                
+          [MASVS-CRYPTO-1] Detected usage of KeyGenParameterSpec.Builder. Review the configured purposes to
+          ensure key separation (avoid mixing encryption/decryption with signing/verification or wrapping).
                                                                                                            
            83┆ KeyGenParameterSpec.Builder $this$generateKey_u24lambda_u242 = new
                KeyGenParameterSpec.Builder(this.KEY_ALIAS, 15);                  
