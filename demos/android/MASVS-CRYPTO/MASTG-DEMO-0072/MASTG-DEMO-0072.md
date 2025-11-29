@@ -8,7 +8,7 @@ test: MASTG-TEST-0308
 
 ### Sample
 
-In this sample, we reuse code from @MASTG-DEMO-0071 and intercept the cryptographic operations at runtime (including encryption, decryption, signing, and verification) to demonstrate the misuse of an asymmetric key pair for multiple purposes.
+This sample uses the code from @MASTG-DEMO-0071 and takes a dynamic approach to intercept the cryptographic operations at runtime (including encryption, decryption, signing, and verification) to demonstrate the misuse of an asymmetric key pair for multiple purposes.
 
 {{ ../MASTG-DEMO-0071/MastgTest.kt }}
 
@@ -32,9 +32,9 @@ Note all `WARNING` messages in the output.
 
 ### Evaluation
 
-The test fails because the same asymmetric key pair is used across different cryptographic roles.
+The test fails because the same asymmetric key pair is used across different groups of cryptographic operations.
 
-A single RSA key pair is performing both encryption or decryption and signing or verification, which violates the requirement that an asymmetric key be restricted to one purpose class.
+A single RSA key pair is performing both encryption and decryption, as well as signing and verification, which violates the requirement that an asymmetric key be restricted to one purpose class.
 
 In the sample output:
 

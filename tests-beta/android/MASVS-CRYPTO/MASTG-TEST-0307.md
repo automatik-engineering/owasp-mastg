@@ -9,11 +9,11 @@ profiles: [L2]
 
 ## Overview
 
-Asymmetric keys must be limited to a single well defined purpose. A key intended for signing should not decrypt, and an encryption key should not sign. Allowing one key to perform unrelated operations increases the attack surface and violates separation of roles defined in [NIST SP 800 57 part 1 revision 5](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf).
+According to section "5.2 Key Usage" of [NIST SP 800-57 part 1 revision 5](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf), cryptographic keys should be assigned a specific purpose and used only for that purpose (e.g., encryption, integrity authentication, key wrapping, random bit generation, or digital signatures). For example, a key intended for encryption should not be used for signing.
 
 On Android, asymmetric keys are commonly generated with [`java.security.KeyPairGenerator`](https://developer.android.com/reference/java/security/KeyPairGenerator) configured through [`android.security.keystore.KeyGenParameterSpec`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec).
 
-The [`KeyGenParameterSpec.Builder`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder) constructor has two arguments: the key alias and a bitmask of allowed operations documented in [`android.security.keystore.KeyProperties`](https://developer.android.com/reference/android/security/keystore/KeyProperties).
+The [`KeyGenParameterSpec.Builder`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder) constructor has two arguments: the `keystoreAlias` and `purposes`, a bitmask of allowed operations documented in [`android.security.keystore.KeyProperties`](https://developer.android.com/reference/android/security/keystore/KeyProperties).
 
 - [`KeyProperties.PURPOSE_SIGN`](https://developer.android.com/reference/android/security/keystore/KeyProperties#PURPOSE_SIGN)
 - [`KeyProperties.PURPOSE_VERIFY`](https://developer.android.com/reference/android/security/keystore/KeyProperties#PURPOSE_VERIFY)
@@ -23,7 +23,7 @@ The [`KeyGenParameterSpec.Builder`](https://developer.android.com/reference/andr
 
 ## Steps
 
-1. Run a static analysis (@MASTG-TECH-0014) tool on the app and look for uses of asymmetric key pairs.
+1. Run static analysis (@MASTG-TECH-0014) on the app and look for key generation code for asymmetric keys.
 
 ## Observation
 
@@ -31,9 +31,9 @@ The output should contain a list of locations where asymmetric keys are created 
 
 ## Evaluation
 
-The test case fails if you find any keys used for multiple roles.
+The test case fails if you find any keys used for multiple roles (groups of purposes).
 
-Using the output, ensure that each key (or key pair) is restricted to exactly **one** of the following roles:
+Using the output, ensure that each key pair is restricted to exactly **one** of the following roles:
 
 - Encryption/Decryption (`PURPOSE_ENCRYPT` / `PURPOSE_DECRYPT`)
 - Signing/Verification (`PURPOSE_SIGN` / `PURPOSE_VERIFY`)

@@ -22,7 +22,7 @@ Run the @MASTG-TOOL-0110 rule, as defined below, against the sample code.
 
 ### Observation
 
-The rule flags the constructor call to `KeyGenParameterSpec.Builder` in the decompiled Java code. This includes the alias and a number representing the combined purposes used during key generation.
+The rule flags the constructor call to `KeyGenParameterSpec.Builder` in the decompiled Java code. This includes the key alias and a number representing the combined purposes used during key generation.
 
 {{ output.txt }}
 

@@ -23,7 +23,7 @@ Some of the relevant functions to intercept are:
 
 ## Steps
 
-1. Execute a method trace (@MASTG-TECH-0033) (using e.g. @MASTG-TOOL-0001) by attaching to the running app, targeting all functions that use an asymmetric key to perform cryptographic operations.
+1. Execute a method trace (@MASTG-TECH-0033) targeting all functions that use an asymmetric key to perform cryptographic operations.
 
 ## Observation
 
@@ -33,7 +33,7 @@ The output should contain a list of all cryptographic operations together with t
 
 The test case fails if you find any keys used for multiple roles.
 
-Using the output, ensure that each key (or key pair) is restricted to exactly **one** of the following operations:
+Using the output, ensure that each key (or key pair) is restricted to exactly **one** of the following groups of operations:
 
 - Encryption/Decryption (used in `Cipher` operations with `ENCRYPT_MODE` or `DECRYPT_MODE`)
 - Signing/Verification (used in `Signature` operations)
