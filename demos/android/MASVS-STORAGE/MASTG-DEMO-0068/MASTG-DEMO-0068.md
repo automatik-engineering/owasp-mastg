@@ -1,6 +1,6 @@
 ---
 platform: android
-title: Reserved for MASWE-0006 - Unencrypted SQLite Storage (Alternative Demo)
+title: Sensitive Data in Unencrypted SQLite
 id: MASTG-DEMO-0068
 code: [kotlin]
 test: MASTG-TEST-0304
