@@ -13,7 +13,7 @@ masvs_v1_levels:
 profiles: [L1, L2]
 status: deprecated
 covered_by: [MASTG-TEST-0307]
-deprecation_note: Partially covered. This v2 test focuses specifically on hardcoded security providers.
+deprecation_note: New version available in MASTG V2
 ---
 
 ## Overview
