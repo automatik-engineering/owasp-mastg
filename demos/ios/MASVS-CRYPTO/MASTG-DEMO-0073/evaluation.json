@@ -5,7 +5,7 @@
     "perm": "--x",
     "opcode": "bl sym.imp.drand48",
     "fcn_addr": 12192,
-    "fcn_name": "sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_",
+    "fcn_name": "sym.MASTestApp.MastgTest.generateRandomTokenDrand48_...yFZ_",
     "realname": "func.00002fa0",
     "refname": "sym.imp.drand48"
   },
@@ -15,7 +15,7 @@
     "perm": "--x",
     "opcode": "bl sym.imp.rand",
     "fcn_addr": 5036,
-    "fcn_name": "sym.MASTestApp.MastgTest.generateInsecureRandomTokenRand_...yFZ_",
+    "fcn_name": "sym.MASTestApp.MastgTest.generateRandomTokenRand_...yFZ_",
     "realname": "func.000013ac",
     "refname": "sym.imp.rand"
   },

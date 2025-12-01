@@ -13,7 +13,7 @@ func c_rand() -> Int32
 struct MastgTest {
 
     // Insecure: libc rand seeded with time, predictable and not suitable for cryptography
-    static func generateInsecureRandomTokenRand() -> String {
+    static func generateRandomTokenRand() -> String {
         var token = ""
 
         for _ in 0..<16 {
@@ -26,7 +26,7 @@ struct MastgTest {
     // Cryptographically secure on Apple platforms
     // Swift random APIs use SystemRandomNumberGenerator backed by the system CSPRNG via arc4random_buf
     // Shown here as a secure source that is not a dedicated crypto token API
-    static func generateInsecureRandomTokenSwiftRandom() -> String {
+    static func generateRandomTokenSwiftRandom() -> String {
         var token = ""
         for _ in 0..<16 {
             let b = UInt8.random(in: 0...255)
@@ -37,7 +37,7 @@ struct MastgTest {
     
     // Cryptographically secure: direct read from /dev/random on Apple platforms
     // However, this is a low level interface and is discouraged in favor of SecRandomCopyBytes
-    static func generateInsecureRandomTokenDevRandom() -> String {
+    static func generateRandomTokenDevRandom() -> String {
         let count = 16
 
         let fd = open("/dev/random", O_RDONLY)
@@ -58,7 +58,7 @@ struct MastgTest {
     
     // Cryptographically secure but discouraged as a direct token API
     // On Apple platforms arc4random_uniform is strong, but SecRandomCopyBytes or CryptoKit are preferred
-    static func generateInsecureRandomTokenArc4RandomUniform() -> String {
+    static func generateRandomTokenArc4RandomUniform() -> String {
         var token = ""
         for _ in 0..<16 {
             let value = arc4random_uniform(256)
@@ -69,7 +69,7 @@ struct MastgTest {
 
     // Cryptographically secure but discouraged as a direct token API
     // On Apple platforms arc4random is strong, but it is not the recommended crypto API
-    static func generateInsecureRandomTokenArc4Random() -> String {
+    static func generateRandomTokenArc4Random() -> String {
         var token = ""
         for _ in 0..<16 {
             let value = arc4random() % 256
@@ -81,7 +81,7 @@ struct MastgTest {
     // Cryptographically secure: SystemRandomNumberGenerator uses the system CSPRNG
     // It is suitable for cryptographic use, and CryptoKit builds on it
     // Included here to contrast secure generators with insecure ones
-    static func generateInsecureRandomTokenSystemRNG() -> String {
+    static func generateRandomTokenSystemRNG() -> String {
         var token = ""
         var rng = SystemRandomNumberGenerator()
 
@@ -94,7 +94,7 @@ struct MastgTest {
     
     // Insecure: drand48 uses a 48 bit linear congruential generator
     // Not thread safe and not suitable for cryptographic purposes
-    static func generateInsecureRandomTokenDrand48() -> String {
+    static func generateRandomTokenDrand48() -> String {
         var token = ""
         for _ in 0..<16 {
             let value = Int(drand48() * 256.0) % 256
@@ -105,7 +105,7 @@ struct MastgTest {
     
     // Cryptographically secure: CCRandomGenerateBytes uses the system CSPRNG
     // Secure, but a lower level API that is generally discouraged in favor of SecRandomCopyBytes
-    static func generateSecureRandomTokenCC() -> String {
+    static func generateRandomTokenCC() -> String {
         var buffer = [UInt8](repeating: 0, count: 16)
         let status = CCRandomGenerateBytes(&buffer, buffer.count)
 
@@ -117,7 +117,7 @@ struct MastgTest {
     }
 
     // Recommended: SecRandomCopyBytes is the high level, Apple recommended API for secure random bytes
-    static func generateSecureRandomToken() -> String {
+    static func generateRandomTokenSecRandom() -> String {
         var randomBytes = [UInt8](repeating: 0, count: 16)
         let status = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
 
@@ -138,31 +138,31 @@ struct MastgTest {
 
         let value = """
         Using libc rand seeded with time
-        Token: \(generateInsecureRandomTokenRand())
+        Token: \(generateRandomTokenRand())
 
         Using Swift random API backed by SystemRandomNumberGenerator
-        Token: \(generateInsecureRandomTokenSwiftRandom())
+        Token: \(generateRandomTokenSwiftRandom())
         
         Using /dev/random low level interface
-        Token: \(generateInsecureRandomTokenDevRandom())
+        Token: \(generateRandomTokenDevRandom())
 
         Using arc4random_uniform as a direct token source
-        Token: \(generateInsecureRandomTokenArc4RandomUniform())
+        Token: \(generateRandomTokenArc4RandomUniform())
         
         Using arc4random as a direct token source
-        Token: \(generateInsecureRandomTokenArc4Random())
+        Token: \(generateRandomTokenArc4Random())
 
         Using SystemRandomNumberGenerator directly
-        Token: \(generateInsecureRandomTokenSystemRNG())
+        Token: \(generateRandomTokenSystemRNG())
         
         Using drand48 linear congruential generator
-        Token: \(generateInsecureRandomTokenDrand48())
+        Token: \(generateRandomTokenDrand48())
 
         Using CCRandomGenerateBytes lower level API
-        Token: \(generateSecureRandomTokenCC())
+        Token: \(generateRandomTokenCC())
 
         Using SecRandomCopyBytes
-        Token: \(generateSecureRandomToken())
+        Token: \(generateRandomTokenSecRandom())
         """
 
         completion(value)

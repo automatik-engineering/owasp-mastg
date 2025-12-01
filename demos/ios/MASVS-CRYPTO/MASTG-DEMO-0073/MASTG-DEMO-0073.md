@@ -51,10 +51,10 @@ The test fails because insecure PRNGs are used in a security relevant context. S
 
 Now we disassemble the functions that call the insecure PRNGs to confirm their use in security-relevant contexts.
 
-As an example, take `"fcn_name": "sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_"` from the evaluation output and disassemble or decompile it.
+As an example, take `"fcn_name": "sym.MASTestApp.MastgTest.generateRandomTokenDrand48_...yFZ_"` from the evaluation output and disassemble or decompile it.
 
 ```bash
-[0x00002fa0]> pdf @ sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_
+[0x00002fa0]> pdf @ sym.MASTestApp.MastgTest.generateRandomTokenDrand48_...yFZ_
 <disassembly output>
 ```
 
@@ -63,8 +63,8 @@ Reading the disassembly confirms that it uses the output of `drand48` to generat
 Next we look for cross references to see where it is being called from.
 
 ```bash
-[0x00002fa0]> axt @ sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_
-sym.MASTestApp.MastgTest.mastg.completion_...FZ_ 0x41d4 [CALL:--x] bl sym.MASTestApp.MastgTest.generateInsecureRandomTokenDrand48_...yFZ_
+[0x00002fa0]> axt @ sym.MASTestApp.MastgTest.generateRandomTokenDrand48_...yFZ_
+sym.MASTestApp.MastgTest.mastg.completion_...FZ_ 0x41d4 [CALL:--x] bl sym.MASTestApp.MastgTest.generateRandomTokenDrand48_...yFZ_
 ```
 
 Here it is called from `sym.MASTestApp.MastgTest.mastg.completion_...FZ_`. We can disassemble that function to understand its purpose and keep iterating.
