@@ -2,7 +2,7 @@
 platform: ios
 title: Uses of Insecure Random Number Generation with frida-trace
 code: [swift]
-id: MASTG-DEMO-0064
+id: MASTG-DEMO-0074
 test: MASTG-TEST-xx63
 ---
 
@@ -10,7 +10,7 @@ test: MASTG-TEST-xx63
 
 This demo uses the same sample code as in @MASTG-DEMO-0063. It demonstrates the use of insecure random number generation using various APIs.
 
-{{ ../MASTG-DEMO-0063/MastgTest.swift }}
+{{ ../MASTG-DEMO-0073/MastgTest.swift }}
 
 ### Steps
 
