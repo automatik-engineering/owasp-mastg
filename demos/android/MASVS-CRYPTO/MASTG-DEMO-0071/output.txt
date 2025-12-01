@@ -1,14 +1,7 @@
-               
-               
-┌─────────────┐
-│ Scan Status │
-└─────────────┘
-  Scanning 1 file tracked by git with 1 Code rule:
-  Scanning 1 file.
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00                   
+                   
                    
 ┌─────────────────┐
-│ 3 Code Findings │
+│ 2 Code Findings │
 └─────────────────┘
                            
     MastgTest_reversed.java
@@ -16,21 +9,6 @@
           [MASVS-CRYPTO-1] Explicitly specified security provider found. Do not hardcode a provider unless
           using AndroidKeyStore.                                                                          
                                                                                                           
-           31┆ Cipher cipherBC = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
+           71┆ Cipher cipherBC = Cipher.getInstance("AES/GCM/NoPadding", "BC");
             ⋮┆----------------------------------------
-           33┆ Cipher cipherSun = Cipher.getInstance("AES/CBC/PKCS5Padding", "SunJCE");
-            ⋮┆----------------------------------------
-           35┆ Cipher cipherCustom = Cipher.getInstance("AES/CBC/PKCS5Padding", "CustomProvider");
-
-                
-                
-┌──────────────┐
-│ Scan Summary │
-└──────────────┘
-✅ Scan completed successfully.
- • Findings: 3 (3 blocking)
- • Rules run: 1
- • Targets scanned: 1
- • Parsed lines: ~100.0%
- • No ignore information available
-Ran 1 rule on 1 file: 3 findings.
+           85┆ Cipher cipherCustom = Cipher.getInstance("AES/CBC/PKCS5Padding", "CustomProvider");

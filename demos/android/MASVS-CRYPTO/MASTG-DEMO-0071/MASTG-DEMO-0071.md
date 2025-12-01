@@ -30,12 +30,7 @@ The rule has identified instances in the code file where a security provider is 
 
 Review each of the reported instances:
 
-- Line 31 uses the deprecated "BC" (BouncyCastle) provider with `Cipher.getInstance`. This is deprecated since Android 9 and removed in Android 12.
-- Line 33 uses the "SunJCE" provider which is not available on Android and will cause a runtime exception.
-- Line 35 uses a custom third-party provider "CustomProvider" which may not be regularly updated or patched.
+- Line 71 uses the deprecated "BC" (BouncyCastle) provider with `Cipher.getInstance`. This is deprecated since Android 9 and removed in Android 12.
+- Line 85 uses a custom provider "CustomProvider" which may not be regularly updated or patched.
 
-The following cases are correctly handled and do not trigger the rule:
-
-- Line 28 uses `Cipher.getInstance("AES/GCM/NoPadding")` without specifying a provider, which uses the default AndroidOpenSSL (Conscrypt) provider.
-- Line 38 uses `KeyStore.getInstance("AndroidKeyStore")` which is the correct way to access the Android Keystore system.
-
+All other cases are correctly handled and do not trigger the rule.
