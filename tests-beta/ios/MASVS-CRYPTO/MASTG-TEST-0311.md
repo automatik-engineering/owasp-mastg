@@ -1,11 +1,11 @@
 ---
 platform: ios
 title: Insecure Random API Usage
-id: MASTG-TEST-xx63
+id: MASTG-TEST-0311
 type: [static, dynamic]
 weakness: MASWE-0027
 profiles: [L1, L2]
-best-practices: [MASTG-BEST-00x1]
+best-practices: [MASTG-BEST-0025]
 ---
 
 ## Overview

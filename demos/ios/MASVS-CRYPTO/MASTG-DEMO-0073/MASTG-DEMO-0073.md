@@ -3,7 +3,7 @@ platform: ios
 title: Uses of Insecure Random Number Generation with r2
 code: [swift]
 id: MASTG-DEMO-0073
-test: MASTG-TEST-xx63
+test: MASTG-TEST-0311
 ---
 
 ### Sample

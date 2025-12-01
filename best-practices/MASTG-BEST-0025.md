@@ -1,7 +1,7 @@
 ---
 title: Use Secure Random Number Generator APIs
 alias: ios-use-secure-random
-id: MASTG-BEST-00x1
+id: MASTG-BEST-0025
 platform: ios
 ---
 
