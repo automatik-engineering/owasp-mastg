@@ -5,7 +5,7 @@ id: MASTG-BEST-00x1
 platform: ios
 ---
 
-Use a cryptographically secure pseudorandom number generator (PRNG) that is backed by the operating system CSPRNG. Do not build your own PRNG.
+Use secure random number generator APIs that are backed by the operating system _cryptographically secure pseudorandom number generator (CSPRNG)_. Do not build your own _pseudorandom number generator (PRNG)_.
 
 ## Swift / Objective-C
 
