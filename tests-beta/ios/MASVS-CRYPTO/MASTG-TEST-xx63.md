@@ -2,7 +2,7 @@
 platform: ios
 title: Insecure Random API Usage
 id: MASTG-TEST-xx63
-type: [static]
+type: [static, dynamic]
 weakness: MASWE-0027
 profiles: [L1, L2]
 best-practices: [MASTG-BEST-00x1]
@@ -14,7 +14,7 @@ iOS apps sometimes use insecure pseudorandom number generators (PRNGs) (@MASTG-K
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary and look for insecure random APIs.
+1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary, or use runtime method hooking (see @MASTG-TECH-0095), and look for insecure random APIs.
 
 ## Observation
 
