@@ -56,7 +56,8 @@ struct MastgTest {
         return buffer.map { String(format: "%02x", $0) }.joined()
     }
     
-    // Cryptographically secure but discouraged as a direct token API
+    // Cryptographically secure but discouraged as a direct token API in Swift code 
+    // because uses legacy C style interfaces that are easier to misuse
     // On Apple platforms arc4random_uniform is strong, but SecRandomCopyBytes or CryptoKit are preferred
     static func generateRandomTokenArc4RandomUniform() -> String {
         var token = ""
