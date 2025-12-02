@@ -47,7 +47,7 @@ The test fails because insecure PRNGs are used in a security relevant context. S
 - `sym.imp.rand` and `sym.imp.srand`, which expose the insecure libc PRNG.
 - `sym.imp.drand48`, which also uses an insecure linear congruential generator.
 
-{{ evaluation.json # evaluation.sh}}
+{{ evaluation.json # evaluate.sh}}
 
 Now we disassemble the functions that call the insecure PRNGs to confirm their use in security-relevant contexts.
 
