@@ -1,6 +1,6 @@
 ---
 platform: android
-title: Uses of Hardcoded Security Providers
+title: Uses of Explicit Security Providers with semgrep
 id: MASTG-DEMO-0075
 code: [java]
 test: MASTG-TEST-0312
