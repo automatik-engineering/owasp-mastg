@@ -1,5 +1,5 @@
 ---
-title: Use of Explicit Security Provider
+title: References to Explicit Security Provider in Cryptographic APIs
 platform: android
 id: MASTG-TEST-0312
 type: [static]
