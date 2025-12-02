@@ -1,6 +1,6 @@
 ---
 platform: android
-title: Uses of Explicit Security Providers with semgrep
+title: Uses of Explicit Security Providers in Cryptographic APIs with semgrep
 id: MASTG-DEMO-0075
 code: [kotlin]
 test: MASTG-TEST-0312
