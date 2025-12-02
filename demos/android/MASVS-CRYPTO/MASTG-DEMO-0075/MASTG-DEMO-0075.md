@@ -1,9 +1,9 @@
 ---
 platform: android
 title: Uses of Hardcoded Security Providers
-id: MASTG-DEMO-0071
+id: MASTG-DEMO-0075
 code: [java]
-test: MASTG-TEST-0307
+test: MASTG-TEST-0312
 ---
 
 ### Sample

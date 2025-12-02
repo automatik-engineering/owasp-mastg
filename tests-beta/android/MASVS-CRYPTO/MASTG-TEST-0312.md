@@ -1,7 +1,7 @@
 ---
 title: Hardcoded Security Provider
 platform: android
-id: MASTG-TEST-0307
+id: MASTG-TEST-0312
 type: [static]
 weakness: MASWE-0020
 best-practices: [MASTG-BEST-0020]
