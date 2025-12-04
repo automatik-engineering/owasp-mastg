@@ -3,7 +3,7 @@ platform: android
 title: Identifying Sensitive Data Sent via Network Calls
 id: MASTG-TEST-02te4
 type: [dynamic]
-weakness: MASWE-0112
+weakness: MASWE-0108
 prerequisites:
   - identify-sensitive-data
 profiles: [P]

@@ -2,7 +2,7 @@
 platform: android
 title: Uses of Firebase Analytics APIs on Potential PII with semgrep
 id: MASTG-DEMO-00de1
-code: [kotlin]
+code: [java]
 test: MASTG-TEST-02te1
 ---
 
@@ -10,7 +10,7 @@ test: MASTG-TEST-02te1
 
 This sample demonstrates an Android application sending data to Firebase Analytics.
 
-{{ MastgTest.kt # build.gradle.kts.libs }}
+{{ MainActivity.kt # MastgTest.kt # build.gradle.kts.libs }}
 
 ## Steps
 
