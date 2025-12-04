@@ -1,0 +1,12 @@
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                           
+    MastgTest_reversed.java
+     ❱ rules.mastg-android-usage-of-firebase-analytics
+          [MASVS-PRIVACY] Data is being sent to Firebase Analytics
+                                                                  
+           32┆ $this$logEvent$iv.logEvent("start_test", builder$iv.getZza());
+
