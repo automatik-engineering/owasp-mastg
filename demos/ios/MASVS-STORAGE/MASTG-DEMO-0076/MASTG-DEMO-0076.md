@@ -3,7 +3,7 @@ platform: ios
 title: References to APIs for Preventing Keyboard Caching of Text Fields with r2
 id: MASTG-DEMO-0076
 code: [swift]
-test: MASTG-TEST-0x55-1
+test: MASTG-TEST-0313
 ---
 
 ### Sample

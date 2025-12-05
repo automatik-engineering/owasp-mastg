@@ -1,14 +1,14 @@
 ---
 platform: ios
 title: Runtime Monitoring of Text Fields Eligible for Keyboard Caching
-id: MASTG-TEST-0x55-2
+id: MASTG-TEST-0314
 type: [dynamic]
 weakness: MASWE-0053
 ---
 
 ## Overview
 
-This test is designed to complement @MASTG-TEST-0x55-1. It monitors all text inputs in the app at runtime and lists every field into which the user has entered text. After each interaction, it reports whether the input is protected against keyboard caching. Therefore, it is important to exercise the app thoroughly.
+This test is designed to complement @MASTG-TEST-0313. It monitors all text inputs in the app at runtime and lists every field into which the user has entered text. After each interaction, it reports whether the input is protected against keyboard caching. Therefore, it is important to exercise the app thoroughly.
 
 ## Steps
 

@@ -12,8 +12,7 @@ This test verifies whether the target app prevents sensitive information entered
 
 The test checks whether the app instructs the system **not** to cache user input for a given text field by setting [`UITextAutocorrectionType.no`](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/no).
 
-**Note:**
-By default, text input is cached, and an app does not need to explicitly set `UITextAutocorrectionType` when creating a text field. Additionally, the UI may be configured in a Storyboard. As a result, this test may miss many true positives. For complete coverage, using **@MASTG-TEST-0x55-2** is recommended.
+**Note:** By default, text input is cached, and an app does not need to explicitly set `UITextAutocorrectionType` when creating a text field. Additionally, the UI may be configured in a Storyboard. As a result, this test may miss many true positives. For complete coverage, using @MASTG-TEST-0314 is recommended.
 
 Any of the following attributes, if present, will prevent the caching mechanism for text inputs:
 
