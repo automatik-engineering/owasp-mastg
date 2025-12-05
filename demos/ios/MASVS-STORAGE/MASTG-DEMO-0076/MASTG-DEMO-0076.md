@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: References to APIs for Preventing Keyboard Caching of Text Fields with r2
-id: MASTG-DEMO-0069
+id: MASTG-DEMO-0076
 code: [swift]
 test: MASTG-TEST-0x55-1
 ---
@@ -24,9 +24,9 @@ The code snippet below creates multiple UI text inputs on the screen.
 
 {{ output.asm }}
 
-The output reveals the use of [`setAutocorrectionType(.default)`](https://developer.apple.com/documentation/uikit/uitextinputtraits/autocorrectiontype) in the app. However, it doesn't look exactly the same as in `MastgTest.swift` because the compiler transforms some functions into Objective-C counterparts. An equivalent Objective-C representation in the binary looks like `objc_msgSend(void *address, "setAutocorrectionType:", 0)`. By looking at the output we can find this pattern at lines 31-36.
+The output reveals the use of [`setAutocorrectionType(.default)`](https://developer.apple.com/documentation/uikit/uitextinputtraits/autocorrectiontype) in the app. However, it doesn't look exactly the same as in `MastgTest.swift` because the compiler transforms some functions into Objective-C counterparts. An equivalent Objective-C representation in the binary looks like `objc_msgSend(void *address, "setAutocorrectionType:", 0)`. By looking at the output, we can find this pattern at lines 31–36.
 
-The third argument of `objc_msgSend(...)` is `UITextAutocorrectionType` because `x2` register at the time of the function invocation is set to `0` with a `mov` instruction at Line 33. `0` is a representation of [`UITextAutocorrectionTypeDefault`](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/default).
+The third argument of `objc_msgSend(...)` is `UITextAutocorrectionType` because the `x2` register at the time of the function invocation is set to `0` with a `mov` instruction at line 33. `0` is a representation of [`UITextAutocorrectionTypeDefault`](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/default).
 
 You can find all the possible values defined in UITextInputTraits.h by running (requires @MASTG-TOOL-0070):
 
