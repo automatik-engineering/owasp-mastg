@@ -2,8 +2,8 @@
 platform: ios
 title: Uses of Broken Encryption Modes in CommonCrypto with r2
 code: [swift]
-id: MASTG-DEMO-0068
-test: MASTG-TEST-0304
+id: MASTG-DEMO-00de
+test: MASTG-TEST-03te
 ---
 
 ### Sample
