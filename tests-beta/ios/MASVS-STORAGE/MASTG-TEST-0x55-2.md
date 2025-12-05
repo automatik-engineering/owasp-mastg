@@ -13,7 +13,7 @@ This test is designed to complement @MASTG-TEST-0x55-1. It monitors all text inp
 ## Steps
 
 1. Use runtime method hooking (see @MASTG-TECH-0095) to detect text input components such as [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield). Hook the methods invoked during user interaction and log the user's input.
-2. Exercise the app and all text inputs thoroughly
+2. Exercise the app and all text inputs thoroughly.
 
 ## Observation
 

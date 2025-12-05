@@ -14,9 +14,9 @@ The code snippet below creates multiple UI text inputs on the screen.
 
 ### Steps
 
-1. Install the app on a device (@MASTG-TECH-0056)
-2. Make sure you have @MASTG-TOOL-0039 installed on your machine and the frida-server running on the device
-3. Run `run.sh` to spawn your app with Frida
+1. Install the app on a device (@MASTG-TECH-0056).
+2. Make sure you have @MASTG-TOOL-0039 installed on your machine and the frida-server running on the device.
+3. Run `run.sh` to spawn your app with Frida.
 4. Click the **Start** button
 5. Stop the script by pressing `Ctrl+C`
 

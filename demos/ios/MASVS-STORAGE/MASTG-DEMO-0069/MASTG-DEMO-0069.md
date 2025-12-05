@@ -15,7 +15,7 @@ The code snippet below creates multiple UI text inputs on the screen.
 ### Steps
 
 1. Unzip the app package and locate the main binary file (@MASTG-TECH-0058), which in this case is `./Payload/MASTestApp.app/MASTestApp`.
-2. Run `run.sh` to find all attempts to set `UITextAutocorrectionTypeNo` attribute
+2. Run `run.sh` to find all attempts to set the `UITextAutocorrectionTypeNo` attribute.
 3. Perform the same analysis for `secureTextEntry`.
 
 {{ run.sh # textinputs.r2 }}
