@@ -17,7 +17,7 @@ This test verifies whether an app is sending sensitive data to an embedded SDK (
 
 ## Steps
 
-1. Use @MASTG-TECH-0033 (dynamic analysis) with a tool like @MASTG-TOOL-0001 to hook SDK methods known to handle sensitive data and try to detect sensitive data in their calls.
+1. Use @MASTG-TECH-0033 to hook SDK methods known to handle sensitive data.
 
 ## Observation
 

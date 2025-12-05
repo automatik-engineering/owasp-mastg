@@ -9,7 +9,7 @@ profiles: [P]
 
 ## Overview
 
-This test verifies whether an app references an SDK (third-party library) known to handle sensitive data.
+This test verifies whether an app references SDK (third-party library) APIs known to handle sensitive data.
 
 > Note: This tests detects only **potential** sensitive data handling. For **confirming** that actual user data are being shared, please refer to @MASTG-TEST-02te3.
 

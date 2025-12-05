@@ -1,6 +1,6 @@
 ---
 platform: android
-title: Determine if Sensitive Data are sent to Firebase Analytics with Frida
+title: Sensitive Data Sent to Firebase Analytics with Frida
 id: MASTG-DEMO-00de3
 code: [kotlin]
 test: MASTG-TEST-02te3
@@ -8,7 +8,10 @@ test: MASTG-TEST-02te3
 
 ## Sample
 
-This sample demonstrates an Android application that sends sensitive user information to Firebase Analytics using the `logEvent` method. The app collects the user's blood type and user ID, which are considered sensitive data (health information), and transmits them to Firebase Analytics.
+This sample collects the following [user data](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#types&zippy=%2Cdata-types) and sends it to Firebase Analytics using the `logEvent` method:
+
+- User ID (**Data type:** User IDs, **Category:** Personal info)
+- Blood type (**Data type:** Health info, **Category:** Health and fitness)
 
 > Note: We cannot perform this test with static analysis because the parameters sent to Firebase Analytics are constructed dynamically at runtime.
 
