@@ -15,7 +15,7 @@ This test verifies whether an app is sending sensitive data (e.g., PII) via netw
 
 ## Steps
 
-1. Use @MASTG-TECH-0033 (dynamic analysis) with a tool like @MASTG-TOOL-0001 to hook network functions and try to detect PII or in their calls.
+1. Use @MASTG-TECH-0119 to hook network functions and try to detect PII or in their calls.
 2. Use the backtraces to find out which component is sending what PII or secrets. This should also include the corresponding network domains.
 
 ## Observation
