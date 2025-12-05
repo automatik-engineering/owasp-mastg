@@ -17,7 +17,7 @@ The snippet below shows sample code that uses the insecure ECB (Electronic Codeb
 1. Unzip the app package and locate the main binary file (@MASTG-TECH-0058), which in this case is `./Payload/MASTestApp.app/MASTestApp`.
 2. Open the app binary with @MASTG-TOOL-0073 with the `-i` option to run this script.
 
-{{ ccecb.r2 }}
+{{ cccrypt-ecb.r2 }}
 
 {{ run.sh }}
 
@@ -66,7 +66,6 @@ enum {
 typedef uint32_t CCOptions;
 ```
 
-With this information, we can now inspect the disassembled code and, in particular, the third argument of the `CCCrypt` function (`w2`), which has a numeric value `3`. Since there is no enum value `3`, we derive that both `kCCOptionPKCS7Padding` with value `1` and ECB mode option (`kCCOptionECBMode`) with value `2` are set, as `1+2=3`.
-Therefore, the `CCCrypt` function is called with the ECB mode option, AES algorithm, and a key of 16 bytes:
+With this information, you can now examine the disassembled code, focusing specifically on the third argument of the `CCCrypt` function (`w2`), which holds a numeric value of `3`. Given that there is no enum value `3`, you can conclude that both `kCCOptionPKCS7Padding` with a value of `1` and the ECB mode option (`kCCOptionECBMode`) with a value of `2` are enabled, since `1+2=3`. Therefore, the `CCCrypt` function is invoked with the ECB mode option, AES algorithm, and a key that is 16 bytes long.
 
 The test fails because ECB mode was found in the code.
