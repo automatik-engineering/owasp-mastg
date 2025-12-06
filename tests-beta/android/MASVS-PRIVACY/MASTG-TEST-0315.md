@@ -1,13 +1,14 @@
 ---
 platform: android
 title: App Exposing Sensitive Data via Notifications
-id: MASTG-TEST-0296
+id: MASTG-TEST-0315
 apis: [NotificationManager]
 type: [static, dynamic]
 weakness: MASWE-0054
 prerequisites:
 - identify-sensitive-data
-profiles: [P]
+profiles: [L2]
+best-practices: [MASTG-BEST-0027]
 ---
 
 ## Overview

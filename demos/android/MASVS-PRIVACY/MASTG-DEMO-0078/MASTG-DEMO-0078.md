@@ -1,9 +1,9 @@
 ---
 platform: android
 title: App Leaking Sensitive Data via Notifications
-id: MASTG-DEMO-0065
+id: MASTG-DEMO-0078
 code: [kotlin]
-test: MASTG-TEST-0296
+test: MASTG-TEST-0315
 tools: [MASTG-TOOL-0110]
 ---
 
@@ -32,10 +32,10 @@ And another one against the sample manifest file.
 
 ### Observation
 
-The rule detected two instances in the code where the `setContentTitle` API is used to set the notification title, and 2 cases where the `setContentText` API is used to set the notification text. It also identified the location in the manifest file where the POST_NOTIFICATIONS permission is declared.
+The rule detected two instances in the code where the `setContentTitle` API is used to set the notification title, and 2 cases where the `setContentText` API is used to set the notification text. It also identified the location in the manifest file where the `POST_NOTIFICATIONS` permission is declared.
 
 {{ output.txt # output2.txt }}
 
 ### Evaluation
 
-After reviewing the decompiled code at the location specified in the output (file and line number), we can conclude that the test fails because the file written by this instance contains sensitive data, specifically a first and a last name (PII).
+After reviewing the decompiled code at the location specified in the output (file and line number), we can conclude that the **test fails** because the notification contains sensitive data, specifically a first and a last name (PII).
