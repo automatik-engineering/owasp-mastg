@@ -2,31 +2,31 @@ e asm.bytes=false
 e scr.color=false
 e asm.var=false
 
-?e Print xrefs to \'Run analysis\"
-aaa
-
-?e Print xrefs to \'autocorrectionType\"
-f~+autocorrectionType,setSecureTextEntry
+?e Print xrefs to \'autocorrectionType,setSecureTextEntry,spellCheckingType\"
+f~+autocorrectionType,setSecureTextEntry,spellCheckingType
 
 ?e
 
-?e Print xrefs to 0x100014118
-axt @ 0x100014118
+?e Print xrefs to 0x100010110
+axt @ 0x100010110
 
-?e Print xrefs to 0x100014110
-axt @ 0x100014110
+?e Print xrefs to 0x100010120
+axt @ 0x100010120
 
-?e
-
-?e Print disassembly around \"autocorrectionType\" in the function
-pdf @ 0x10000455c | grep -C 20 -i "autocorrectionType"
+?e Print xrefs to 0x100010128
+axt @ 0x100010128
 
 ?e
 
-?e Print disassembly around \"autocorrectionType\" in the function
-pdf @ 0x1000045c8 | grep -C 20 -i "autocorrectionType"
+?e Print disassembly around \"name_field\" in the function
+pd--10 @ 0x100004550
 
 ?e
 
-?e Print disassembly around \"setSecureTextEntry\" in the function
-pdf @ 0x100004638 | grep -C 20 -i "setSecureTextEntry"
+?e Print disassembly around \"email_field\" in the function
+pd--10 @ 0x100004604
+
+?e
+
+?e Print disassembly around \"password_field\" in the function
+pd--10 @ 0x1000046b0

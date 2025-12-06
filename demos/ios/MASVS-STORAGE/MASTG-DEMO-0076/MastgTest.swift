@@ -8,22 +8,26 @@ struct MastgTest {
       // Build the alert
       let alert = UIAlertController(
         title: "Enter sensitive text",
-        message: "Please fill in both fields.",
+        message: "Please fill in all fields.",
         preferredStyle: .alert
       )
 
       alert.addTextField { tf in
-        tf.placeholder = "Caching input"
+        tf.placeholder = "Name"
         tf.autocorrectionType = .default
+        tf.spellCheckingType = .no
+        tf.accessibilityIdentifier = "name_field"
       }
       alert.addTextField { tf in
-        tf.placeholder = "Non-caching input"
+        tf.placeholder = "E-Mail"
         tf.autocorrectionType = .no
+        tf.accessibilityIdentifier = "email_field"
       }
       
       alert.addTextField { tf in
-        tf.placeholder = "Password input"
+        tf.placeholder = "Password"
         tf.isSecureTextEntry = true
+        tf.accessibilityIdentifier = "password_field"
       }
 
       alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
