@@ -22,6 +22,8 @@ This demo uses the same sample as @MASTG-DEMO-0076.
 
 {{ run.sh # script.js }}
 
+The script hooks into text input controls at runtime and monitors when they lose focus. For each interaction, it captures the entered text, the input field class, accessibility identifier when available, placeholder text when available, and the relevant input traits such as `autocorrectionType`, `spellCheckingType`, and `isSecureTextEntry`. Based on these values, it reports whether the input is eligible for keyboard caching.
+
 ### Observation
 
 {{ output.txt }}
@@ -30,8 +32,9 @@ The output contains all text that the user entered in every text input, along wi
 
 ### Evaluation
 
-The test fails because the output shows the user's sensitive input "first sensitive input" in one of the text fields and it is eligible for caching.
+The test fails because the output shows two text fields that are eligible for keyboard caching and contain sensitive information: the user's name and email address.
 
-```txt
-Eligible for caching [autocorrectionType=.default, secure=false, class=_UIAlertControllerTextField]: "first sensitive input"
-```
+- The name input has `autocorrectionType` set to `default`, making it eligible for keyboard caching.
+- The email input has `autocorrectionType` set to `no` but `spellCheckingType` set to `default`, making it eligible for keyboard caching.
+
+The password input is protected against keyboard caching because `isSecureTextEntry` is set to `true`.
