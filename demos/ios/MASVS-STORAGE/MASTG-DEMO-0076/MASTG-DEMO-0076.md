@@ -57,9 +57,9 @@ According to `UITextInputTraits.h`, `0` corresponds to [`UITextAutocorrectionTyp
 grep UITextAutocorrectionType /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextInputTraits.h
 
 typedef NS_ENUM(NSInteger, UITextAutocorrectionType) {
-    UITextAutocorrectionTypeDefault, # 0
-    UITextAutocorrectionTypeNo, # 1
-    UITextAutocorrectionTypeYes # 2
+    UITextAutocorrectionTypeDefault, // 0
+    UITextAutocorrectionTypeNo, // 1
+    UITextAutocorrectionTypeYes // 2
 ```
 
 Alternatively, you can view the full UITextInputTraits.h header online in public SDK mirrors on GitHub such as [GitHub - xybp888/iOS-SDKs](https://github.com/xybp888/iOS-SDKs/blob/master/iPhoneOS18.4.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextInputTraits.h#L37-L41).
