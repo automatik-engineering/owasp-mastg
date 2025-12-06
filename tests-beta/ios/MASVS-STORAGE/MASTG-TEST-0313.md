@@ -1,7 +1,7 @@
 ---
 platform: ios
 title: References to APIs for Preventing Keyboard Caching of Text Fields
-id: MASTG-TEST-0x55-1
+id: MASTG-TEST-0313
 type: [static]
 weakness: MASWE-0053
 ---
@@ -16,14 +16,16 @@ The test checks whether the app instructs the system **not** to cache user input
 
 Any of the following attributes, if present, will prevent the caching mechanism for text inputs:
 
-- [`UITextAutocorrectionTypeNo`](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/uitextautocorrectiontypeno)
-- [`secureTextEntry`](https://developer.apple.com/documentation/uikit/uitextinputtraits/1624427-securetextentry)
+- [`UITextAutocorrectionType.no`](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/no)
+- [`secureTextEntry`](https://developer.apple.com/documentation/uikit/uitextinputtraits/issecuretextentry)
 
-Check whether the UI elements such as `UITextField`, `UITextView`, and `UISearchBar` use the `UITextAutocorrectionTypeNo` attribute.
+Check whether UI elements such as `UITextField`, `UITextView`, and `UISearchBar` use the `UITextAutocorrectionType.no` attribute.
 
 ## Steps
 
-1. Run a static analysis tool such as @MASTG-TOOL-0073 on the app binary to verify if your app uses the above attributes.
+1. Use @MASTG-TECH-0065 to reverse engineer the app.
+2. Use @MASTG-TECH-0072 to look for uses of the functions that set these attributes.
+3. Use @MASTG-TECH-0076 to analyze the relevant code paths and obtain the values assigned to these attributes.
 
 ## Observation
 
