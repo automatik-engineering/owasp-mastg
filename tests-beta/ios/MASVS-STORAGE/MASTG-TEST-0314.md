@@ -4,6 +4,7 @@ title: Runtime Monitoring of Text Fields Eligible for Keyboard Caching
 id: MASTG-TEST-0314
 type: [dynamic]
 weakness: MASWE-0053
+profiles: [L2]
 prerequisites:
 - identify-sensitive-data
 best-practices: [MASTG-BEST-0026]
