@@ -1,4 +1,15 @@
-Print xrefs to 'autocorrectionType,setSecureTextEntry,spellCheckingType"
+Print flags about "+UITextField,UITextView,UISearchBar"
+0x100010180 8 reloc.UITextField
+
+Print xrefs to 0x100010180
+sym.func.100004704 0x100004760 [ICOD:r--] add x2, x2, reloc.UITextField
+sym.func.100004704 0x10000481c [ICOD:r--] add x2, x2, reloc.UITextField
+sym.func.100004704 0x1000048e0 [ICOD:r--] add x2, x2, reloc.UITextField
+sym.func.10000558c 0x1000055d0 [DATA:r--] ldr x0, reloc.UITextField
+sym.func.10000558c 0x10000563c [DATA:r--] ldr x0, reloc.UITextField
+sym.func.10000558c 0x1000056c0 [ICOD:r--] add x2, x2, reloc.UITextField
+
+Print flags about "autocorrectionType,setSecureTextEntry,spellCheckingType"
 0x10000a125 23 str.setAutocorrectionType:
 0x10000a13c 20 str.setSecureTextEntry:
 0x10000a150 22 str.setSpellCheckingType:

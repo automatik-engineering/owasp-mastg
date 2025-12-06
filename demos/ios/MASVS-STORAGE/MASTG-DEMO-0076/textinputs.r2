@@ -2,7 +2,13 @@ e asm.bytes=false
 e scr.color=false
 e asm.var=false
 
-?e Print xrefs to \'autocorrectionType,setSecureTextEntry,spellCheckingType\"
+?e Print flags about \"UITextField,UITextView,UISearchBar\"
+f~+UITextField,UITextView,UISearchBar
+
+?e Print xrefs to 0x100010180
+axt @ 0x100010180
+
+?e Print flags about \"autocorrectionType,setSecureTextEntry,spellCheckingType\"
 f~+autocorrectionType,setSecureTextEntry,spellCheckingType
 
 ?e
