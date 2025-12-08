@@ -33,55 +33,18 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     BaseScreen {
-        Column {
-            CredentialFields {
-                TextField(
-                    state = rememberTextFieldState(),
-                    modifier = Modifier.padding(4.dp),
-                    label = { Text("Insecure Password Field") },
-                )
-            }
-            CredentialFields {
-                SecureTextField(
-                    state = rememberTextFieldState(),
-                    textObfuscationMode = TextObfuscationMode.Visible,
-                    modifier = Modifier.padding(4.dp),
-                    label = { Text("Visible Password Field") },
-                )
-            }
-            CredentialFields {
-                SecureTextField(
-                    state = rememberTextFieldState(),
-                    textObfuscationMode = TextObfuscationMode.RevealLastTyped,
-                    modifier = Modifier.padding(4.dp),
-                    label = { Text("Reveal Last Typed Password Field") },
-                )
-            }
-            CredentialFields {
-                SecureTextField(
-                    state = rememberTextFieldState(),
-                    textObfuscationMode = TextObfuscationMode.Hidden,
-                    modifier = Modifier.padding(4.dp),
-                    label = { Text("Hidden Password Field") },
-                )
-            }
+        Column(modifier = Modifier.padding(vertical = 16.dp)) {
+            TextField(
+                state = rememberTextFieldState(),
+                label = { Text("Username") },
+                modifier = Modifier.padding(4.dp)
+            )
+            SecureTextField(
+                state = rememberTextFieldState(),
+                textObfuscationMode = TextObfuscationMode.Visible,
+                modifier = Modifier.padding(4.dp),
+                label = { Text("Visible Password Field") },
+            )
         }
-    }
-
-
-}
-
-
-@Composable
-fun CredentialFields(
-    content: @Composable ColumnScope.() -> Unit,
-) {
-    Column(modifier = Modifier.padding(vertical = 16.dp)) {
-        TextField(
-            state = rememberTextFieldState(),
-            label = { Text("Username") },
-            modifier = Modifier.padding(4.dp)
-        )
-        content()
     }
 }
