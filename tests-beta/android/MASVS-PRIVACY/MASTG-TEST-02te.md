@@ -4,7 +4,7 @@ title: App Exposing User Authentication Data in Text Input Fields
 id: MASTG-TEST-02te
 type: [static, manual] // TODO evaluate
 weakness: MASWE-0053
-profiles: [P]
+profiles: [L2]
 ---
 
 ## Overview
