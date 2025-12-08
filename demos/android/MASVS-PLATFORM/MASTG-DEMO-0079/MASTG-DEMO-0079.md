@@ -3,7 +3,7 @@ platform: android
 title: App Exposing Access and Verification Codes in Text Input Fields
 id: MASTG-DEMO-0033
 code: [kotlin]
-test: MASTG-TEST-02te
+test: MASTG-TEST-0316
 ---
 
 ### Sample
