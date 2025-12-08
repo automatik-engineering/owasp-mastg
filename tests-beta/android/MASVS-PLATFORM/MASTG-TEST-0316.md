@@ -48,6 +48,7 @@ The output should contain a list of locations where text input fields for access
 ## Evaluation
 
 The test case fails if any text input field used for access or verification codes is found to be unmasked. For example, due to the following:
+
 - `TextField` is used
 - `SecureTextField` is used but configured with `TextObfuscationMode.Visible`
 
