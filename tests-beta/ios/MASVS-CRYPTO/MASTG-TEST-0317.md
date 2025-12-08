@@ -1,7 +1,7 @@
 ---
 title: Broken Symmetric Encryption Modes
 platform: ios
-id: MASTG-TEST-03te
+id: MASTG-TEST-0317
 type: [static, dynamic]
 weakness: MASWE-0020
 best-practices: [MASTG-BEST-0005]
