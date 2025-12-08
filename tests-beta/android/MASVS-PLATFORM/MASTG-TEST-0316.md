@@ -32,7 +32,8 @@ SecureTextField(
 )
 ```
 
-> Note: Even if `SecureTextField` uses the default `TextObfuscationMode.RevealLastTyped` or is configured explicitly with `RevealLastTyped` or `Hidden`, it can later be changed to `Visible` programmatically.
+!!! note
+    Even if `SecureTextField` uses the default `TextObfuscationMode.RevealLastTyped` or is configured explicitly with `RevealLastTyped` or `Hidden`, it can later be changed to `Visible` programmatically.
 
 ## Steps
 
@@ -47,7 +48,6 @@ The output should contain a list of locations where text input fields for access
 ## Evaluation
 
 The test case fails if any text input field used for access or verification codes is found to be unmasked. For example, due to the following:
-
 - `TextField` is used
 - `SecureTextField` is used but configured with `TextObfuscationMode.Visible`
 
