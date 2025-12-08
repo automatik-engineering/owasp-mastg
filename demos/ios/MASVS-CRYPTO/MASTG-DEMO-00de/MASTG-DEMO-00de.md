@@ -66,10 +66,10 @@ enum {
 typedef uint32_t CCOptions;
 ```
 
-In the disassembly, the third argument to `CCCrypt` is passed in `w2` and is set to the constant value `3`. This argument corresponds to the `CCOptions` parameter, which is defined as a bitmask rather than a single enumerated value. That distinction is important, because it means individual options are combined by setting bits, not by selecting one value from a list.
+In the disassembly, the third argument to `CCCrypt` is passed in `w2` and is set to the constant value `3`. This argument corresponds to the `CCOptions` parameter, which is defined as a bitmask rather than a single enumerated value. That distinction is important because it means individual options are combined by setting bits, not by selecting one value from a list.
 
 When analyzing a bitmask, the numeric value must be decomposed into its constituent flags. The value `3` in binary is `0b11`. The least significant bit, `0b01`, corresponds to `kCCOptionPKCS7Padding`, which has a value of `1`. The next bit, `0b10`, corresponds to `kCCOptionECBMode`, which has a value of `2`. Since both of these bits are set in `3`, both options are enabled at the same time.
 
-Looking at the rest of the arguments confirms the interpretation. `w0` is `0`, mapping to `kCCEncrypt`, and `w1` is `0`, mapping to `kCCAlgorithmAES128`. The key length passed in `w4` is `0x10`, indicating a 16 byte key, which is appropriate for AES 128. The IV argument is passed as a null pointer, which is consistent with ECB mode, since ECB does not use an initialization vector.
+Looking at the rest of the arguments confirms the interpretation. `w0` is `0`, mapping to `kCCEncrypt`, and `w1` is `0`, mapping to `kCCAlgorithmAES128`. The key length passed in `w4` is `0x10`, indicating a 16-byte key, which is appropriate for AES 128. The IV argument is passed as a null pointer, which is consistent with ECB mode, since ECB does not use an initialization vector.
 
 Taken together, we can conclude that **the test fails** because the app is performing AES-128 encryption with PKCS7 padding enabled and in ECB mode.
