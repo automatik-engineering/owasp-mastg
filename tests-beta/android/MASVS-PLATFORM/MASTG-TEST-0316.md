@@ -11,7 +11,7 @@ profiles: [L2]
 
 This test verifies that the app handles user input correctly, ensuring that access codes (passwords or pins) and verification codes (OTPs) are not exposed in plain text within text input fields.
 
-Proper masking (dots instead of input characters) of these codes is essential to protect user privacy. This can be achieved by using appropriate input types that obscure the characters entered by the user.
+Proper masking (e.g., dots instead of input characters) of these codes is essential to protect user privacy. This can be achieved by using appropriate input types that obscure the characters entered by the user. In Jetpack Compose, `SecureTextField` uses `TextObfuscationMode`, which [by default is `TextObfuscationMode.RevealLastTyped`](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/material/material/src/commonMain/kotlin/androidx/compose/material/SecureTextField.kt;l=115?q=SecureTextField), so a developer can simply use `SecureTextField` without explicitly setting `textObfuscationMode` unless another behavior is required.
 
 XML view:
 
@@ -26,17 +26,18 @@ Jetpack Compose:
 
 ```kotlin
 SecureTextField(
+    // textObfuscationMode defaults to TextObfuscationMode.RevealLastTyped
     textObfuscationMode = TextObfuscationMode.RevealLastTyped, // or TextObfuscationMode.Hidden
     ...
 )
 ```
 
-> Note: That even if the SecureTextField is used with `textObfuscationMode` set to `RevealLastTyped` or `Hidden`, it can later be changed to `Visible` programmatically.
+> Note: Even if `SecureTextField` uses the default `TextObfuscationMode.RevealLastTyped` or is configured explicitly with `RevealLastTyped` or `Hidden`, it can later be changed to `Visible` programmatically.
 
 ## Steps
 
-1. Reverse engineer the app (@MASTG-TECH-0017).
-2. Run a static analysis tool such as @MASTG-TOOL-0110 on the reverse-engineered app's source code to identify the usage of the text field APIs.
+1. Use @MASTG-TECH-0013 to reverse engineer the app.
+2. Use @MASTG-TECH-0014 to look for references to the text field classes and text obfuscation APIs.
 3. Manually evaluate and shortlist the fields for access or verification codes usage.
 
 ## Observation
@@ -45,4 +46,11 @@ The output should contain a list of locations where text input fields for access
 
 ## Evaluation
 
-The test case fails if access or verification codes are found in the text input fields unmasked.
+The test case fails if any text input field used for access or verification codes is found to be unmasked. For example, due to the following:
+
+- `TextField` is used
+- `SecureTextField` is used but configured with `TextObfuscationMode.Visible`
+
+
+!!! note
+    This test may produce false negatives if the app uses custom text input controls that do not rely on standard classes such as `TextField` or `SecureTextField` (for example in custom UI frameworks or game engines).
