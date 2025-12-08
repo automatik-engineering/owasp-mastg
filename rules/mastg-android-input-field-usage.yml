@@ -8,4 +8,4 @@ rules:
     message: "[MASVS-PLATFORM] Detected TextFields and SecureTextField."
     pattern-either:
       - pattern: androidx.compose.material3.TextFieldKt
-      - pattern: androidx.compose.material3.SecureTextFieldKt
+      - pattern-regex: SecureTextFieldKt.m\d+SecureTextField\w+\(.+TextObfuscationMode.Companion.m\d+getVisible\w+\(\).+\);
