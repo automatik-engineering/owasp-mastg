@@ -31,7 +31,7 @@ The output contains the disassembled code for the `CCCrypt` function in ECB mode
 
 Inspect the disassembled code to identify the use of insecure encryption modes.
 
-In [CommonCryptor.h](https://web.archive.org/web/20240606000307/https://opensource.apple.com/source/CommonCrypto/CommonCrypto-36064/CommonCrypto/CommonCryptor.h), you can find the definition of the `CCCrypt` function:
+In [CommonCryptor.h](https://github.com/xybp888/iOS-SDKs/blob/master/iPhoneOS18.6.sdk/usr/include/CommonCrypto/CommonCryptor.h), you can find the definition of the `CCCrypt` function:
 
 ```c
 CCCryptorStatus CCCrypt(
@@ -66,6 +66,10 @@ enum {
 typedef uint32_t CCOptions;
 ```
 
-With this information, you can now examine the disassembled code, focusing specifically on the third argument of the `CCCrypt` function (`w2`), which holds a numeric value of `3`. Given that there is no enum value `3`, you can conclude that both `kCCOptionPKCS7Padding` with a value of `1` and the ECB mode option (`kCCOptionECBMode`) with a value of `2` are enabled, since `1+2=3`. Therefore, the `CCCrypt` function is invoked with the ECB mode option, AES algorithm, and a key that is 16 bytes long.
+In the disassembly, the third argument to `CCCrypt` is passed in `w2` and is set to the constant value `3`. This argument corresponds to the `CCOptions` parameter, which is defined as a bitmask rather than a single enumerated value. That distinction is important, because it means individual options are combined by setting bits, not by selecting one value from a list.
 
-The test fails because ECB mode was found in the code.
+When analyzing a bitmask, the numeric value must be decomposed into its constituent flags. The value `3` in binary is `0b11`. The least significant bit, `0b01`, corresponds to `kCCOptionPKCS7Padding`, which has a value of `1`. The next bit, `0b10`, corresponds to `kCCOptionECBMode`, which has a value of `2`. Since both of these bits are set in `3`, both options are enabled at the same time.
+
+Looking at the rest of the arguments confirms the interpretation. `w0` is `0`, mapping to `kCCEncrypt`, and `w1` is `0`, mapping to `kCCAlgorithmAES128`. The key length passed in `w4` is `0x10`, indicating a 16 byte key, which is appropriate for AES 128. The IV argument is passed as a null pointer, which is consistent with ECB mode, since ECB does not use an initialization vector.
+
+Taken together, we can conclude that **the test fails** because the app is performing AES-128 encryption with PKCS7 padding enabled and in ECB mode.
