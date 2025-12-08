@@ -51,6 +51,5 @@ The test case fails if any text input field used for access or verification code
 - `TextField` is used
 - `SecureTextField` is used but configured with `TextObfuscationMode.Visible`
 
-
 !!! note
     This test may produce false negatives if the app uses custom text input controls that do not rely on standard classes such as `TextField` or `SecureTextField` (for example in custom UI frameworks or game engines).
