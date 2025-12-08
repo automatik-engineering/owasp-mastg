@@ -16,7 +16,7 @@ The following sample demonstrates a pair of username and password input fields i
 
 Let's run our @MASTG-TOOL-0110 rule against the Kotlin code.
 
-{{ ../../../../rules/mastg-android-input-field-usage.yaml }}
+{{ ../../../../rules/mastg-android-input-field-usage.yml }}
 
 {{ run.sh }}
 
