@@ -8,7 +8,7 @@ test: MASTG-TEST-0316
 
 ### Sample
 
-The following sample code contains the Kotlin code that creates four pairs of username and password input fields in Compose.
+The following sample demonstrates a pair of username and password input fields in Compose.
 
 {{ MainActivity.kt # MainActivityKt_reversed.java # ComposableSingletons$MainActivityKt_reversed.java }}
 
