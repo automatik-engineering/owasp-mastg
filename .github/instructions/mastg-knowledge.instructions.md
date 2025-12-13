@@ -10,12 +10,12 @@ Scope boundaries (this is important for consistency across the project):
 - Tests (MASTG-TEST) are issue-focused: what can go wrong with that thing in apps, and how to detect it.
 - Best Practices (MASTG-BEST) are prescriptive: how to prevent or fix the issues that tests look for.
 
-Because of this separation, do not include “what can go wrong”, threat scenarios, failure criteria, or remediation advice in Knowledge pages.
+Because of this separation, do not include "what can go wrong", threat scenarios, failure criteria, or remediation advice in Knowledge pages.
 
 Avoid language and structures that imply security testing or remediation, for example:
 
-- “attackers can …”, “this is insecure …”, “this is vulnerable …”
-- “the test fails if …”, “to prevent this …”, “you should/shouldn’t …”
+- "attackers can …", "this is insecure …", "this is vulnerable …"
+- "the test fails if …", "to prevent this …", "you should/shouldn’t …"
 
 Locations and taxonomy:
 
@@ -68,7 +68,7 @@ Keep content authoritative, concise, and platform-focused. Avoid duplicating OS 
 Considerations for writing the content:
 
 - Define the concept and its scope. Relate to OS components, APIs, or security model elements.
-- Explain behavior and implications that are relevant to security testing without framing them as “risks” or “attacks”. (Tests cover “what can go wrong”; Best Practices cover “what to do about it”.)
+- Explain behavior and implications that are relevant to security testing without framing them as "risks" or "attacks". (Tests cover "what can go wrong"; Best Practices cover "what to do about it".)
 - Include specific API names, version nuances, storage locations, and configuration knobs. Try to avoid code samples. Instead, refer to the existing MASTG-DEMO code files. If you include them, keep them short and explanatory.
 - Use references from official docs and standards. Avoid non-authoritative sources.
 - In body text, reference internal MAS identifiers with a leading `@` (for example, @MASTG-KNOW-0001, @MASTG-TEST-0204, @MASTG-TECH-0014, @MASTG-TOOL-0031, MASWE-0089).

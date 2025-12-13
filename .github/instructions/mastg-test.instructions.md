@@ -40,8 +40,8 @@ Follow a consistent style across all test titles.
 
 **Conventions**
 
-- Static: “References to…” (semgrep/r2)
-- Dynamic: “Runtime Use …” (frida)
+- Static: "References to…" (semgrep/r2)
+- Dynamic: "Runtime Use …" (frida)
 
 Exceptions may apply where "Runtime ..." feels forced, for example, tests using adb, local backups, or filesystem snapshots.
 
@@ -88,7 +88,7 @@ type: [dynamic, manual]
 
 #### best-practices
 
-Reference platform-specific mitigations or best practices. Automation generates a “Mitigations” section.
+Reference platform-specific mitigations or best practices. Automation generates a "Mitigations" section.
 
 New best practice files can be added under [best-practices/](https://github.com/OWASP/owasp-mastg/tree/master/best-practices).
 
@@ -162,7 +162,7 @@ The overview is platform-specific and extends the weakness overview with details
 
 Very important: the overview must be phrased like an issue.
 
-- Describe the relevant platform feature/API from the perspective of “what can go wrong” (risk, failure mode, exposure).
+- Describe the relevant platform feature/API from the perspective of "what can go wrong" (risk, failure mode, exposure).
 - Make it clear why the test exists: what the tester is trying to detect and why that matters.
 - Reference the related Knowledge page for background using its ID (for example, @MASTG-KNOW-0013).
 
@@ -170,9 +170,9 @@ Do not repeat the weakness description here. Focus on the specific issue the tes
 
 Good patterns for issue framing:
 
-- “If the app uses/implements/configures X, Y can happen …”
-- “This can lead to … (exposure, bypass, integrity failure, privacy leak) …”
-- “This test checks/verifies whether the app …”
+- "If the app uses/implements/configures X, Y can happen …"
+- "This can lead to … (exposure, bypass, integrity failure, privacy leak) …"
+- "This test checks/verifies whether the app …"
 
 Do not write the overview like a neutral platform description. Neutral/descriptive explanations belong in `knowledge/`.
 
@@ -214,7 +214,7 @@ Notes:
 
 The output you get after executing all steps. It serves as evidence.
 
-It MUST start with “The output should contain ...”.
+It MUST start with "The output should contain ...".
 
 Example:
 
@@ -228,7 +228,7 @@ The output should contain a list of locations where insecure random APIs are use
 
 Using the observation as input, describe how to evaluate it. State explicitly what makes the test fail.
 
-It MUST start with “The test case fails if ...”.
+It MUST start with "The test case fails if ...".
 
 Example:
 

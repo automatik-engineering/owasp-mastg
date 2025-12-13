@@ -16,8 +16,8 @@ Scope and relationship to Knowledge:
 
 Relationship to Tests and Knowledge (nuance):
 
-- Tests (MASTG-TEST) describe the issue and “what can go wrong”, then show how to detect it.
-- Knowledge (MASTG-KNOW) describes the feature/API neutrally (no “what can go wrong”).
+- Tests (MASTG-TEST) describe the issue and "what can go wrong", then show how to detect it.
+- Knowledge (MASTG-KNOW) describes the feature/API neutrally (no "what can go wrong").
 - Best Practices (MASTG-BEST) explains how to prevent or mitigate the issue the tests detect.
 
 ### Markdown: Metadata

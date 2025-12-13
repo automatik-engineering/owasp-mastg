@@ -105,7 +105,7 @@ Review existing content and **UPDATE** it. Especially references to Android/iOS 
 
 #### Best practices linkage
 
-Best practices are platform-specific and must be linked in the test metadata. Our automation creates a “Mitigations” section automatically.
+Best practices are platform-specific and must be linked in the test metadata. Our automation creates a "Mitigations" section automatically.
 
 1. Check if a best practice already exists in `best-practices/` folder
 2. If it doesn’t exist yet, create it new in `best-practices/` using the next available ID.
