@@ -127,7 +127,7 @@ prerequisites:
 #### profiles
 
 Specify the MASVS profiles to which the test applies. Valid values: L1, L2, P, R.
-The profiles are described in [MAS Testing Profiles Guide]( https://docs.google.com/document/d/1paz7dxKXHzAC9MN7Mnln1JiZwBNyg7Gs364AJ6KudEs/edit?tab=t.0#heading=h.il6q80u4fm3n)
+The profiles are described in [MAS Testing Profiles Guide](Document/0x03b-Testing-Profiles.md)
 
 - L1 denotes Essential Security.
 - L2 denotes Advanced Security.
@@ -158,14 +158,30 @@ Notes:
 
 #### Overview
 
-The overview is platform-specific and extends the weakness overview with details on the area tested. It may mention specific APIs and features.
+The overview is platform-specific and extends the weakness overview with details on the area tested.
+
+Very important: the overview must be phrased like an issue.
+
+- Describe the relevant platform feature/API from the perspective of “what can go wrong” (risk, failure mode, exposure).
+- Make it clear why the test exists: what the tester is trying to detect and why that matters.
+- Reference the related Knowledge page for background using its ID (for example, @MASTG-KNOW-0013).
+
+Do not repeat the weakness description here. Focus on the specific issue the test is checking for on the given platform.
+
+Good patterns for issue framing:
+
+- “If the app uses/implements/configures X, Y can happen …”
+- “This can lead to … (exposure, bypass, integrity failure, privacy leak) …”
+- “This test checks/verifies whether the app …”
+
+Do not write the overview like a neutral platform description. Neutral/descriptive explanations belong in `knowledge/`.
 
 Example:
 
 ```md
 ## Overview
 
-Android apps sometimes use insecure pseudorandom number generators (PRNGs) such as `java.util.Random`, which is essentially a linear congruential generator. This type of PRNG generates a predictable sequence of numbers for any given seed value, making the sequence reproducible and insecure for cryptographic use. In particular, `java.util.Random` and `Math.random()` ([the latter](https://franklinta.com/2014/08/31/predicting-the-next-math-random-in-java/) simply calling `nextDouble()` on a static `java.util.Random` instance) produce identical number sequences when initialized with the same seed across all Java implementations.
+Android apps sometimes use insecure pseudorandom number generators (PRNGs) (see @MASTG-KNOW-0013) such as `java.util.Random`, which is essentially a linear congruential generator. This type of PRNG generates a predictable sequence of numbers for any given seed value, making the sequence reproducible and insecure for cryptographic use. In particular, `java.util.Random` and `Math.random()` ([the latter](https://franklinta.com/2014/08/31/predicting-the-next-math-random-in-java/) simply calling `nextDouble()` on a static `java.util.Random` instance) produce identical number sequences when initialized with the same seed across all Java implementations.
 ```
 
 #### Steps
@@ -221,3 +237,5 @@ Example:
 
 The test case fails if you can find random numbers generated using those APIs that are used in security-relevant contexts.
 ```
+
+IMPORTANT: Do not include remediation advice or best practices in the evaluation section. Remediation belongs in `best-practices/` and must be linked in the test metadata `best-practices`. If it does not exist yet, create it.
