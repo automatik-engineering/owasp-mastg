@@ -101,9 +101,9 @@ cd /
 echo *
 ```
 
-### Running Command's in the Simulator
+### Running Commands in the Simulator
 
-You can run commands inside the simulator directly from your Mac's terminal using `xcrun`. For example, this lists simulator's environment variables:
+You can run commands inside the simulator directly from your Mac's terminal using `xcrun`. For example, this lists the simulator's environment variables:
 
 ```bash
 xcrun simctl spawn booted /usr/bin/env
@@ -138,7 +138,7 @@ Once the app is installed, you can perform other actions using the app's bundle 
 ```bash
 xcrun simctl uninstall booted org.owasp.mastestapp.MASTestApp-iOS
 xcrun simctl launch booted org.owasp.mastestapp.MASTestApp-iOS
-xcrun simctl terminate booted org.owasp.mastestapp-MASTestApp-iOS
+xcrun simctl terminate booted org.owasp.mastestapp.MASTestApp-iOS
 ```
 
 ### Open URLs
