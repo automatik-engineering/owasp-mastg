@@ -23,6 +23,7 @@ Example tests for reference:
 Notes:
 
 - Tests with `platform: network` are still organized under the OS folder that the MASVS category belongs to (for example, Android network tests live under `tests-beta/android/MASVS-NETWORK/`).
+- Old tests under `tests/` do not follow these new guidelines. We are currently working to deprecate all of them in favor of these new approach. 
 
 Each test has two parts: the [Markdown metadata](#markdown-metadata) (YAML `front matter`) and the [Markdown body](#markdown-body).
 
@@ -47,9 +48,11 @@ Exceptions may apply where "Runtime ..." feels forced, for example, tests using 
 
 #### platform
 
-The mobile platform. One of the following: iOS, Android, or network.
+The mobile platform. One of the following:
 
-- Use network for platform-agnostic traffic analysis tests where the checks are performed purely on captured/observed traffic (often paired with type: [network]).
+- `android`
+- `ios`
+- `network`: for platform-agnostic traffic analysis tests where the checks are performed purely on captured/observed traffic (often paired with `type: [network]`).
 
 #### id
 
@@ -90,19 +93,13 @@ type: [dynamic, manual]
 
 Reference platform-specific mitigations or best practices. Automation generates a "Mitigations" section.
 
-New best practice files can be added under [best-practices/](https://github.com/OWASP/owasp-mastg/tree/master/best-practices).
+Reference the related `best-practices/` pages for background using their ID. Create the pages if they don't exist yet.
 
 Example:
 
 ```md
 best-practices: [MASTG-BEST-0001]
 ```
-
-This links to https://mas.owasp.org/MASTG/best-practices/MASTG-BEST-0001/
-
-Notes:
-
-- If no applicable best practices exist yet, you can omit the field or set an empty list: `best-practices: []`.
 
 #### prerequisites
 
@@ -126,7 +123,7 @@ prerequisites:
 
 #### profiles
 
-Specify the MASVS profiles to which the test applies. Valid values: L1, L2, P, R.
+Specify the MAS profiles to which the test applies. Valid values: L1, L2, P, R.
 The profiles are described in [MAS Testing Profiles Guide](Document/0x03b-Testing-Profiles.md)
 
 - L1 denotes Essential Security.
@@ -138,6 +135,16 @@ Example:
 
 ```md
 profiles: [L1, L2, P]
+```
+
+#### knowledge
+
+Reference the related `knowledge/` pages for background using their ID. Create the pages if they don't exist yet.
+
+Example:
+
+```md
+knowledge: [MASTG-KNOW-0013]
 ```
 
 #### optional fields
@@ -158,13 +165,12 @@ Notes:
 
 #### Overview
 
-The overview is platform-specific and extends the weakness overview with details on the area tested.
+The overview is platform-specific and extends the weakness overview with details on the area tested (the Knowledge items from the `knowledge` in the metadata).
 
 Very important: the overview must be phrased like an issue.
 
 - Describe the relevant platform feature/API from the perspective of "what can go wrong" (risk, failure mode, exposure).
 - Make it clear why the test exists: what the tester is trying to detect and why that matters.
-- Reference the related Knowledge page for background using its ID (for example, @MASTG-KNOW-0013).
 
 Do not repeat the weakness description here. Focus on the specific issue the test is checking for on the given platform.
 
@@ -181,7 +187,7 @@ Example:
 ```md
 ## Overview
 
-Android apps sometimes use insecure pseudorandom number generators (PRNGs) (see @MASTG-KNOW-0013) such as `java.util.Random`, which is essentially a linear congruential generator. This type of PRNG generates a predictable sequence of numbers for any given seed value, making the sequence reproducible and insecure for cryptographic use. In particular, `java.util.Random` and `Math.random()` ([the latter](https://franklinta.com/2014/08/31/predicting-the-next-math-random-in-java/) simply calling `nextDouble()` on a static `java.util.Random` instance) produce identical number sequences when initialized with the same seed across all Java implementations.
+Android apps sometimes use insecure pseudorandom number generators (PRNGs) such as `java.util.Random`, which is essentially a linear congruential generator. This type of PRNG generates a predictable sequence of numbers for any given seed value, making the sequence reproducible and insecure for cryptographic use. In particular, `java.util.Random` and `Math.random()` ([the latter](https://franklinta.com/2014/08/31/predicting-the-next-math-random-in-java/) simply calling `nextDouble()` on a static `java.util.Random` instance) produce identical number sequences when initialized with the same seed across all Java implementations.
 ```
 
 #### Steps
