@@ -30,7 +30,7 @@ This sample collects the following [user data](https://support.google.com/google
 
 ## Observation
 
-The output shows all instances of `logEvent` calls to Firebase Analytics SDK that were found at runtime, along with the parameters being sent. A backtrace is also provided to help identify the location in the code.
+The output shows all instances of `logEvent` calls to the Firebase Analytics SDK found at runtime, along with the parameters sent. A backtrace is also provided to help identify the location in the code.
 
 {{ output.json }}
 

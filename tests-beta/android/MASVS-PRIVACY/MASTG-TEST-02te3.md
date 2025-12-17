@@ -21,7 +21,7 @@ This test verifies whether an app is sending sensitive data to an embedded SDK (
 
 ## Observation
 
-The output should contain a list of the locations where SDK methods are called.
+The output should list the locations where SDK methods are called, their stacktrace (call hierarchy leading to the call), and the arguments (values) passed to the SDK method at runtime.
 
 ## Evaluation
 

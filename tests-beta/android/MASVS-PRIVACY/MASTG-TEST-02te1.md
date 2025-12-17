@@ -11,16 +11,18 @@ profiles: [P]
 
 This test verifies whether an app references SDK (third-party library) APIs known to handle sensitive data.
 
-> Note: This tests detects only **potential** sensitive data handling. For **confirming** that actual user data are being shared, please refer to @MASTG-TEST-02te3.
+As a prerequisite, we need to identify the SDK APIs (methods) it uses as entry points for data collection by reviewing the library's documentation or codebase. For example, [FirebaseAnalytics](https://firebase.google.com/docs/analytics)'s class `com.google.firebase.analytics.FirebaseAnalytics` has the method `logEvent` used to log data. The method to look for would be `logEvent` in class `com.google.firebase.analytics.FirebaseAnalytics`.
+
+> Note: This test detects only **potential** sensitive data handling. For **confirming** that actual user data are being shared, please refer to @MASTG-TEST-02te3.
 
 ## Steps
 
-1. Identify common SDK APIs (methods) the SDK uses as entry points to collect data by researching the library's documentation online or its codebase. For example, if the library is `com.example.analytics` and it has a method `trackEvent(String eventName, Map<String, String> properties)` used to accept data, then the method to search for would be `com.example.analytics.trackEvent`.
-2. Run @MASTG-TECH-0014 to look for uses of these methods where sensitive data may be passed to the SDK.
+1. Use @MASTG-TECH-0013 to reverse engineer the app.
+2. Use @MASTG-TECH-0014 to look for uses of these methods where sensitive data may be passed to the SDK.
 
 ## Observation
 
-The output should contain a list of locations where SDK methods are called.
+The output should list the locations where SDK methods are called.
 
 ## Evaluation
 
