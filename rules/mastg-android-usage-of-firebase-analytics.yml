@@ -1,9 +1,0 @@
-rules:
-  - id: mastg-android-usage-of-firebase-analytics
-    languages:
-      - java
-    severity: INFO
-    message: "[MASVS-PRIVACY] App uses Firebase Analytics methods"
-    metadata:
-      summary: "Detects if the app uses Firebase Analytics methods."
-    pattern: $FA.logEvent($EVT, $ARG)
