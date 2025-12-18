@@ -1,9 +1,9 @@
 ---
 platform: android
 title: Sensitive User Data Sent to Firebase Analytics with Frida
-id: MASTG-DEMO-00de3
+id: MASTG-DEMO-0081
 code: [kotlin]
-test: MASTG-TEST-02te3
+test: MASTG-TEST-0319
 ---
 
 ## Sample

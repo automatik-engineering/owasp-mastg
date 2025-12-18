@@ -1,7 +1,7 @@
 ---
 platform: android
 title: References to SDK APIs Known to Handle Sensitive User Data
-id: MASTG-TEST-02te1
+id: MASTG-TEST-0318
 type: [static]
 weakness: MASWE-0112
 profiles: [P]
@@ -13,7 +13,7 @@ This test verifies whether an app uses SDK (third-party library) APIs known to h
 
 As a prerequisite, we need to identify the SDK API methods it uses as entry points for data collection by reviewing the library's documentation or codebase. For example, [Google Analytics for Firebase](https://firebase.google.com/docs/analytics) in its class `FirebaseAnalytics` provides methods such as [`setUserId`](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#setUserId(java.lang.String)), [`setUserProperty`](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#setUserProperty(java.lang.String,%20java.lang.String)), and [`logEvent`](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#logEvent(java.lang.String,%20android.os.Bundle)) that can be used to collect user data.
 
-> Note: This test detects only **potential** sensitive user data handling. For **confirming** that actual user data are being shared, please refer to @MASTG-TEST-02te3.
+> Note: This test detects only **potential** sensitive user data handling. For **confirming** that actual user data are being shared, please refer to @MASTG-TEST-0319.
 
 ## Steps
 
