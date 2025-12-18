@@ -44,7 +44,7 @@
       "value": "<instance: android.os.Bundle>",
       "runtimeType": "android.os.Bundle",
       "instanceId": "130116900",
-      "instanceToString": "Bundle[{blood_type=B+, user_id=87495975}]"
+      "instanceToString": "Bundle[{blood_type=A+, user_id=87495975}]"
     }
   ],
   "returnValue": [
