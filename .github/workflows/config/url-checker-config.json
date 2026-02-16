@@ -110,6 +110,36 @@
         },
         {
             "pattern": "^https://academy.realm.io/posts/russ-bishop-unsafe-swift/"
+        },
+        {
+            "pattern": "^https://cocoapods.org"
+        },
+        {
+            "pattern": "^https://www.hhs.gov/hipaa"
+        },
+        {
+            "pattern": "^https://www.cvedetails.com/cve/CVE"
+        },
+        {
+            "pattern": "https://tlsexpired.no"
+        },
+        {
+            "pattern": "https://mitm-software.badssl.com/"
+        },
+        {
+            "pattern": "https://www.npmjs.com/package/itms-services"
+        },
+        {
+            "pattern": "https://apkmirror.com"
+        },
+        {
+            "pattern": "^https://codeshare.frida.re/"
+        },
+        {
+            "pattern": "^https://developer.hashicorp.com/"
+        },
+        {
+            "pattern": "^https://framework7.io/"
         }
     ],
     "replacementPatterns": [
